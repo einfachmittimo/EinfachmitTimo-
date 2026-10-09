@@ -1,0 +1,1482 @@
+[
+  {
+    "name": "Wraps mit Hähnchen",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Hähnchenbrust",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Frischkäse",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Salat",
+        "amount": 1,
+        "unit": "Kopf"
+      },
+      {
+        "name": "Tortilla Wraps",
+        "amount": 8,
+        "unit": "Stück"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🌯",
+    "time_min": 20,
+    "difficulty": "Einfach",
+    "kcal": 480,
+    "protein": 35,
+    "carbs": 40,
+    "fett": 18,
+    "ballaststoffe": 5,
+    "steps": [
+      "Hähnchenbrust würzen und in der Pfanne braten, dann in Streifen schneiden.",
+      "Gurke und Salat waschen und klein schneiden.",
+      "Frischkäse auf den Wraps verteilen, Füllung darauf geben und einrollen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Nudelsalat mit Vollkornnudeln",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Vollkornnudeln",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "Mais",
+        "amount": 1,
+        "unit": "Dose"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Feta",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Tomaten",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🍝",
+    "time_min": 20,
+    "difficulty": "Einfach",
+    "kcal": 420,
+    "protein": 16,
+    "carbs": 55,
+    "fett": 14,
+    "ballaststoffe": 7,
+    "steps": [
+      "Nudeln nach Packungsanleitung kochen und abkühlen lassen.",
+      "Gurke und Tomaten würfeln, Mais abtropfen lassen.",
+      "Alles mit Feta vermischen und mit Dressing nach Wahl anmachen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Kalte Ofenkartoffeln mit Kräuterquark",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Kartoffeln",
+        "amount": 1000,
+        "unit": "g"
+      },
+      {
+        "name": "Kräuterquark",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Schnittlauch",
+        "amount": 1,
+        "unit": "Bund"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🥔",
+    "time_min": 45,
+    "difficulty": "Einfach",
+    "kcal": 380,
+    "protein": 14,
+    "carbs": 55,
+    "fett": 10,
+    "ballaststoffe": 8,
+    "steps": [
+      "Kartoffeln waschen und im Ofen bei 200°C ca. 35 Minuten backen.",
+      "Abkühlen lassen, Kräuterquark mit Schnittlauch verrühren.",
+      "Kartoffeln mit Kräuterquark und Gurkenscheiben servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Reissalat mit Thunfisch",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Vollkornreis",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Thunfisch",
+        "amount": 2,
+        "unit": "Dosen"
+      },
+      {
+        "name": "Paprika",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      }
+    ],
+    "diet": "fisch",
+    "category": "Mittagessen",
+    "icon": "🍚",
+    "time_min": 25,
+    "difficulty": "Einfach",
+    "kcal": 430,
+    "protein": 28,
+    "carbs": 50,
+    "fett": 10,
+    "ballaststoffe": 6,
+    "steps": [
+      "Reis kochen und abkühlen lassen.",
+      "Paprika und Gurke klein würfeln.",
+      "Thunfisch abtropfen lassen und alles miteinander vermengen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Brotzeit-Abend",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Vollkornbrot",
+        "amount": 1,
+        "unit": "Laib"
+      },
+      {
+        "name": "Käse",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Eier",
+        "amount": 4,
+        "unit": "Stück"
+      },
+      {
+        "name": "Rohkost",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "Aufstriche",
+        "amount": 2,
+        "unit": "Gläser"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🥪",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 450,
+    "protein": 22,
+    "carbs": 40,
+    "fett": 20,
+    "ballaststoffe": 7,
+    "steps": [
+      "Eier hart kochen und abschrecken.",
+      "Brot in Scheiben schneiden, Käse und Rohkost anrichten.",
+      "Alles zusammen mit Aufstrichen auf einem Brett servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Couscous-Salat mit Halloumi",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Couscous",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Paprika",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Halloumi",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Kräuter",
+        "amount": 1,
+        "unit": "Bund"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🥗",
+    "time_min": 20,
+    "difficulty": "Einfach",
+    "kcal": 420,
+    "protein": 18,
+    "carbs": 45,
+    "fett": 16,
+    "ballaststoffe": 6,
+    "steps": [
+      "Couscous mit heißem Wasser übergießen und quellen lassen.",
+      "Halloumi in Scheiben schneiden und goldbraun anbraten.",
+      "Paprika und Gurke würfeln, mit Kräutern und Couscous vermengen, Halloumi obenauf."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Wassermelonen-Feta-Salat",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Wassermelone",
+        "amount": 1000,
+        "unit": "g"
+      },
+      {
+        "name": "Feta",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Minze",
+        "amount": 1,
+        "unit": "Bund"
+      },
+      {
+        "name": "Rucola",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Baguette",
+        "amount": 1,
+        "unit": "Stück"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🍉",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 260,
+    "protein": 10,
+    "carbs": 30,
+    "fett": 10,
+    "ballaststoffe": 3,
+    "steps": [
+      "Wassermelone entkernen und würfeln.",
+      "Feta zerbröseln, Minze und Rucola grob hacken.",
+      "Alles vermengen und mit Baguette servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Protein-Porridge",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Haferflocken",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Mandelmilch",
+        "amount": 800,
+        "unit": "ml"
+      },
+      {
+        "name": "Proteinpulver",
+        "amount": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Beeren",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Chiasamen",
+        "amount": 40,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🥣",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 430,
+    "protein": 32,
+    "carbs": 45,
+    "fett": 12,
+    "ballaststoffe": 12,
+    "steps": [
+      "Haferflocken mit Mandelmilch aufkochen und cremig köcheln lassen.",
+      "Proteinpulver einrühren.",
+      "Mit Beeren und Chiasamen toppen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Rührei mit Avocado",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Eier",
+        "amount": 8,
+        "unit": "Stück"
+      },
+      {
+        "name": "Avocado",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Vollkornbrot",
+        "amount": 8,
+        "unit": "Scheiben"
+      },
+      {
+        "name": "Tomaten",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🍳",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 410,
+    "protein": 30,
+    "carbs": 20,
+    "fett": 24,
+    "ballaststoffe": 8,
+    "steps": [
+      "Eier verquirlen und in der Pfanne stocken lassen.",
+      "Avocado in Scheiben schneiden.",
+      "Rührei mit Vollkornbrot, Avocado und Tomaten servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Overnight Oats",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Haferflocken",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Mandelmilch",
+        "amount": 600,
+        "unit": "ml"
+      },
+      {
+        "name": "Proteinpulver",
+        "amount": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Beeren",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🥣",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 420,
+    "protein": 30,
+    "carbs": 48,
+    "fett": 10,
+    "ballaststoffe": 11,
+    "steps": [
+      "Haferflocken mit Mandelmilch und Proteinpulver verrühren.",
+      "Über Nacht im Kühlschrank quellen lassen.",
+      "Am Morgen mit Beeren toppen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Skyr mit Beeren und Nüssen",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Skyr",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "Beeren",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Nüsse",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Leinsamen",
+        "amount": 40,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🍶",
+    "time_min": 5,
+    "difficulty": "Einfach",
+    "kcal": 400,
+    "protein": 32,
+    "carbs": 30,
+    "fett": 14,
+    "ballaststoffe": 10,
+    "steps": [
+      "Skyr in eine Schale geben.",
+      "Beeren und Nüsse darüberstreuen.",
+      "Mit Leinsamen bestreuen und sofort genießen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Protein-Pancakes",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Haferflocken",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Eier",
+        "amount": 4,
+        "unit": "Stück"
+      },
+      {
+        "name": "Proteinpulver",
+        "amount": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Beeren",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🥞",
+    "time_min": 20,
+    "difficulty": "Einfach",
+    "kcal": 430,
+    "protein": 32,
+    "carbs": 42,
+    "fett": 13,
+    "ballaststoffe": 9,
+    "steps": [
+      "Haferflocken, Eier und Proteinpulver zu einem Teig verrühren.",
+      "Kleine Pancakes in der Pfanne von beiden Seiten backen.",
+      "Mit Beeren servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Chia-Pudding",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Chiasamen",
+        "amount": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Mandelmilch",
+        "amount": 800,
+        "unit": "ml"
+      },
+      {
+        "name": "Beeren",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Proteinpulver",
+        "amount": 120,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🍮",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 400,
+    "protein": 30,
+    "carbs": 32,
+    "fett": 15,
+    "ballaststoffe": 12,
+    "steps": [
+      "Chiasamen mit Mandelmilch und Proteinpulver verrühren.",
+      "Mindestens 3 Stunden (am besten über Nacht) quellen lassen.",
+      "Mit Beeren garniert servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Rührei mit Spinat",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Eier",
+        "amount": 8,
+        "unit": "Stück"
+      },
+      {
+        "name": "Spinat",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Vollkornbrot",
+        "amount": 8,
+        "unit": "Scheiben"
+      },
+      {
+        "name": "Tomaten",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Frühstück",
+    "icon": "🍳",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 410,
+    "protein": 30,
+    "carbs": 18,
+    "fett": 25,
+    "ballaststoffe": 9,
+    "steps": [
+      "Spinat in einer Pfanne kurz zusammenfallen lassen.",
+      "Eier dazugeben und unter Rühren stocken lassen.",
+      "Mit Vollkornbrot und Tomaten servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Hähnchen-Gemüse-Pfanne",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Hähnchenbrust",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Kartoffeln",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "Paprika",
+        "amount": 2,
+        "unit": "Stück"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🍗",
+    "time_min": 30,
+    "difficulty": "Einfach",
+    "kcal": 520,
+    "protein": 48,
+    "carbs": 35,
+    "fett": 10,
+    "ballaststoffe": 10,
+    "steps": [
+      "Hähnchenbrust in Stücke schneiden und anbraten.",
+      "Kartoffeln und Paprika dazugeben, mitbraten.",
+      "Mit Gewürzen abschmecken und servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Lachs mit Reis und Brokkoli",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Lachs",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Reis",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Brokkoli",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Zitrone",
+        "amount": 1,
+        "unit": "Stück"
+      }
+    ],
+    "diet": "fisch",
+    "category": "Mittagessen",
+    "icon": "🐟",
+    "time_min": 30,
+    "difficulty": "Einfach",
+    "kcal": 550,
+    "protein": 45,
+    "carbs": 40,
+    "fett": 9,
+    "ballaststoffe": 9,
+    "steps": [
+      "Reis nach Packungsanleitung kochen.",
+      "Lachs in der Pfanne oder im Ofen garen.",
+      "Brokkoli dämpfen, mit Zitronensaft abschmecken und alles anrichten."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Puten-Gemüse-Curry",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Putenfleisch",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Kokosmilch",
+        "amount": 400,
+        "unit": "ml"
+      },
+      {
+        "name": "Vollkornreis",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Gemüse",
+        "amount": 500,
+        "unit": "g"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🍛",
+    "time_min": 35,
+    "difficulty": "Mittel",
+    "kcal": 560,
+    "protein": 50,
+    "carbs": 45,
+    "fett": 11,
+    "ballaststoffe": 11,
+    "steps": [
+      "Putenfleisch anbraten, Gemüse dazugeben.",
+      "Kokosmilch angießen und köcheln lassen.",
+      "Mit Vollkornreis servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Rindergeschnetzeltes",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Rindfleisch",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Süßkartoffeln",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "Bohnen",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🥩",
+    "time_min": 35,
+    "difficulty": "Mittel",
+    "kcal": 560,
+    "protein": 48,
+    "carbs": 35,
+    "fett": 10,
+    "ballaststoffe": 10,
+    "steps": [
+      "Rindfleisch in Streifen schneiden und scharf anbraten.",
+      "Süßkartoffeln separat garen.",
+      "Bohnen untermischen und alles zusammen anrichten."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Hähnchen-Brokkoli-Pasta",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Hähnchenbrust",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Brokkoli",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "Nudeln",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "Kirschtomaten",
+        "amount": 250,
+        "unit": "g"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🍝",
+    "time_min": 25,
+    "difficulty": "Einfach",
+    "kcal": 560,
+    "protein": 45,
+    "carbs": 50,
+    "fett": 9,
+    "ballaststoffe": 9,
+    "steps": [
+      "Nudeln kochen, Brokkoli in den letzten Minuten mitkochen.",
+      "Hähnchenbrust in Streifen anbraten.",
+      "Alles mit Kirschtomaten vermengen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Ofengemüse mit Feta",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Gemüse",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "Feta",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Hähnchenbrust",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Couscous",
+        "amount": 250,
+        "unit": "g"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🥘",
+    "time_min": 35,
+    "difficulty": "Einfach",
+    "kcal": 560,
+    "protein": 45,
+    "carbs": 40,
+    "fett": 10,
+    "ballaststoffe": 10,
+    "steps": [
+      "Gemüse in Stücke schneiden und im Ofen rösten.",
+      "Hähnchenbrust separat anbraten oder mitrösten.",
+      "Mit Couscous und Feta servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Putenbrust mit Gemüse",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Putenbrust",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Gemüse",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Kartoffeln",
+        "amount": 800,
+        "unit": "g"
+      }
+    ],
+    "diet": "fleisch",
+    "category": "Mittagessen",
+    "icon": "🍗",
+    "time_min": 35,
+    "difficulty": "Einfach",
+    "kcal": 540,
+    "protein": 45,
+    "carbs": 40,
+    "fett": 10,
+    "ballaststoffe": 10,
+    "steps": [
+      "Putenbrust würzen und braten oder im Ofen garen.",
+      "Kartoffeln als Spalten im Ofen mitgaren.",
+      "Mit Gemüse der Wahl servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Skyr-Bowl",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Skyr",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Erdbeeren",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Nüsse",
+        "amount": 80,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🍶",
+    "time_min": 5,
+    "difficulty": "Einfach",
+    "kcal": 380,
+    "protein": 30,
+    "carbs": 35,
+    "fett": 9,
+    "ballaststoffe": 9,
+    "steps": [
+      "Skyr in eine Schale füllen.",
+      "Erdbeeren waschen und halbieren.",
+      "Mit Nüssen bestreuen und servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Thunfisch-Salat",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Thunfisch",
+        "amount": 2,
+        "unit": "Dosen"
+      },
+      {
+        "name": "Salat",
+        "amount": 1,
+        "unit": "Kopf"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Mais",
+        "amount": 1,
+        "unit": "Dose"
+      }
+    ],
+    "diet": "fisch",
+    "category": "Abendessen",
+    "icon": "🥗",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 380,
+    "protein": 28,
+    "carbs": 30,
+    "fett": 8,
+    "ballaststoffe": 8,
+    "steps": [
+      "Salat waschen und zupfen.",
+      "Gurke würfeln, Mais abtropfen lassen.",
+      "Thunfisch dazugeben und alles vermengen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Cottage Cheese Bowl",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Hüttenkäse",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Ananas",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Nüsse",
+        "amount": 80,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🥣",
+    "time_min": 5,
+    "difficulty": "Einfach",
+    "kcal": 350,
+    "protein": 28,
+    "carbs": 28,
+    "fett": 8,
+    "ballaststoffe": 8,
+    "steps": [
+      "Hüttenkäse in eine Schale geben.",
+      "Ananas in Stücke schneiden.",
+      "Mit Nüssen toppen und servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Caprese-Salat",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Tomaten",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Mozzarella",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Basilikum",
+        "amount": 1,
+        "unit": "Bund"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🍅",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 350,
+    "protein": 25,
+    "carbs": 25,
+    "fett": 7,
+    "ballaststoffe": 7,
+    "steps": [
+      "Tomaten und Mozzarella in Scheiben schneiden.",
+      "Abwechselnd auf einem Teller anrichten.",
+      "Mit Basilikum, Öl und Salz abschmecken."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Hüttenkäse mit Gurke",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Hüttenkäse",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Kräuter",
+        "amount": 1,
+        "unit": "Bund"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🥒",
+    "time_min": 5,
+    "difficulty": "Einfach",
+    "kcal": 350,
+    "protein": 28,
+    "carbs": 20,
+    "fett": 7,
+    "ballaststoffe": 7,
+    "steps": [
+      "Gurke in Scheiben oder Sticks schneiden.",
+      "Hüttenkäse in eine Schale geben.",
+      "Mit frischen Kräutern bestreuen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Räucherlachs-Wrap",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Tortilla Wraps",
+        "amount": 4,
+        "unit": "Stück"
+      },
+      {
+        "name": "Räucherlachs",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Frischkäse",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Rucola",
+        "amount": 100,
+        "unit": "g"
+      }
+    ],
+    "diet": "fisch",
+    "category": "Abendessen",
+    "icon": "🌯",
+    "time_min": 10,
+    "difficulty": "Einfach",
+    "kcal": 360,
+    "protein": 25,
+    "carbs": 25,
+    "fett": 7,
+    "ballaststoffe": 7,
+    "steps": [
+      "Frischkäse auf dem Wrap verteilen.",
+      "Räucherlachs und Rucola darauf legen.",
+      "Wrap einrollen und halbieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Skyr mit Nussmix",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Skyr",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Nüsse",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Zimt",
+        "amount": 1,
+        "unit": "TL"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Abendessen",
+    "icon": "🍶",
+    "time_min": 5,
+    "difficulty": "Einfach",
+    "kcal": 350,
+    "protein": 25,
+    "carbs": 25,
+    "fett": 7,
+    "ballaststoffe": 7,
+    "steps": [
+      "Skyr in eine Schale geben.",
+      "Mit Nüssen bestreuen.",
+      "Mit einer Prise Zimt abschmecken."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Gemüse-Bolognese mit Vollkornnudeln",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Linsen",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Möhren",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Zucchini",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Vollkornnudeln",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "passierte Tomaten",
+        "amount": 500,
+        "unit": "ml"
+      }
+    ],
+    "diet": "vegan",
+    "category": "Mittagessen",
+    "icon": "🍝",
+    "time_min": 30,
+    "difficulty": "Einfach",
+    "kcal": 420,
+    "protein": 20,
+    "carbs": 60,
+    "fett": 8,
+    "ballaststoffe": 12,
+    "steps": [
+      "Linsen, Möhren und Zucchini klein schneiden bzw. abtropfen lassen.",
+      "Alles mit passierten Tomaten köcheln lassen.",
+      "Mit gekochten Vollkornnudeln servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Ofenkartoffeln mit Rohkost",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Kartoffeln",
+        "amount": 1000,
+        "unit": "g"
+      },
+      {
+        "name": "Kräuterquark",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Gurke",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Paprika",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Möhren",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🥔",
+    "time_min": 45,
+    "difficulty": "Einfach",
+    "kcal": 380,
+    "protein": 12,
+    "carbs": 55,
+    "fett": 9,
+    "ballaststoffe": 8,
+    "steps": [
+      "Kartoffeln im Ofen backen.",
+      "Kräuterquark anrühren.",
+      "Mit Gurke, Paprika und Möhren als Rohkost servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Wraps zum Selbstbefüllen",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Tortilla Wraps",
+        "amount": 8,
+        "unit": "Stück"
+      },
+      {
+        "name": "Gemüse",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Käse",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Mais",
+        "amount": 1,
+        "unit": "Dose"
+      },
+      {
+        "name": "Joghurt",
+        "amount": 200,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🌯",
+    "time_min": 15,
+    "difficulty": "Einfach",
+    "kcal": 440,
+    "protein": 20,
+    "carbs": 45,
+    "fett": 18,
+    "ballaststoffe": 6,
+    "steps": [
+      "Gemüse und Käse klein schneiden, Mais abtropfen lassen.",
+      "Joghurt-Dip anrühren.",
+      "Alle Zutaten auf den Tisch stellen und Wraps selbst befüllen."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Kichererbsen-Gemüse-Curry",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Kichererbsen",
+        "amount": 2,
+        "unit": "Dosen"
+      },
+      {
+        "name": "Gemüse",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "Kokosmilch",
+        "amount": 400,
+        "unit": "ml"
+      },
+      {
+        "name": "Reis",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegan",
+    "category": "Mittagessen",
+    "icon": "🍛",
+    "time_min": 30,
+    "difficulty": "Einfach",
+    "kcal": 420,
+    "protein": 16,
+    "carbs": 55,
+    "fett": 12,
+    "ballaststoffe": 11,
+    "steps": [
+      "Gemüse anbraten, Kichererbsen dazugeben.",
+      "Kokosmilch angießen und köcheln lassen.",
+      "Mit Reis servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Gemüse-Puffer mit Apfelmus",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Kartoffeln",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "Zucchini",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Möhren",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Apfelmus",
+        "amount": 360,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🥞",
+    "time_min": 30,
+    "difficulty": "Mittel",
+    "kcal": 380,
+    "protein": 8,
+    "carbs": 55,
+    "fett": 12,
+    "ballaststoffe": 6,
+    "steps": [
+      "Kartoffeln, Zucchini und Möhren raspeln.",
+      "Zu Puffern formen und in der Pfanne goldbraun braten.",
+      "Mit Apfelmus servieren."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Selbstgemachte Gemüse-Pizza",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Mehl",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Hefe",
+        "amount": 1,
+        "unit": "Würfel"
+      },
+      {
+        "name": "passierte Tomaten",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "Gemüse",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "Käse",
+        "amount": 250,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "category": "Mittagessen",
+    "icon": "🍕",
+    "time_min": 50,
+    "difficulty": "Mittel",
+    "kcal": 520,
+    "protein": 20,
+    "carbs": 65,
+    "fett": 18,
+    "ballaststoffe": 6,
+    "steps": [
+      "Aus Mehl und Hefe einen Pizzateig herstellen und gehen lassen.",
+      "Mit passierten Tomaten bestreichen und mit Gemüse und Käse belegen.",
+      "Im Ofen bei hoher Hitze backen, bis der Käse goldbraun ist."
+    ],
+    "favorite": false
+  },
+  {
+    "name": "Gemüsesuppe mit Brot",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Kartoffeln",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Lauch",
+        "amount": 2,
+        "unit": "Stangen"
+      },
+      {
+        "name": "Erbsen",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Brot",
+        "amount": 1,
+        "unit": "Laib"
+      }
+    ],
+    "diet": "vegan",
+    "category": "Mittagessen",
+    "icon": "🍲",
+    "time_min": 40,
+    "difficulty": "Einfach",
+    "kcal": 320,
+    "protein": 12,
+    "carbs": 45,
+    "fett": 8,
+    "ballaststoffe": 8,
+    "steps": [
+      "Kartoffeln und Lauch klein schneiden und andünsten.",
+      "Mit Brühe aufgießen und Erbsen dazugeben, köcheln lassen.",
+      "Mit frischem Brot servieren."
+    ],
+    "favorite": false
+  }
+]
