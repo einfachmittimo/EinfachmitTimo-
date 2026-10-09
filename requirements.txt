@@ -1,2 +1,1 @@
-streamlit
-requests
+streamlit>=1.40,<2.0

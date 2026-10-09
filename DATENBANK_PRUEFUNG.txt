@@ -1,0 +1,6 @@
+Rezepte gesamt: 242
+Rezepte mit Zutaten: 242
+Rezepte mit Zubereitung: 242
+Rezepte mit strukturierten Nährwerten: 98
+Rezepte mit fehlenden Pflichtfeldern: 0
+Keine fehlenden Pflichtfelder festgestellt.

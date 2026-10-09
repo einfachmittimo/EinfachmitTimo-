@@ -1,523 +1,350 @@
-#!/usr/bin/env python3
-"""
-Essensplaner - Web-Oberfläche im "EinfachmitTimo"-Stil
-
-Lokal starten:
-    pip install streamlit requests
-    streamlit run app.py
-
-Für Hosting (Streamlit Community Cloud) siehe README.md –
-API-Keys werden dort über st.secrets statt fest im Code verwaltet.
-"""
-
+import base64
+import html
 import json
 import math
-import requests
-import streamlit as st
+import re
 from pathlib import Path
 
-# ---- Konfiguration ----
-RECIPES_FILE = Path(__file__).parent / "recipes.json"
-API_URL = "https://api.marktguru.de/api/v1/offers/search"
+import streamlit as st
 
+BASE_DIR = Path(__file__).resolve().parent
+RECIPES_FILE = BASE_DIR / "recipes.json"
+LOGO_FILE = BASE_DIR / "EinfachmitTimo_Logo.jpg"
+PORTRAIT_FILE = BASE_DIR / "Timo_Portrait.jpg"
 
-def hole_marktguru_keys():
-    """Liest die Marktguru-API-Keys aus st.secrets (Hosting) oder
-    verwendet lokale Fallback-Werte (zum Testen auf dem eigenen Rechner)."""
-    try:
-        return {
-            "x-clientkey": st.secrets["marktguru"]["clientkey"],
-            "x-apikey": st.secrets["marktguru"]["apikey"],
-        }
-    except Exception:
-        # Fallback für lokale Entwicklung ohne secrets.toml
-        return {
-            "x-clientkey": "WU/RH+PMGDi+gkZer3WbMelt6zcYHSTytNB7VpTia90=",
-            "x-apikey": "8Kk+pmbf7TgJ9nVj2cXeA7P5zBGv8iuutVVMRfOfvNE=",
-        }
+st.set_page_config(
+    page_title="EinfachmitTimo – Einfach gutes Essen",
+    page_icon="🍽️",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
-
-HEADERS = hole_marktguru_keys()
-
-STUECK_EINHEITEN = {
-    "Stück", "Bund", "Dose", "Dosen", "Kopf", "Laib", "Packung", "Gläser",
-    "Glas", "Würfel", "TL", "EL", "Scheiben", "Stangen", "Filet", "Filets",
-}
-DIET_OPTIONEN = {
-    "Alles": {"vegan", "vegetarisch", "fisch", "fleisch"},
-    "Vegetarisch": {"vegan", "vegetarisch"},
-    "Vegan": {"vegan"},
-    "Pescetarisch (kein Fleisch, Fisch ok)": {"vegan", "vegetarisch", "fisch"},
-}
-KATEGORIEN = ["Frühstück", "Mittagessen", "Abendessen"]
-
-# ============================================================
-#  Styling – dunkles Theme mit Sidebar-Navigation
-# ============================================================
-st.set_page_config(page_title="EinfachmitTimo – Essensplaner", page_icon="🍽️", layout="wide")
-
-st.markdown("""
-<style>
-    .stApp { background-color: #121212; color: #eee; }
-    section[data-testid="stSidebar"] {
-        background-color: #181818;
-        border-right: 1px solid #2a2a2a;
-    }
-    section[data-testid="stSidebar"] * { color: #eee; }
-    div[role="radiogroup"] > label {
-        display: block; padding: 10px 14px; margin-bottom: 4px;
-        border-radius: 8px; cursor: pointer;
-    }
-    div[role="radiogroup"] > label:hover { background-color: #262626; }
-    div[role="radiogroup"] input[type="radio"] { display: none; }
-    div[role="radiogroup"] > label:has(input:checked) {
-        background-color: #E8791A; color: #111 !important; font-weight: 600;
-    }
-    div[role="radiogroup"] > label:has(input:checked) * { color: #111 !important; }
-
-    .brand { text-align:center; padding: 10px 0 20px 0; }
-    .brand-title { font-size: 22px; font-weight: 800; color: #E8791A; }
-    .brand-sub { font-size: 11px; letter-spacing: 2px; color: #999; }
-
-    .recipe-card {
-        background-color: #1e1e1e; border-radius: 14px; padding: 0;
-        overflow: hidden; border: 1px solid #2a2a2a; margin-bottom: 8px;
-    }
-    .recipe-card-img {
-        font-size: 60px; text-align: center; padding: 28px 0;
-        background: linear-gradient(135deg,#2a2a2a,#1a1a1a);
-    }
-    .recipe-card-body { padding: 12px 14px 4px 14px; }
-    .recipe-card-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color:#fff; }
-    .badge {
-        display: inline-block; font-size: 11px; padding: 2px 9px;
-        border-radius: 20px; margin-right: 6px; margin-bottom: 6px;
-    }
-    .badge-time { background-color: #2a2a2a; color: #ccc; }
-    .badge-Frühstück { background-color: #3a2f14; color: #f0b429; }
-    .badge-Mittagessen { background-color: #142a1f; color: #4ade80; }
-    .badge-Abendessen { background-color: #1c2438; color: #7aa2f7; }
-    .badge-diet { background-color: #24303d; color: #9fd3ff; }
-    .badge-deal { background-color: #E8791A; color: #111; font-weight:700; }
-
-    .detail-header { display:flex; gap:20px; align-items:flex-start; margin-bottom: 10px;}
-    .detail-icon { font-size: 90px; }
-
-    .stButton>button {
-        border-radius: 8px; border: 1px solid #333; background-color:#232323; color:#eee;
-    }
-    .stButton>button:hover { border-color:#E8791A; color:#E8791A; }
-    hr { border-color: #2a2a2a; }
-</style>
-""", unsafe_allow_html=True)
-
-
-# ============================================================
-#  Daten laden / speichern
-# ============================================================
+# ---------- Daten ----------
+@st.cache_data
 def lade_rezepte():
-    with open(RECIPES_FILE, encoding="utf-8") as f:
-        rezepte = json.load(f)
-    for r in rezepte:
-        r.setdefault("favorite", False)
-        r.setdefault("category", "Mittagessen")
-        r.setdefault("icon", "🍽️")
-        r.setdefault("time_min", 20)
-        r.setdefault("difficulty", "Einfach")
-        r.setdefault("diet", "vegetarisch")
-        r.setdefault("steps", [])
-    return rezepte
-
-
-def speichere_rezepte(rezepte):
-    with open(RECIPES_FILE, "w", encoding="utf-8") as f:
-        json.dump(rezepte, f, ensure_ascii=False, indent=2)
-
-
-def zutat_name(z):
-    return z["name"] if isinstance(z, dict) else z
-
-
-def skaliere_menge(amount, unit, faktor):
-    skaliert = amount * faktor
-    if unit in STUECK_EINHEITEN:
-        return max(1, math.ceil(skaliert))
-    if skaliert < 10:
-        return round(skaliert, 1)
-    return round(skaliert / 10) * 10
-
-
-def formatiere_menge(amount, unit):
-    if isinstance(amount, float) and amount.is_integer():
-        amount = int(amount)
-    return f"{amount} {unit}"
-
-
-@st.cache_data(ttl=3600, show_spinner=False)
-def suche_angebot(zutat: str, zip_code: str, retailers: tuple):
-    params = {"as": "web", "limit": 10, "offset": 0, "q": zutat, "zipCode": zip_code}
-    try:
-        r = requests.get(API_URL, headers=HEADERS, params=params, timeout=10)
-        r.raise_for_status()
-        data = r.json()
-    except Exception:
-        return None
-    treffer = []
-    for result in data.get("results", []):
-        preis = result.get("price")
-        if preis is None:
-            continue
-        for adv in result.get("advertisers", []):
-            if adv.get("uniqueName", "") in retailers:
-                treffer.append({"beschreibung": result.get("description", ""),
-                                 "preis": preis, "haendler": adv.get("name", "")})
-    if not treffer:
-        return None
-    return min(treffer, key=lambda t: t["preis"])
-
-
-# ============================================================
-#  Session State Grundwerte
-# ============================================================
-ss = st.session_state
-ss.setdefault("nav", "Startseite")
-ss.setdefault("selected_recipe", None)
-ss.setdefault("kategorie_filter", "Alle")
-ss.setdefault("suchtext", "")
-ss.setdefault("zip_code", "89584")
-ss.setdefault("retailer_auswahl", ["lidl", "aldi-sued"])
-ss.setdefault("portionen", 4)
-ss.setdefault("ernaehrungsweise", "Alles")
+    with RECIPES_FILE.open(encoding="utf-8") as f:
+        data = json.load(f)
+    return data if isinstance(data, list) else []
 
 rezepte = lade_rezepte()
 
+def titel(r):
+    return str(r.get("name") or r.get("titel") or "Ohne Titel").strip()
 
-# ============================================================
-#  Sidebar
-# ============================================================
-with st.sidebar:
-    st.markdown(
-        '<div class="brand"><div class="brand-title">🍽️ EinfachmitTimo</div>'
-        '<div class="brand-sub">EINFACH GUTES ESSEN</div></div>',
-        unsafe_allow_html=True,
-    )
-    nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Favoriten", "Kategorien", "Suche", "Über"]
-    ss["nav"] = st.radio("Navigation", nav_optionen, index=nav_optionen.index(ss["nav"]), label_visibility="collapsed")
+def kategorie(r):
+    return str(r.get("kategorie") or r.get("category") or "Mittagessen").strip()
 
-    st.divider()
-    with st.expander("⚙️ Einstellungen (Angebote)"):
-        ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"])
-        ss["retailer_auswahl"] = st.multiselect(
-            "Märkte", options=["lidl", "aldi-sued", "aldi-nord"], default=ss["retailer_auswahl"]
-        )
-        ss["portionen"] = st.number_input("Portionen", min_value=1, max_value=12, value=ss["portionen"])
-        ss["ernaehrungsweise"] = st.selectbox(
-            "Ernährungsweise", options=list(DIET_OPTIONEN.keys()),
-            index=list(DIET_OPTIONEN.keys()).index(ss["ernaehrungsweise"]),
-        )
+def diat(r):
+    return str(r.get("diet") or r.get("ernaehrung") or "Alles").strip()
 
+def zubereitung(r):
+    p = r.get("zubereitung") or r.get("preparation") or r.get("instructions") or r.get("steps")
+    if isinstance(p, list):
+        return p
+    return [str(p)] if p else ["Keine Zubereitung hinterlegt."]
 
-# ============================================================
-#  Hilfsfunktionen für Ansicht
-# ============================================================
-def angebot_fuer(name):
-    angebote = ss.get("angebot_je_zutat")
-    if angebote:
-        return angebote.get(name)
+def bild_fallback(r):
+    # Es werden bewusst keine falschen oder recycelten Rezeptfotos zugeordnet.
     return None
 
+def naehrwerte(r):
+    nv = r.get("nutrition") or {}
+    if nv:
+        return {
+            "kcal": nv.get("kcal", "–"),
+            "protein": nv.get("protein", "–"),
+            "carbs": nv.get("carbs", "–"),
+            "fat": nv.get("fat", "–"),
+        }
+    # Fallback: Nährwerte aus der Textquelle lesen, sofern vorhanden.
+    text = str(r.get("nutrition_source") or "")
+    patterns = {
+        "kcal": r"([0-9]+(?:[.,][0-9]+)?)\\s*kcal",
+        "protein": r"([0-9]+(?:[.,][0-9]+)?)\\s*g?\\s*Protein",
+        "carbs": r"([0-9]+(?:[.,][0-9]+)?)\\s*g?\\s*Kohlenhydrate",
+        "fat": r"([0-9]+(?:[.,][0-9]+)?)\\s*g?\\s*Fett",
+    }
+    out = {key: "–" for key in patterns}
+    for key, pattern in patterns.items():
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            out[key] = match.group(1).replace(",", ".")
+    return out
 
-def zeige_karte(rezept, spalte):
-    with spalte:
-        st.markdown(f"""
-        <div class="recipe-card">
-            <div class="recipe-card-img">{rezept['icon']}</div>
-            <div class="recipe-card-body">
-                <div class="recipe-card-title">{rezept['name']}</div>
-                <span class="badge badge-time">⏱ {rezept['time_min']} Min</span>
-                <span class="badge badge-{rezept['category']}">{rezept['category']}</span>
-                <span class="badge badge-diet">{rezept['diet']}</span>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        c1, c2 = st.columns([3, 1])
-        with c1:
-            if st.button("Ansehen", key=f"ansehen_{rezept['name']}", use_container_width=True):
-                ss["selected_recipe"] = rezept["name"]
+def img_data(path):
+    try:
+        b = path.read_bytes()
+        return "data:image/jpeg;base64," + base64.b64encode(b).decode()
+    except Exception:
+        return ""
+
+logo_uri = img_data(LOGO_FILE)
+portrait_uri = img_data(PORTRAIT_FILE)
+
+# ---------- Session ----------
+st.session_state.setdefault("seite", "Rezepte")
+st.session_state.setdefault("auswahl", None)
+st.session_state.setdefault("favoriten", set())
+st.session_state.setdefault("suche", "")
+
+# ---------- Design ----------
+st.markdown("""
+<style>
+html, body, [class*="css"] { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.stApp { background: #f8f5ee; color: #172018; }
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg,#111714 0%,#17201a 55%,#111714 100%);
+    min-width: 265px !important;
+}
+section[data-testid="stSidebar"] > div { padding: 18px 14px 22px; }
+section[data-testid="stSidebar"] * { color: #f6f2e9 !important; }
+.et-brand {
+    border-radius: 18px; padding: 18px 14px 14px; margin-bottom: 16px;
+    background: linear-gradient(160deg,#1b241f,#0e120f);
+    border: 1px solid rgba(255,255,255,.09);
+    text-align:center;
+}
+.et-brand img { max-width: 190px; border-radius: 10px; }
+.et-brand-title { font-size: 25px; font-weight: 800; letter-spacing:-.8px; }
+.et-brand-sub { font-size: 10px; letter-spacing: 2.8px; opacity:.78; margin-top:2px; }
+.et-nav-title { font-size: 12px; text-transform:uppercase; letter-spacing:1.5px; opacity:.55; margin:18px 4px 7px; }
+.et-main-head {
+    background: #173b28; color:white; border-radius: 0 0 26px 26px;
+    padding: 28px 34px 24px; margin: -1rem -1rem 22px;
+    box-shadow: 0 8px 26px rgba(20,50,35,.16);
+}
+.et-main-head h1 { margin:0; font-size:38px; letter-spacing:-1.5px; }
+.et-main-head p { margin:5px 0 0; opacity:.78; }
+.et-search {
+    background:#fff; border:1px solid #e4ddd0; border-radius:16px;
+    padding:12px 16px; margin:8px 0 16px;
+}
+.et-card {
+    background:#fff; border:1px solid #e6dfd2; border-radius:18px;
+    overflow:hidden; box-shadow:0 4px 15px rgba(30,35,30,.06);
+    margin-bottom:16px;
+}
+.et-photo {
+    height:178px; background:linear-gradient(135deg,#d7dfce 0%,#8ca18b 48%,#355b42 100%);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:48px;
+}
+.et-card:hover { transform: translateY(-2px); box-shadow:0 8px 22px rgba(30,35,30,.12); }
+.et-card { transition: transform .15s ease, box-shadow .15s ease; }
+.et-card-body { padding:14px 16px 16px; }
+.et-card-title { font-size:18px; font-weight:800; margin-bottom:8px; color:#172018; }
+.et-pill { display:inline-block; background:#eef3e9; color:#285c36; border-radius:999px; padding:5px 9px; font-size:11px; font-weight:700; }
+.et-pill.orange { background:#fff0d8; color:#9a5a0c; }
+.et-pill.blue { background:#e9f1f8; color:#286083; }
+.et-detail {
+    background:#fff; border:1px solid #e4ddd0; border-radius:22px; padding:22px;
+    box-shadow:0 7px 22px rgba(30,35,30,.07);
+}
+.et-detail h1 { font-size:32px; margin:0 0 7px; letter-spacing:-1px; }
+.et-nut { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
+.et-nut span { background:#f1f5ee; border-radius:12px; padding:10px 13px; font-size:13px; }
+.et-section { font-size:19px; font-weight:800; margin:20px 0 9px; }
+.et-steps { counter-reset: step; }
+.et-step { margin:0 0 12px; padding:11px 12px 11px 44px; background:#faf8f3; border-radius:12px; position:relative; }
+.et-step:before {
+    counter-increment: step; content:counter(step);
+    position:absolute; left:11px; top:11px; width:24px; height:24px; border-radius:50%;
+    background:#d89b35; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px;
+}
+.et-bottom {
+    margin-top:26px; background:#eee4d2; border-radius:22px; padding:17px 18px;
+    display:flex; justify-content:space-around; gap:10px; text-align:center;
+}
+.et-stat strong { display:block; font-size:24px; }
+.et-stat small { color:#65655e; }
+.et-profile {
+    margin-top:18px; border-radius:18px; overflow:hidden; background:#151b17;
+    border:1px solid rgba(255,255,255,.08);
+}
+.et-profile img { width:100%; height:225px; object-fit:cover; object-position:center 28%; display:block; }
+.et-profile div { padding:12px 14px 14px; }
+.et-profile b { font-size:17px; }
+.et-profile small { display:block; opacity:.62; margin-top:3px; }
+div[data-testid="stButton"] > button {
+    border-radius:12px !important; border:1px solid #ded6c8 !important;
+    background:#fff !important; color:#1b2d21 !important; font-weight:700 !important;
+}
+div[data-testid="stButton"] > button:hover { border-color:#c58a2c !important; }
+</style>
+""", unsafe_allow_html=True)
+
+# ---------- Sidebar ----------
+with st.sidebar:
+    if logo_uri:
+        st.markdown(
+            f'<div class="et-brand"><img src="{logo_uri}"><div class="et-brand-sub">EINFACH GUTES ESSEN</div></div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown('<div class="et-brand"><div class="et-brand-title">EinfachmitTimo</div><div class="et-brand-sub">EINFACH GUTES ESSEN</div></div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="et-nav-title">Navigation</div>', unsafe_allow_html=True)
+    nav = [
+        ("⌂", "Startseite"),
+        ("🍴", "Rezepte"),
+        ("▧", "Rezeptkarten"),
+        ("▣", "Wochenpläne"),
+        ("♡", "Favoriten"),
+        ("🛒", "Einkaufsliste"),
+        ("▦", "Kategorien"),
+        ("⌕", "Suche"),
+        ("ⓘ", "Über EinfachmitTimo"),
+    ]
+    for icon, label in nav:
+        if st.button(f"{icon}   {label}", key="nav_"+label, use_container_width=True):
+            st.session_state.seite = label
+            st.session_state.auswahl = None
+            st.rerun()
+
+    if portrait_uri:
+        st.markdown(
+            f'<div class="et-profile"><img src="{portrait_uri}"><div><b>EinfachmitTimo</b><small>Einfach gutes Essen</small></div></div>',
+            unsafe_allow_html=True,
+        )
+
+# ---------- Seiten ----------
+seite = st.session_state.seite
+
+if seite == "Startseite":
+    st.markdown('<div class="et-main-head"><h1>Einfach gutes Essen.</h1><p>Rezepte entdecken, planen und clever einkaufen.</p></div>', unsafe_allow_html=True)
+    c1,c2,c3 = st.columns(3)
+    c1.metric("Rezepte", len(rezepte))
+    c2.metric("Frühstück", sum(kategorie(r)=="Frühstück" for r in rezepte))
+    c3.metric("Mittagessen", sum(kategorie(r)=="Mittagessen" for r in rezepte))
+    st.markdown("### Deine Rezeptwelt")
+    st.write("Nutze links Rezepte, Rezeptkarten, Wochenpläne, Favoriten und Einkaufsliste.")
+
+elif seite in ("Rezepte", "Suche", "Kategorien", "Rezeptkarten"):
+    st.markdown('<div class="et-main-head"><h1>Rezepte</h1><p>Entdecke deine Rezepte und öffne die vollständige Rezeptansicht.</p></div>', unsafe_allow_html=True)
+
+    search = st.text_input("🔎 Rezepte durchsuchen …", value=st.session_state.suche, placeholder="z. B. Chicken, Pasta, Bowl …")
+    st.session_state.suche = search
+
+    f1,f2,f3 = st.columns(3)
+    with f1:
+        kat = st.selectbox("Kategorie", ["Alle","Frühstück","Mittagessen","Abendessen"])
+    with f2:
+        diet = st.selectbox("Ernährung", ["Alle","vegetarisch","vegan","fisch","fleisch"])
+    with f3:
+        show_fav = st.checkbox("Nur Favoriten")
+
+    filtered = rezepte
+    if kat != "Alle":
+        filtered = [r for r in filtered if kategorie(r)==kat]
+    if diet != "Alle":
+        filtered = [r for r in filtered if diat(r).lower()==diet]
+    if search.strip():
+        q = search.lower().strip()
+        filtered = [r for r in filtered if q in titel(r).lower()]
+    if show_fav:
+        filtered = [r for r in filtered if titel(r) in st.session_state.favoriten]
+
+    st.caption(f"{len(filtered)} Rezepte")
+
+    cols = st.columns(3)
+    for i,r in enumerate(filtered):
+        with cols[i % 3]:
+            # Sichere Platzhalter statt falsch zugeordneter Rezeptbilder.
+            emoji = "🥣" if kategorie(r)=="Frühstück" else ("🍲" if kategorie(r)=="Mittagessen" else "🥗")
+            st.markdown(
+                f'<div class="et-card"><div class="et-photo">{emoji}</div><div class="et-card-body">'
+                f'<div class="et-card-title">{html.escape(titel(r))}</div>'
+                f'<span class="et-pill">{html.escape(kategorie(r))}</span></div></div>',
+                unsafe_allow_html=True
+            )
+            if st.button("Rezept öffnen", key=f"open_{i}_{titel(r)}", use_container_width=True):
+                st.session_state.auswahl = titel(r)
+                st.session_state.seite = "Rezept"
                 st.rerun()
-        with c2:
-            herz = "❤️" if rezept.get("favorite") else "🤍"
-            if st.button(herz, key=f"fav_{rezept['name']}", use_container_width=True):
-                for r in rezepte:
-                    if r["name"] == rezept["name"]:
-                        r["favorite"] = not r.get("favorite", False)
-                speichere_rezepte(rezepte)
-                st.rerun()
 
-
-def zeige_grid(liste, spalten_anzahl=3):
-    if not liste:
-        st.info("Keine Rezepte gefunden.")
-        return
-    spalten = st.columns(spalten_anzahl)
-    for idx, rezept in enumerate(liste):
-        zeige_karte(rezept, spalten[idx % spalten_anzahl])
-
-
-def zeige_detail(rezept):
-    if st.button("← Zurück zur Übersicht"):
-        ss["selected_recipe"] = None
+elif seite == "Rezept":
+    r = next((x for x in rezepte if titel(x)==st.session_state.auswahl), None)
+    if not r:
+        st.session_state.seite = "Rezepte"
         st.rerun()
 
-    st.markdown(f"""
-    <div class="detail-header">
-        <div class="detail-icon">{rezept['icon']}</div>
-        <div>
-            <h2 style="margin-bottom:4px;">{rezept['name']}</h2>
-            <span class="badge badge-time">⏱ {rezept['time_min']} Min</span>
-            <span class="badge badge-{rezept['category']}">{rezept['category']}</span>
-            <span class="badge badge-diet">{rezept['difficulty']}</span>
-            <span class="badge badge-diet">{rezept['diet']}</span>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="et-main-head"><h1>Rezept</h1><p>Alles auf einen Blick.</p></div>', unsafe_allow_html=True)
+    if st.button("← Zurück zu den Rezepten"):
+        st.session_state.seite = "Rezepte"
+        st.rerun()
 
-    portionen = ss["portionen"]
-    basis = rezept.get("base_servings", 4)
-    faktor = portionen / basis
+    left,right = st.columns([1.05,1.25], gap="large")
+    with left:
+        emoji = "🥣" if kategorie(r)=="Frühstück" else ("🍲" if kategorie(r)=="Mittagessen" else "🥗")
+        st.markdown(f'<div class="et-detail"><div class="et-photo" style="height:360px;border-radius:16px">{emoji}</div></div>', unsafe_allow_html=True)
+    with right:
+        st.markdown('<div class="et-detail">', unsafe_allow_html=True)
+        st.markdown(f"# {html.escape(titel(r))}")
+        st.markdown(f'<span class="et-pill">{html.escape(kategorie(r))}</span>', unsafe_allow_html=True)
+        nv = naehrwerte(r)
+        st.markdown(
+            '<div class="et-nut">'
+            f'<span>🔥 <b>{nv.get("kcal","–")}</b> kcal</span>'
+            f'<span>💪 <b>{nv.get("protein","–")}</b> g Protein</span>'
+            f'<span>🍚 <b>{nv.get("carbs","–")}</b> g Kohlenhydrate</span>'
+            f'<span>🥑 <b>{nv.get("fat","–")}</b> g Fett</span>'
+            '</div>',
+            unsafe_allow_html=True
+        )
+        if st.button("♡ Favorit" if titel(r) not in st.session_state.favoriten else "♥ Favorit", key="fav_detail"):
+            if titel(r) in st.session_state.favoriten:
+                st.session_state.favoriten.remove(titel(r))
+            else:
+                st.session_state.favoriten.add(titel(r))
+            st.rerun()
 
-    col_zutaten, col_zubereitung = st.columns([1, 1])
-
-    with col_zutaten:
-        st.markdown(f"#### Zutaten *(für {portionen} Portionen)*")
-        for z in rezept["ingredients"]:
-            name = zutat_name(z)
+        st.markdown('<div class="et-section">Zutaten</div>', unsafe_allow_html=True)
+        for z in r.get("ingredients", []):
             if isinstance(z, dict):
-                menge = skaliere_menge(z["amount"], z["unit"], faktor)
-                mengen_text = formatiere_menge(menge, z["unit"])
-            else:
-                mengen_text = ""
-            angebot = angebot_fuer(name)
-            if angebot:
-                st.markdown(
-                    f"- **{mengen_text} {name}** &nbsp; "
-                    f"<span class='badge badge-deal'>🏷️ {angebot['preis']}€ bei {angebot['haendler']}</span>",
-                    unsafe_allow_html=True,
-                )
-            else:
-                st.markdown(f"- {mengen_text} {name}")
+                a = z.get("amount")
+                u = z.get("unit") or ""
+                n = z.get("name") or ""
+                amount = "" if a in (None,"") else str(a)
+                st.write(f"**{amount} {u}** {n}".strip())
 
-    with col_zubereitung:
-        st.markdown("#### Zubereitung")
-        if rezept.get("steps"):
-            for i, step in enumerate(rezept["steps"], start=1):
-                st.markdown(f"**{i}.** {step}")
-        else:
-            st.caption("Keine Zubereitungsschritte hinterlegt.")
+        st.markdown('<div class="et-section">Zubereitung</div>', unsafe_allow_html=True)
+        steps = "".join(f'<div class="et-step">{html.escape(str(s))}</div>' for s in zubereitung(r))
+        st.markdown(f'<div class="et-steps">{steps}</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
-    st.divider()
-    st.markdown("#### Nährwerte pro Portion *(geschätzt)*")
-    n1, n2, n3, n4, n5 = st.columns(5)
-    n1.metric("🔥 Kalorien", f"{rezept.get('kcal', '–')} kcal")
-    n2.metric("🥩 Eiweiß", f"{rezept.get('protein', '–')} g")
-    n3.metric("🍞 Kohlenhydrate", f"{rezept.get('carbs', '–')} g")
-    n4.metric("🥑 Fett", f"{rezept.get('fett', '–')} g")
-    n5.metric("🌿 Ballaststoffe", f"{rezept.get('ballaststoffe', '–')} g")
-
-
-def filter_und_suche(liste, kategorie, suchtext, diet_filter):
-    erlaubte_diets = DIET_OPTIONEN[diet_filter]
-    ergebnis = liste
-    if kategorie != "Alle":
-        ergebnis = [r for r in ergebnis if r["category"] == kategorie]
-    if suchtext:
-        s = suchtext.lower()
-        ergebnis = [r for r in ergebnis if s in r["name"].lower()
-                    or any(s in zutat_name(z).lower() for z in r["ingredients"])]
-    ergebnis = [r for r in ergebnis if r.get("diet", "vegetarisch") in erlaubte_diets]
-    return ergebnis
-
-
-# ============================================================
-#  Seiten
-# ============================================================
-if ss["selected_recipe"] is not None and ss["nav"] in ("Rezepte", "Favoriten", "Suche", "Kategorien"):
-    aktuelles = next((r for r in rezepte if r["name"] == ss["selected_recipe"]), None)
-    if aktuelles:
-        zeige_detail(aktuelles)
+elif seite == "Favoriten":
+    favs = [r for r in rezepte if titel(r) in st.session_state.favoriten]
+    st.markdown('<div class="et-main-head"><h1>Favoriten</h1><p>Deine gespeicherten Rezepte.</p></div>', unsafe_allow_html=True)
+    if not favs:
+        st.info("Noch keine Favoriten gespeichert.")
     else:
-        ss["selected_recipe"] = None
-
-elif ss["nav"] == "Startseite":
-    st.title("🍽️ Willkommen bei EinfachmitTimo")
-    st.caption("Dein Essensplaner mit aktuellen Aldi- & Lidl-Angeboten")
-    st.markdown("#### Was möchtest du tun?")
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.markdown("**📖 Rezepte durchstöbern**")
-        st.write("Alle Rezepte ansehen, filtern und Favoriten markieren.")
-        if st.button("Zu den Rezepten", use_container_width=True):
-            ss["nav"] = "Rezepte"; st.rerun()
-    with c2:
-        st.markdown("**📋 Wochenplan erstellen**")
-        st.write("Angebote prüfen und passende Rezepte für die Woche finden.")
-        if st.button("Wochenplan starten", use_container_width=True):
-            ss["nav"] = "Wochenplan"; st.rerun()
-    with c3:
-        st.markdown("**❤️ Favoriten**")
-        st.write("Deine gespeicherten Lieblingsrezepte auf einen Blick.")
-        if st.button("Favoriten ansehen", use_container_width=True):
-            ss["nav"] = "Favoriten"; st.rerun()
-
-    st.divider()
-    st.markdown("#### Übersicht")
-    s1, s2, s3, s4, s5 = st.columns(5)
-    s1.metric("Rezepte", len(rezepte))
-    s2.metric("Frühstück", len([r for r in rezepte if r["category"] == "Frühstück"]))
-    s3.metric("Mittagessen", len([r for r in rezepte if r["category"] == "Mittagessen"]))
-    s4.metric("Abendessen", len([r for r in rezepte if r["category"] == "Abendessen"]))
-    s5.metric("Favoriten", len([r for r in rezepte if r.get("favorite")]))
-
-elif ss["nav"] == "Rezepte":
-    st.title(f"Rezepte ({len(rezepte)})")
-    such_col, sort_col = st.columns([3, 1])
-    with such_col:
-        ss["suchtext"] = st.text_input("🔍 Rezepte durchsuchen...", value=ss["suchtext"], label_visibility="collapsed", placeholder="🔍 Rezepte durchsuchen...")
-    with sort_col:
-        sortierung = st.selectbox("Sortierung", ["Name (A-Z)", "Kürzeste Zeit zuerst", "Kalorien aufsteigend"], label_visibility="collapsed")
-
-    tabs = st.tabs(["Alle"] + KATEGORIEN)
-    tab_namen = ["Alle"] + KATEGORIEN
-    for tab, kat in zip(tabs, tab_namen):
-        with tab:
-            gefiltert = filter_und_suche(rezepte, kat, ss["suchtext"], ss["ernaehrungsweise"])
-            if sortierung == "Name (A-Z)":
-                gefiltert = sorted(gefiltert, key=lambda r: r["name"])
-            elif sortierung == "Kürzeste Zeit zuerst":
-                gefiltert = sorted(gefiltert, key=lambda r: r["time_min"])
-            else:
-                gefiltert = sorted(gefiltert, key=lambda r: r.get("kcal", 0))
-            zeige_grid(gefiltert)
-
-elif ss["nav"] == "Favoriten":
-    st.title("❤️ Deine Favoriten")
-    favoriten = [r for r in rezepte if r.get("favorite")]
-    zeige_grid(favoriten)
-
-elif ss["nav"] == "Kategorien":
-    st.title("Kategorien")
-    cols = st.columns(3)
-    for col, kat in zip(cols, KATEGORIEN):
-        anzahl = len([r for r in rezepte if r["category"] == kat])
-        with col:
-            st.markdown(f"### {kat}")
-            st.metric("Rezepte", anzahl)
-            if st.button(f"{kat} ansehen", key=f"kat_{kat}", use_container_width=True):
-                ss["nav"] = "Rezepte"
-                ss["kategorie_filter"] = kat
+        for r in favs:
+            if st.button(titel(r), key="fav_"+titel(r)):
+                st.session_state.auswahl = titel(r)
+                st.session_state.seite = "Rezept"
                 st.rerun()
 
-elif ss["nav"] == "Suche":
-    st.title("🔍 Rezepte suchen")
-    suchtext = st.text_input("Suchbegriff (Name oder Zutat)")
-    if suchtext:
-        ergebnisse = filter_und_suche(rezepte, "Alle", suchtext, ss["ernaehrungsweise"])
-        st.caption(f"{len(ergebnisse)} Treffer")
-        zeige_grid(ergebnisse)
-    else:
-        st.info("Gib oben einen Suchbegriff ein.")
+elif seite == "Wochenpläne":
+    st.markdown('<div class="et-main-head"><h1>Wochenpläne</h1><p>Die Planungsseite ist vorbereitet – die Rezeptbasis ist bereits vollständig eingebunden.</p></div>', unsafe_allow_html=True)
+    st.info("Nächster Ausbau: automatische Wochenplanung nach Angeboten, Kalorien, Protein und 1 warmen Mahlzeit pro Tag.")
 
-elif ss["nav"] == "Über":
-    st.title("Über EinfachmitTimo")
-    st.write(
-        "Dieser Essensplaner gleicht deine eigene Rezeptsammlung mit den "
-        "aktuellen Angeboten von Aldi und Lidl ab und schlägt dir passende "
-        "Gerichte für die Woche vor – inklusive Einkaufsliste."
-    )
-    st.caption(
-        "Hinweis: Die Angebotsdaten stammen von einer inoffiziellen "
-        "Schnittstelle von marktguru.de und sind nur für die private Nutzung gedacht."
-    )
+elif seite == "Einkaufsliste":
+    st.markdown('<div class="et-main-head"><h1>Einkaufsliste</h1><p>Zutaten aus ausgewählten Rezepten sammeln.</p></div>', unsafe_allow_html=True)
+    st.info("Die Einkaufsliste wird im nächsten Ausbau direkt mit Wochenplan und Supermarkt-Angeboten verbunden.")
 
-elif ss["nav"] == "Wochenplan":
-    st.title("📋 Wochenplan")
-    c1, c2 = st.columns([1, 3])
-    with c1:
-        anzahl_rezepte = st.slider("Rezepte im Plan", 3, 15, 7)
-    with c2:
-        starten = st.button("🔍 Angebote prüfen & Plan erstellen", type="primary")
+elif seite == "Über EinfachmitTimo":
+    st.markdown('<div class="et-main-head"><h1>Über EinfachmitTimo</h1><p>Einfach gutes Essen.</p></div>', unsafe_allow_html=True)
+    if portrait_uri:
+        st.image(str(PORTRAIT_FILE), width=260)
+    st.write("Rezepte, Wochenplanung und cleveres Einkaufen in einer App.")
 
-    if starten:
-        if not ss["retailer_auswahl"]:
-            st.error("Bitte mindestens einen Markt in den Einstellungen (Sidebar) auswählen.")
-        else:
-            alle_namen = sorted({zutat_name(z) for r in rezepte for z in r["ingredients"]})
-            fortschritt = st.progress(0, text="Suche Angebote...")
-            angebot_je_zutat = {}
-            for idx, name in enumerate(alle_namen):
-                treffer = suche_angebot(name, ss["zip_code"], tuple(ss["retailer_auswahl"]))
-                if treffer:
-                    angebot_je_zutat[name] = treffer
-                fortschritt.progress((idx + 1) / len(alle_namen), text=f"Suche Angebote... ({name})")
-            fortschritt.empty()
-
-            bewertung = []
-            for rezept in rezepte:
-                namen = [zutat_name(z) for z in rezept["ingredients"]]
-                treffer_namen = [n for n in namen if n in angebot_je_zutat]
-                bewertung.append((rezept, treffer_namen))
-            bewertung.sort(key=lambda x: len(x[1]), reverse=True)
-
-            ss["bewertung"] = bewertung
-            ss["angebot_je_zutat"] = angebot_je_zutat
-            ss["offset"] = 0
-
-    if "bewertung" in ss:
-        erlaubte_diets = DIET_OPTIONEN[ss["ernaehrungsweise"]]
-        gefiltert = [(r, t) for r, t in ss["bewertung"] if r.get("diet", "vegetarisch") in erlaubte_diets]
-
-        if not gefiltert:
-            st.warning("Keine Rezepte für diese Ernährungsweise gefunden.")
-        else:
-            offset = ss.get("offset", 0) % len(gefiltert)
-            n = min(anzahl_rezepte, len(gefiltert))
-            auswahl = [gefiltert[(offset + i) % len(gefiltert)] for i in range(n)]
-
-            hcol1, hcol2 = st.columns([4, 1])
-            with hcol1:
-                st.subheader(f"Top {n} Rezepte · {ss['ernaehrungsweise']} · für {ss['portionen']} Portionen")
-            with hcol2:
-                if len(gefiltert) > n and st.button("🔀 Andere vorschlagen", use_container_width=True):
-                    ss["offset"] = offset + n
-                    st.rerun()
-
-            spalten = st.columns(3)
-            for idx, (rezept, treffer_namen) in enumerate(auswahl):
-                zeige_karte(rezept, spalten[idx % 3])
-
-            st.divider()
-            st.subheader("🛒 Einkaufsliste")
-            angebot_je_zutat = ss["angebot_je_zutat"]
-            summe = {}
-            for rezept, _ in auswahl:
-                basis = rezept.get("base_servings", 4)
-                faktor = ss["portionen"] / basis
-                for z in rezept["ingredients"]:
-                    name = zutat_name(z)
-                    if isinstance(z, dict):
-                        menge = z["amount"] * faktor
-                        unit = z["unit"]
-                        if name in summe and summe[name]["unit"] == unit:
-                            summe[name]["amount"] += menge
-                        else:
-                            summe[name] = {"amount": menge, "unit": unit}
-            spalten2 = st.columns(3)
-            for idx, name in enumerate(sorted(summe.keys())):
-                info = summe[name]
-                gerundet = skaliere_menge(info["amount"], info["unit"], 1)
-                mengen_text = formatiere_menge(gerundet, info["unit"])
-                markiert = name in angebot_je_zutat
-                label = f"{mengen_text} {name} 🏷️" if markiert else f"{mengen_text} {name}"
-                spalten2[idx % 3].checkbox(label, key=f"item_{name}")
-    else:
-        st.info("Klick oben auf 'Angebote prüfen & Plan erstellen', um zu starten.")
+# ---------- Footer ----------
+st.markdown(
+    f'<div class="et-bottom">'
+    f'<div class="et-stat"><strong>{len(rezepte)}</strong><small>Rezepte</small></div>'
+    f'<div class="et-stat"><strong>{sum(kategorie(r)=="Frühstück" for r in rezepte)}</strong><small>Frühstück</small></div>'
+    f'<div class="et-stat"><strong>{sum(kategorie(r)=="Mittagessen" for r in rezepte)}</strong><small>Mittagessen</small></div>'
+    f'<div class="et-stat"><strong>{sum(kategorie(r)=="Abendessen" for r in rezepte)}</strong><small>Abendessen</small></div>'
+    f'<div class="et-stat"><strong>{len(rezepte)}</strong><small>Rezeptkarten</small></div>'
+    f'</div>',
+    unsafe_allow_html=True,
+)
