@@ -1,5 +1,4 @@
 import base64
-import concurrent.futures
 import html
 import json
 import random
@@ -14,7 +13,7 @@ RECIPES_FILE = BASE_DIR / "recipes.json"
 LOGO_FILE = BASE_DIR / "EinfachmitTimo_Logo.jpg"
 PORTRAIT_FILE = BASE_DIR / "Timo_Portrait.jpg"
 
-st.set_page_config(page_title="EinfachmitTimo – Einfach gutes Essen", page_icon="🍽️", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="EinfachmitTimo – Einfach gutes Essen", page_icon="🍽️", layout="wide", initial_sidebar_state="expanded")
 
 MARKETS = ["Lidl", "ALDI SÜD", "ALDI Nord", "PENNY", "Netto Marken-Discount", "NORMA", "REWE", "EDEKA", "Kaufland"]
 TAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
@@ -125,12 +124,7 @@ def diet(r):
 
 def steps_for(r):
     p = r.get("zubereitung") or r.get("preparation") or r.get("instructions") or r.get("steps") or []
-    if isinstance(p, list):
-        return [str(step).strip() for step in p if str(step).strip()]
-    if isinstance(p, str):
-        lines = [line.strip(" •-\t") for line in p.splitlines() if line.strip(" •-\t")]
-        return lines or ([p.strip()] if p.strip() else [])
-    return []
+    return p if isinstance(p, list) else [str(p)]
 
 def nutrition(r):
     n = r.get("nutrition") or {}
@@ -148,6 +142,36 @@ def image_uri(path):
         return "data:image/jpeg;base64," + base64.b64encode(path.read_bytes()).decode("ascii")
     except OSError:
         return ""
+
+def recipe_image_uri(r):
+    """Findet ein zum Rezept gehörendes lokales Foto, ohne fremde Gerichte zuzuordnen.
+
+    Unterstützt r['image'] / r['image_file'] sowie automatisch benannte Dateien
+    im Ordner images (jpg, jpeg, png, webp). Fehlt ein passendes Bild, bleibt
+    der neutrale Rezept-Platzhalter sichtbar.
+    """
+    raw = r.get("image") or r.get("image_file") or r.get("bild")
+    candidates = []
+    if raw:
+        raw_path = Path(str(raw))
+        candidates.append(raw_path if raw_path.is_absolute() else BASE_DIR / raw_path)
+    slug = re.sub(r"[^a-z0-9]+", "_", title(r).casefold()).strip("_")
+    for ext in ("webp", "jpg", "jpeg", "png"):
+        candidates.extend([BASE_DIR / "images" / f"{slug}.{ext}", BASE_DIR / "Bilder" / f"{slug}.{ext}"])
+    for candidate in candidates:
+        try:
+            if candidate.is_file():
+                mime = {".jpg":"image/jpeg", ".jpeg":"image/jpeg", ".png":"image/png", ".webp":"image/webp"}.get(candidate.suffix.lower(), "image/jpeg")
+                return f"data:{mime};base64," + base64.b64encode(candidate.read_bytes()).decode("ascii")
+        except OSError:
+            pass
+    return ""
+
+def recipe_visual(r, class_name="recipe-visual"):
+    photo = recipe_image_uri(r)
+    if photo:
+        return f'<div class="{class_name}"><img src="{photo}" alt="{html.escape(title(r))}"></div>'
+    return f'<div class="{class_name} placeholder"><span>{category_emoji(r)}</span></div>'
 
 def category_emoji(r):
     c = category(r).lower()
@@ -217,117 +241,13 @@ def ingredient_label(z):
         amount = f"{amount} {z['unit']}".strip()
     return f"{amount} {z['name']}".strip()
 
-
-PANTRY_STAPLES = {
-    "salz", "pfeffer", "wasser", "öl", "olivenöl", "rapsöl", "bratöl", "gewürze",
-    "paprikapulver", "currypulver", "italienische kräuter", "kräuter", "zucker", "honig",
-    "essig", "knoblauchpulver", "zwiebelpulver", "muskat", "chilipulver", "backpulver"
-}
-
-
-def recipe_ingredients(r):
-    """Gibt konkrete Zutaten zurück, die sinnvoll nach Angeboten gesucht werden können."""
-    result = []
-    for item in r.get("ingredients", []):
-        if not isinstance(item, dict):
-            continue
-        name = str(item.get("name") or "").strip()
-        if not name:
-            continue
-        norm = re.sub(r"\s+", " ", name.casefold()).strip()
-        if norm in PANTRY_STAPLES or any(norm.startswith(x + " (") for x in PANTRY_STAPLES):
-            continue
-        if norm not in {x.casefold() for x in result}:
-            result.append(name)
-    return result
-
-
-def build_offer_based_plan(pool, postcode, market):
-    """Sucht Angebote vor der Planung und bevorzugt Rezepte mit mehreren Angebotstreffern."""
-    headers = marktguru_headers()
-    if not headers:
-        shuffled = pool[:]
-        random.shuffle(shuffled)
-        return shuffled[:7], {}, "Marktguru-Zugangsdaten fehlen. Die Woche wurde ohne Angebotsabgleich erstellt."
-
-    # Eine begrenzte Kandidatenmenge hält die Live-Suche schnell und vermeidet unnötig viele API-Aufrufe.
-    candidates = pool[:]
-    random.shuffle(candidates)
-    candidates = candidates[:min(35, len(candidates))]
-    candidate_ingredients = []
-    seen_ingredients = set()
-    for recipe in candidates:
-        for name in recipe_ingredients(recipe):
-            key = name.casefold()
-            if key not in seen_ingredients:
-                seen_ingredients.add(key)
-                candidate_ingredients.append(name)
-    random.shuffle(candidate_ingredients)
-    search_names = candidate_ingredients[:25]
-    if not search_names:
-        shuffled = pool[:]
-        random.shuffle(shuffled)
-        return shuffled[:7], {}, "Für diese Rezepte wurden keine suchbaren Zutaten gefunden."
-
-    found = {}
-    first_error = ""
-    # Kleine Parallelgruppe: mehrere Zutaten prüfen, ohne die App durch serielle Anfragen lange zu blockieren.
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        futures = {
-            executor.submit(marktguru_angebot, ingredient, postcode, market): ingredient
-            for ingredient in search_names
-        }
-        for future in concurrent.futures.as_completed(futures):
-            ingredient = futures[future]
-            try:
-                result = future.result()
-            except Exception:
-                continue
-            if result.get("error"):
-                first_error = result["error"]
-                continue
-            if not result.get("not_found"):
-                found[ingredient.casefold()] = {**result, "matched_ingredient": ingredient}
-
-    if not found:
-        shuffled = pool[:]
-        random.shuffle(shuffled)
-        note = "Für die geprüften Zutaten wurden keine passenden Angebote gefunden. Die Woche wurde deshalb aus deinen Rezepten erstellt."
-        if first_error:
-            note += " Marktguru meldet: " + first_error
-        return shuffled[:7], {}, note
-
-    scored = []
-    for recipe in candidates:
-        matched = [name for name in recipe_ingredients(recipe) if name.casefold() in found]
-        # Primär mehr Angebotstreffer, sekundär eine hohe Trefferquote innerhalb des Rezepts.
-        score = len(matched) * 2 + (len(matched) / max(1, len(recipe_ingredients(recipe))))
-        scored.append((score, len(matched), recipe, matched))
-    scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
-
-    picked = []
-    used = set()
-    for _, _, recipe, _ in scored:
-        recipe_title = title(recipe)
-        if recipe_title and recipe_title not in used:
-            picked.append(recipe)
-            used.add(recipe_title)
-        if len(picked) == 7:
-            break
-    # Falls Kandidaten zu wenig unterschiedliche Rezepte enthalten, mit übrigen Rezepten auffüllen.
-    if len(picked) < 7:
-        rest = pool[:]
-        random.shuffle(rest)
-        for recipe in rest:
-            if title(recipe) not in used:
-                picked.append(recipe)
-                used.add(title(recipe))
-            if len(picked) == 7:
-                break
-    return picked, found, f"Angebotsabgleich abgeschlossen: {len(found)} Zutaten mit passenden Angeboten gefunden. Rezepte mit mehr Angebotstreffern wurden bevorzugt."
-
 def render_detail(r, compact=False):
-    st.markdown(f'<div class="detail-top"><div class="detail-visual">{category_emoji(r)}</div><div class="detail-copy"><div class="pill">{html.escape(category(r))}</div><h2>{html.escape(title(r))}</h2><p>Einfach. Schnell. Lecker.</p></div></div>', unsafe_allow_html=True)
+    photo = recipe_image_uri(r)
+    if photo:
+        visual = f'<div class="detail-visual photo"><img src="{photo}" alt="{html.escape(title(r))}"></div>'
+    else:
+        visual = f'<div class="detail-visual placeholder">{category_emoji(r)}</div>'
+    st.markdown(f'<div class="detail-top">{visual}<div class="detail-copy"><div class="pill">{html.escape(category(r))}</div><h2>{html.escape(title(r))}</h2><p>Einfach. Schnell. Lecker.</p></div></div>', unsafe_allow_html=True)
     nv = nutrition(r)
     st.markdown('<div class="nutrition-grid">' + ''.join([
         f'<div><strong>🔥 {html.escape(str(nv["kcal"]))}</strong><small>kcal</small></div>',
@@ -343,11 +263,8 @@ def render_detail(r, compact=False):
     with right:
         st.markdown("#### Zubereitung")
         steps = steps_for(r)
-        if steps:
-            for i, s in enumerate(steps, 1):
-                st.markdown(f'<div class="step"><b>{i}</b><span>{html.escape(str(s))}</span></div>', unsafe_allow_html=True)
-        else:
-            st.info("Für dieses Rezept ist noch keine Zubereitung hinterlegt.")
+        for i, s in enumerate(steps, 1):
+            st.markdown(f'<div class="step"><b>{i}</b><span>{html.escape(str(s))}</span></div>', unsafe_allow_html=True)
     if st.button("♡ Zu Favoriten hinzufügen" if title(r) not in st.session_state.favorites else "♥ Aus Favoriten entfernen", key="fav_toggle_" + re.sub(r"\W+", "_", title(r))):
         if title(r) in st.session_state.favorites: st.session_state.favorites.remove(title(r))
         else: st.session_state.favorites.add(title(r))
@@ -368,7 +285,6 @@ st.session_state.setdefault("week_portions", 2)
 st.session_state.setdefault("shopping_checked", set())
 st.session_state.setdefault("marketguru_offers", {})
 st.session_state.setdefault("marketguru_error", "")
-st.session_state.setdefault("week_plan_note", "")
 
 # Styling
 st.markdown("""
@@ -406,34 +322,49 @@ section[data-testid="stSidebar"] div[data-testid="stButton"]>button:hover p{back
 .step{display:flex;gap:9px;align-items:flex-start;background:#faf8f3;border-radius:9px;padding:8px;margin:7px 0;font-size:12px}.step b{background:#d89b35;color:white;min-width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center}.step span{padding-top:3px}
 .et-bottom{margin-top:22px;background:#eee4d2;border-radius:18px;padding:15px 8px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;text-align:center}.et-stat strong{display:block;font-size:22px}.et-stat small{color:#65655e;font-size:11px}
 div[data-testid="stButton"]>button{border-radius:10px!important;border:1px solid #ded6c8!important;background:#fff!important;color:#1b2d21!important;font-weight:700!important;min-height:42px!important}div[data-testid="stButton"]>button:hover{border-color:var(--gold)!important;background:#fffaf1!important}div[data-testid="stButton"]>button[kind="primary"]{background:#1d5033!important;color:#fff!important;border-color:#1d5033!important}div[data-testid="stButton"]>button[kind="primary"] p{color:#fff!important}
-@media(max-width:1000px){.nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.et-bottom{grid-template-columns:repeat(3,minmax(0,1fr))}.detail-top{align-items:flex-start}.detail-copy h2{font-size:20px}.main-brand-banner{padding:12px}.main-brand-banner img{width:58px;height:58px}.block-container{padding-left:1rem;padding-right:1rem}}
-/* Mobil: kompakte Navigation im Seiteninhalt statt eines offenen Overlay-Menüs. */
-.st-key-mobile_navigation{display:none}
-@media(max-width:768px){
-  section[data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"]{display:none!important}
-  .st-key-mobile_navigation{display:block!important;background:#17251d;border:1px solid #304536;border-radius:13px;padding:9px 12px;margin:0 0 12px}
-  .st-key-mobile_navigation label,.st-key-mobile_navigation p{color:#fff!important;font-weight:700!important}
-  .st-key-mobile_navigation [data-baseweb="select"]>div{background:#fff!important;border-radius:9px!important;min-height:42px}
-  .block-container{padding:0.55rem 0.75rem 5rem!important;max-width:100%!important}
-  .main-brand-banner{margin:0 0 12px!important;padding:10px 12px!important;border-radius:0 0 14px 14px!important;gap:10px!important}
-  .main-brand-banner img{width:46px!important;height:46px!important}
-  .main-brand-banner strong{font-size:21px!important}
-  .main-brand-banner span{font-size:8px!important;letter-spacing:2px!important}
-  .et-header{padding:17px 16px!important;margin-bottom:14px!important;border-radius:13px!important}
-  .et-header h1{font-size:25px!important;line-height:1.15!important}
-  .et-header p{font-size:13px!important}
-  .stHorizontalBlock{flex-wrap:wrap!important;gap:.65rem!important}
-  .stHorizontalBlock>[data-testid="column"]{flex:1 1 100%!important;min-width:100%!important;width:100%!important}
-  .recipe-visual{height:145px!important;font-size:42px!important}
-  .detail-panel{padding:12px!important;border-radius:14px!important}
-  .detail-top{gap:10px!important}
-  .detail-visual{width:78px!important;min-width:78px!important;height:78px!important;font-size:36px!important}
-  .detail-copy h2{font-size:19px!important}
-  .nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .et-bottom{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:10px 6px!important}
-  .et-stat strong{font-size:18px!important}
-  .et-stat small{font-size:10px!important}
-  div[data-testid="stButton"]>button{min-height:44px!important;white-space:normal!important;font-size:14px!important}
+/* Zieloberfläche nach der Referenz: größere Fotos, klare Rezeptkarten und Detailpanel */
+.recipe-card{border-radius:13px;box-shadow:0 3px 12px rgba(20,30,20,.08);transition:transform .16s ease,box-shadow .16s ease}
+.recipe-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,30,20,.13)}
+.recipe-visual{height:118px;overflow:hidden;position:relative}
+.recipe-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.recipe-visual.placeholder{background:linear-gradient(135deg,#e8e5d9 0%,#c7d3bd 45%,#416849 100%);color:white}
+.recipe-visual.placeholder span{filter:drop-shadow(0 2px 4px #23352b66)}
+.detail-panel{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;padding:17px}
+.detail-top{align-items:flex-start}
+.detail-visual{width:116px;min-width:116px;height:112px;overflow:hidden}
+.detail-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.detail-visual.placeholder{background:linear-gradient(135deg,#e8e5d9,#91ad8e 55%,#285239);color:#fff}
+.et-header{border-radius:0 0 24px 24px;background:linear-gradient(120deg,#173b28,#245b3a);padding:24px 28px}
+.et-bottom{position:relative;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid #e4d8c4}
+@media(max-width:1000px){
+ .nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .et-bottom{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .detail-top{align-items:flex-start}
+ .detail-copy h2{font-size:20px}
+ .main-brand-banner{padding:12px}
+ .main-brand-banner img{width:58px;height:58px}
+ .block-container{padding-left:.75rem;padding-right:.75rem}
+ .recipe-visual{height:100px}
+ .detail-panel{position:static;max-height:none;overflow:visible}
+}
+@media(max-width:650px){
+ .main-brand-banner{gap:10px;margin-left:-.4rem;margin-right:-.4rem}
+ .main-brand-banner strong{font-size:22px}
+ .et-header{padding:18px 17px;margin-left:-.4rem;margin-right:-.4rem}
+ .et-header h1{font-size:25px}
+ .recipe-visual{height:88px}
+ .recipe-card-body{padding:8px}
+ .recipe-card-title{font-size:12px;min-height:42px}
+ .pill{font-size:9px;padding:4px 6px}
+ .detail-visual{width:86px;min-width:86px;height:86px}
+ .detail-copy h2{font-size:18px}
+ .nutrition-grid{gap:5px}
+ .nutrition-grid>div{padding:8px 3px}
+ .nutrition-grid strong{font-size:12px}
+ .et-bottom{padding:10px 5px;gap:4px}
+ .et-stat strong{font-size:17px}
+ .et-stat small{font-size:9px}
+ section[data-testid="stSidebar"]{min-width:0!important;width:min(86vw,300px)!important}
 }
 </style>
 """, unsafe_allow_html=True)
@@ -458,24 +389,6 @@ with st.sidebar:
     st.caption("Der ausgewählte Markt wird im Wochenplan und in der Einkaufsliste angezeigt.")
     if portrait:
         st.markdown(f'<div class="sidebar-profile"><img src="{portrait}"><div><b>EinfachmitTimo</b><br><small>Einfach gutes Essen</small></div></div>', unsafe_allow_html=True)
-
-# Auf Smartphones wird die Navigation als kompakte Auswahl direkt in der Seite angezeigt.
-# Dadurch bleibt kein geöffnetes Sidebar-Overlay über dem Inhalt liegen.
-mobile_pages = ["Startseite", "Rezepte", "Rezeptkarten", "Wochenpläne", "Favoriten", "Einkaufsliste", "Kategorien", "Suche", "Über EinfachmitTimo", "Rezeptdetails"]
-def sync_mobile_page():
-    chosen_page = st.session_state.get("mobile_page_select", st.session_state.page)
-    if chosen_page != st.session_state.page:
-        st.session_state.page = chosen_page
-
-st.session_state["mobile_page_select"] = st.session_state.page
-with st.container(key="mobile_navigation"):
-    st.selectbox(
-        "Menü",
-        mobile_pages,
-        key="mobile_page_select",
-        label_visibility="visible",
-        on_change=sync_mobile_page,
-    )
 
 page = st.session_state.page
 st.markdown(
@@ -521,13 +434,12 @@ elif page in ("Rezepte", "Rezeptkarten", "Kategorien", "Suche", "Favoriten"):
             for i, r in enumerate(filtered):
                 with cols[i % 3]:
                     selected = title(r) == st.session_state.selected_recipe
-                    st.markdown(f'<div class="recipe-card" style="border-color:{"#d89b35" if selected else "#e5ddcf"}"><div class="recipe-visual">{category_emoji(r)}</div><div class="recipe-card-body"><div class="recipe-card-title">{html.escape(title(r))}</div><span class="pill">{html.escape(category(r))}</span></div></div>', unsafe_allow_html=True)
-                    if st.button("✓ Rezeptdetails geöffnet" if selected else "Zutaten & Zubereitung ansehen", key=f"select_{page}_{i}_{re.sub(r'[^a-zA-Z0-9]', '_', title(r))}", use_container_width=True):
+                    visual_html = recipe_visual(r)
+                    st.markdown(f'<div class="recipe-card" style="border-color:{"#d89b35" if selected else "#e5ddcf"}">{visual_html}<div class="recipe-card-body"><div class="recipe-card-title">{html.escape(title(r))}</div><span class="pill">{html.escape(category(r))}</span></div></div>', unsafe_allow_html=True)
+                    if st.button("Ausgewählt ✓" if selected else "Rezept ansehen", key=f"select_{page}_{i}_{re.sub(r'[^a-zA-Z0-9]', '_', title(r))}", use_container_width=True):
                         st.session_state.selected_recipe = title(r); st.rerun()
         with right:
             chosen = next((r for r in filtered if title(r) == st.session_state.selected_recipe), filtered[0])
-            st.markdown("### Rezeptdetails")
-            st.caption("Zutatenmengen anpassen und die Zubereitung Schritt für Schritt ansehen.")
             st.markdown('<div class="detail-panel">', unsafe_allow_html=True)
             render_detail(chosen, compact=True)
             st.markdown('</div>', unsafe_allow_html=True)
@@ -561,18 +473,25 @@ elif page == "Wochenpläne":
         elif not pool:
             st.error("Für diese Ernährungsform wurden keine passenden Rezepte gefunden.")
         else:
-            with st.spinner("Prüfe aktuelle Marktguru-Angebote und stelle danach deine Woche zusammen …"):
-                picked, offer_matches, plan_note = build_offer_based_plan(
-                    pool, str(st.session_state.postcode).strip(), st.session_state.market
-                )
+            # Sieben unterschiedliche warme Hauptgerichte, genau eines pro Tag.
+            shuffled = pool[:]
+            random.shuffle(shuffled)
+            picked = []
+            seen = set()
+            for recipe in shuffled:
+                recipe_title = title(recipe)
+                if recipe_title and recipe_title not in seen:
+                    picked.append(recipe)
+                    seen.add(recipe_title)
+                if len(picked) == 7:
+                    break
             if len(picked) < 7:
                 st.error("Es konnten nicht sieben unterschiedliche Gerichte gefunden werden. Bitte Ernährungsform ändern.")
             else:
                 st.session_state.week_plan = {TAGE[i]: title(recipe) for i, recipe in enumerate(picked)}
                 st.session_state.shopping_checked = set()
-                st.session_state.marketguru_offers = offer_matches
+                st.session_state.marketguru_offers = {}
                 st.session_state.marketguru_error = ""
-                st.session_state.week_plan_note = plan_note
                 st.rerun()
 
     # Absichtlich direkt unter dem Erstellen-Button: keine manuelle Wochenplan-Eingabe und kein Speichern-Button.
@@ -582,15 +501,6 @@ elif page == "Wochenpläne":
             f'<div style="background:#e9e0cd;border:1px solid #ded3bc;border-radius:14px;padding:12px 16px;margin-bottom:14px"><b>🛒 {html.escape(st.session_state.market)}</b> · PLZ {html.escape(str(st.session_state.postcode))} · {st.session_state.week_portions} Portion(en) pro Gericht</div>',
             unsafe_allow_html=True,
         )
-        if st.session_state.get("week_plan_note"):
-            st.info(st.session_state.week_plan_note)
-        if st.session_state.marketguru_offers:
-            with st.expander(f"🏷️ {len(st.session_state.marketguru_offers)} gefundene Angebotstreffer ansehen"):
-                for offer in st.session_state.marketguru_offers.values():
-                    price_text = f'{offer["price"]:.2f} €'.replace(".", ",")
-                    st.markdown(f'**{html.escape(offer.get("matched_ingredient", "Zutat"))}** — {html.escape(offer["description"])} · **{price_text}** · {html.escape(offer["retailer"])}')
-                    if offer.get("url"):
-                        st.markdown(f'[Angebot öffnen]({offer["url"]})')
         by_title = {title(r): r for r in recipes}
         day_cols = st.columns(2, gap="medium")
         for i, day in enumerate(TAGE):
@@ -603,11 +513,6 @@ elif page == "Wochenpläne":
                     f'<div class="recipe-card"><div style="display:flex;gap:12px;align-items:center;padding:14px"><div class="recipe-visual" style="width:78px;min-width:78px;height:78px;border-radius:12px">{emoji}</div><div style="min-width:0;flex:1"><div class="section-label">{html.escape(day)} · warmes Hauptgericht</div><div class="recipe-card-title" style="font-size:16px;min-height:0">{html.escape(recipe_name or "Kein Gericht zugeordnet")}</div><div style="margin-top:7px"><span class="pill">{html.escape(category(recipe) if recipe else "Hauptgericht")}</span></div><div style="font-size:12px;color:#62685f;margin-top:7px">🔥 {html.escape(str(nv["kcal"]))} kcal · 💪 {html.escape(str(nv["protein"]))} g Protein</div></div></div></div>',
                     unsafe_allow_html=True,
                 )
-                if recipe and st.button("📖 Zutaten & Zubereitung öffnen", key="open_week_recipe_" + day, use_container_width=True):
-                    st.session_state.selected_recipe = title(recipe)
-                    st.session_state.recipe_return_page = "Wochenpläne"
-                    st.session_state.page = "Rezeptdetails"
-                    st.rerun()
                 if st.button("↻ Gericht austauschen", key="swap_" + day, use_container_width=True):
                     current = st.session_state.week_plan.get(day)
                     alternatives = [r for r in pool if title(r) != current and title(r) not in {v for k, v in st.session_state.week_plan.items() if k != day}]
@@ -632,23 +537,9 @@ elif page == "Wochenpläne":
                 st.session_state.shopping_checked = set()
                 st.session_state.marketguru_offers = {}
                 st.session_state.marketguru_error = ""
-                st.session_state.week_plan_note = ""
                 st.rerun()
     else:
         st.info("Dein erstellter Wochenplan erscheint hier direkt nach dem Klick auf „Woche automatisch planen“. Du musst keine Gerichte einzeln auswählen und nichts separat speichern.")
-
-elif page == "Rezeptdetails":
-    selected = next((r for r in recipes if title(r) == st.session_state.get("selected_recipe")), None)
-    st.markdown('<div class="et-header"><h1>Rezeptdetails</h1><p>Zutaten und Zubereitung für dein ausgewähltes Gericht.</p></div>', unsafe_allow_html=True)
-    if st.button("← Zurück zum Wochenplan", use_container_width=False):
-        st.session_state.page = st.session_state.get("recipe_return_page", "Wochenpläne")
-        st.rerun()
-    if selected:
-        st.markdown('<div class="detail-panel">', unsafe_allow_html=True)
-        render_detail(selected)
-        st.markdown('</div>', unsafe_allow_html=True)
-    else:
-        st.warning("Das ausgewählte Rezept wurde in der Datenbank nicht gefunden.")
 
 elif page == "Einkaufsliste":
     st.markdown('<div class="et-header"><h1>Einkaufsliste</h1><p>Alle Zutaten aus deinem Wochenplan, nach Menge zusammengefasst.</p></div>', unsafe_allow_html=True)
