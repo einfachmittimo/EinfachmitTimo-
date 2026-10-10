@@ -86,6 +86,53 @@ st.session_state.setdefault("seite", "Rezepte")
 st.session_state.setdefault("auswahl", None)
 st.session_state.setdefault("favoriten", set())
 st.session_state.setdefault("suche", "")
+st.session_state.setdefault("wochenplan", {})
+st.session_state.setdefault("wochenplan_diaet", "Alle")
+st.session_state.setdefault("wochenplan_portionen", 1)
+st.session_state.setdefault("einkaufsliste", [])
+
+TAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
+
+def zutaten_fuer_plan(plan, portionen=1):
+    """Fasst Zutaten aller geplanten Rezepte zusammen und skaliert sie auf Portionen."""
+    gesammelt = {}
+    for rezept_name in plan.values():
+        rezept = next((x for x in rezepte if titel(x) == rezept_name), None)
+        if not rezept:
+            continue
+        basis = rezept.get("base_servings") or 1
+        try:
+            faktor = float(portionen) / float(basis)
+        except (TypeError, ValueError, ZeroDivisionError):
+            faktor = 1
+        for z in rezept.get("ingredients", []):
+            if not isinstance(z, dict):
+                continue
+            name = str(z.get("name") or "").strip()
+            unit = str(z.get("unit") or "").strip()
+            amount = z.get("amount")
+            if not name:
+                continue
+            key = (name.casefold(), unit.casefold())
+            if key not in gesammelt:
+                gesammelt[key] = {"name": name, "unit": unit, "amount": 0.0, "unknown": False}
+            try:
+                if amount in (None, ""):
+                    gesammelt[key]["unknown"] = True
+                else:
+                    gesammelt[key]["amount"] += float(amount) * faktor
+            except (TypeError, ValueError):
+                gesammelt[key]["unknown"] = True
+    return list(gesammelt.values())
+
+def format_menge(z):
+    if z.get("unknown"):
+        menge = "Menge nach Rezept"
+    else:
+        n = z.get("amount", 0)
+        menge = str(int(n)) if float(n).is_integer() else f"{n:.1f}".rstrip("0").rstrip(".")
+        menge = f"{menge} {z.get('unit', '')}".strip()
+    return f"{menge} {z['name']}".strip()
 
 # ---------- Design ----------
 st.markdown("""
@@ -238,7 +285,9 @@ with st.sidebar:
         ("ⓘ", "Über EinfachmitTimo"),
     ]
     for icon, label in nav:
-        if st.button(f"{icon}   {label}", key="nav_"+label, use_container_width=True):
+        active = st.session_state.seite == label or (label == "Rezepte" and st.session_state.seite == "Rezept")
+        button_label = f"{'● ' if active else ''}{icon}   {label}"
+        if st.button(button_label, key="nav_"+label, use_container_width=True):
             st.session_state.seite = label
             st.session_state.auswahl = None
             st.rerun()
@@ -367,12 +416,111 @@ elif seite == "Favoriten":
                 st.rerun()
 
 elif seite == "Wochenpläne":
-    st.markdown('<div class="et-main-head"><h1>Wochenpläne</h1><p>Die Planungsseite ist vorbereitet – die Rezeptbasis ist bereits vollständig eingebunden.</p></div>', unsafe_allow_html=True)
-    st.info("Nächster Ausbau: automatische Wochenplanung nach Angeboten, Kalorien, Protein und 1 warmen Mahlzeit pro Tag.")
+    st.markdown('<div class="et-main-head"><h1>Wochenplan</h1><p>Plane sieben warme Hauptgerichte – manuell oder automatisch.</p></div>', unsafe_allow_html=True)
+
+    with st.container(border=True):
+        st.markdown("### Einstellungen")
+        e1, e2 = st.columns(2)
+        with e1:
+            diaet_plan = st.selectbox(
+                "Ernährungsform",
+                ["Alle", "fleisch", "fisch", "vegetarisch", "vegan"],
+                index=["Alle", "fleisch", "fisch", "vegetarisch", "vegan"].index(st.session_state.wochenplan_diaet),
+                key="plan_diaet_select",
+            )
+            st.session_state.wochenplan_diaet = diaet_plan
+        with e2:
+            portionen_plan = st.number_input(
+                "Portionen pro Gericht",
+                min_value=1, max_value=12,
+                value=int(st.session_state.wochenplan_portionen),
+                step=1,
+                key="plan_portionen_select",
+            )
+            st.session_state.wochenplan_portionen = int(portionen_plan)
+
+        st.caption("Der Plan enthält standardmäßig ein warmes Hauptgericht pro Tag. Du kannst jeden Tag anschließend selbst ändern.")
+        p1, p2 = st.columns(2)
+        with p1:
+            automatisch = st.button("✨ Woche automatisch planen", use_container_width=True, type="primary")
+        with p2:
+            leer = st.button("Plan leeren", use_container_width=True)
+
+    passende = [r for r in rezepte if kategorie(r).lower() in ("mittagessen", "hauptgericht", "lunch")]
+    if diaet_plan != "Alle":
+        passende = [r for r in passende if diat(r).lower() == diaet_plan.lower()]
+    if not passende:
+        passende = [r for r in rezepte if diaet_plan == "Alle" or diat(r).lower() == diaet_plan.lower()]
+
+    if leer:
+        st.session_state.wochenplan = {}
+        st.session_state.einkaufsliste = []
+        st.rerun()
+
+    if automatisch:
+        import random
+        pool = passende[:]
+        random.shuffle(pool)
+        if len(pool) >= len(TAGE):
+            auswahl_woche = pool[:len(TAGE)]
+        else:
+            auswahl_woche = [random.choice(pool) for _ in TAGE] if pool else []
+        st.session_state.wochenplan = {
+            tag: titel(auswahl_woche[i]) for i, tag in enumerate(TAGE)
+        } if auswahl_woche else {}
+        st.session_state.einkaufsliste = zutaten_fuer_plan(
+            st.session_state.wochenplan, st.session_state.wochenplan_portionen
+        )
+        st.rerun()
+
+    st.markdown("### Deine Woche")
+    if not passende:
+        st.warning("Für diese Ernährungsform wurden keine passenden Rezepte gefunden.")
+    else:
+        options = ["— Gericht auswählen —"] + [titel(r) for r in passende]
+        plan_neu = dict(st.session_state.wochenplan)
+        for tag in TAGE:
+            aktuelle = plan_neu.get(tag, "— Gericht auswählen —")
+            index = options.index(aktuelle) if aktuelle in options else 0
+            selected = st.selectbox(
+                f"{tag} · warmes Hauptgericht",
+                options,
+                index=index,
+                key=f"wochenplan_{tag}",
+            )
+            if selected == "— Gericht auswählen —":
+                plan_neu.pop(tag, None)
+            else:
+                plan_neu[tag] = selected
+
+        if st.button("💾 Wochenplan speichern", use_container_width=True, type="primary"):
+            st.session_state.wochenplan = plan_neu
+            st.session_state.einkaufsliste = zutaten_fuer_plan(
+                plan_neu, st.session_state.wochenplan_portionen
+            )
+            st.success("Wochenplan gespeichert. Die Einkaufsliste wurde aktualisiert.")
+            st.rerun()
+
+    if st.session_state.wochenplan:
+        st.markdown("### Zusammenfassung")
+        for tag in TAGE:
+            gericht = st.session_state.wochenplan.get(tag)
+            if gericht:
+                st.write(f"**{tag}:** {gericht}")
+        st.caption("Die Einkaufsliste wird aus den gespeicherten Gerichten und der gewählten Portionszahl erstellt.")
 
 elif seite == "Einkaufsliste":
-    st.markdown('<div class="et-main-head"><h1>Einkaufsliste</h1><p>Zutaten aus ausgewählten Rezepten sammeln.</p></div>', unsafe_allow_html=True)
-    st.info("Die Einkaufsliste wird im nächsten Ausbau direkt mit Wochenplan und Supermarkt-Angeboten verbunden.")
+    st.markdown('<div class="et-main-head"><h1>Einkaufsliste</h1><p>Automatisch aus deinem gespeicherten Wochenplan zusammengestellt.</p></div>', unsafe_allow_html=True)
+    if not st.session_state.wochenplan:
+        st.info("Erstelle zuerst unter „Wochenpläne“ einen Plan. Danach erscheinen hier die benötigten Zutaten.")
+    else:
+        st.caption(f"Für {st.session_state.wochenplan_portionen} Portion(en) pro Gericht")
+        einkauf = zutaten_fuer_plan(st.session_state.wochenplan, st.session_state.wochenplan_portionen)
+        st.session_state.einkaufsliste = einkauf
+        for z in einkauf:
+            st.checkbox(format_menge(z), key="einkauf_" + re.sub(r"[^a-zA-Z0-9]", "_", z["name"] + z["unit"]))
+        if st.button("Einkaufsliste als Text anzeigen"):
+            st.code("\\n".join(format_menge(z) for z in einkauf), language=None)
 
 elif seite == "Über EinfachmitTimo":
     st.markdown('<div class="et-main-head"><h1>Über EinfachmitTimo</h1><p>Einfach gutes Essen.</p></div>', unsafe_allow_html=True)
