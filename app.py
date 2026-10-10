@@ -14,7 +14,7 @@ RECIPES_FILE = BASE_DIR / "recipes.json"
 LOGO_FILE = BASE_DIR / "EinfachmitTimo_Logo.jpg"
 PORTRAIT_FILE = BASE_DIR / "Timo_Portrait.jpg"
 
-st.set_page_config(page_title="EinfachmitTimo – Einfach gutes Essen", page_icon="🍽️", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="EinfachmitTimo – Einfach gutes Essen", page_icon="🍽️", layout="wide", initial_sidebar_state="collapsed")
 
 MARKETS = ["Lidl", "ALDI SÜD", "ALDI Nord", "PENNY", "Netto Marken-Discount", "NORMA", "REWE", "EDEKA", "Kaufland"]
 TAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
@@ -407,6 +407,34 @@ section[data-testid="stSidebar"] div[data-testid="stButton"]>button:hover p{back
 .et-bottom{margin-top:22px;background:#eee4d2;border-radius:18px;padding:15px 8px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;text-align:center}.et-stat strong{display:block;font-size:22px}.et-stat small{color:#65655e;font-size:11px}
 div[data-testid="stButton"]>button{border-radius:10px!important;border:1px solid #ded6c8!important;background:#fff!important;color:#1b2d21!important;font-weight:700!important;min-height:42px!important}div[data-testid="stButton"]>button:hover{border-color:var(--gold)!important;background:#fffaf1!important}div[data-testid="stButton"]>button[kind="primary"]{background:#1d5033!important;color:#fff!important;border-color:#1d5033!important}div[data-testid="stButton"]>button[kind="primary"] p{color:#fff!important}
 @media(max-width:1000px){.nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.et-bottom{grid-template-columns:repeat(3,minmax(0,1fr))}.detail-top{align-items:flex-start}.detail-copy h2{font-size:20px}.main-brand-banner{padding:12px}.main-brand-banner img{width:58px;height:58px}.block-container{padding-left:1rem;padding-right:1rem}}
+/* Mobil: kompakte Navigation im Seiteninhalt statt eines offenen Overlay-Menüs. */
+.st-key-mobile_navigation{display:none}
+@media(max-width:768px){
+  section[data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"]{display:none!important}
+  .st-key-mobile_navigation{display:block!important;background:#17251d;border:1px solid #304536;border-radius:13px;padding:9px 12px;margin:0 0 12px}
+  .st-key-mobile_navigation label,.st-key-mobile_navigation p{color:#fff!important;font-weight:700!important}
+  .st-key-mobile_navigation [data-baseweb="select"]>div{background:#fff!important;border-radius:9px!important;min-height:42px}
+  .block-container{padding:0.55rem 0.75rem 5rem!important;max-width:100%!important}
+  .main-brand-banner{margin:0 0 12px!important;padding:10px 12px!important;border-radius:0 0 14px 14px!important;gap:10px!important}
+  .main-brand-banner img{width:46px!important;height:46px!important}
+  .main-brand-banner strong{font-size:21px!important}
+  .main-brand-banner span{font-size:8px!important;letter-spacing:2px!important}
+  .et-header{padding:17px 16px!important;margin-bottom:14px!important;border-radius:13px!important}
+  .et-header h1{font-size:25px!important;line-height:1.15!important}
+  .et-header p{font-size:13px!important}
+  .stHorizontalBlock{flex-wrap:wrap!important;gap:.65rem!important}
+  .stHorizontalBlock>[data-testid="column"]{flex:1 1 100%!important;min-width:100%!important;width:100%!important}
+  .recipe-visual{height:145px!important;font-size:42px!important}
+  .detail-panel{padding:12px!important;border-radius:14px!important}
+  .detail-top{gap:10px!important}
+  .detail-visual{width:78px!important;min-width:78px!important;height:78px!important;font-size:36px!important}
+  .detail-copy h2{font-size:19px!important}
+  .nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .et-bottom{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:10px 6px!important}
+  .et-stat strong{font-size:18px!important}
+  .et-stat small{font-size:10px!important}
+  div[data-testid="stButton"]>button{min-height:44px!important;white-space:normal!important;font-size:14px!important}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -430,6 +458,24 @@ with st.sidebar:
     st.caption("Der ausgewählte Markt wird im Wochenplan und in der Einkaufsliste angezeigt.")
     if portrait:
         st.markdown(f'<div class="sidebar-profile"><img src="{portrait}"><div><b>EinfachmitTimo</b><br><small>Einfach gutes Essen</small></div></div>', unsafe_allow_html=True)
+
+# Auf Smartphones wird die Navigation als kompakte Auswahl direkt in der Seite angezeigt.
+# Dadurch bleibt kein geöffnetes Sidebar-Overlay über dem Inhalt liegen.
+mobile_pages = ["Startseite", "Rezepte", "Rezeptkarten", "Wochenpläne", "Favoriten", "Einkaufsliste", "Kategorien", "Suche", "Über EinfachmitTimo", "Rezeptdetails"]
+def sync_mobile_page():
+    chosen_page = st.session_state.get("mobile_page_select", st.session_state.page)
+    if chosen_page != st.session_state.page:
+        st.session_state.page = chosen_page
+
+st.session_state["mobile_page_select"] = st.session_state.page
+with st.container(key="mobile_navigation"):
+    st.selectbox(
+        "Menü",
+        mobile_pages,
+        key="mobile_page_select",
+        label_visibility="visible",
+        on_change=sync_mobile_page,
+    )
 
 page = st.session_state.page
 st.markdown(
