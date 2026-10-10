@@ -16,7 +16,7 @@ st.set_page_config(
     page_title="EinfachmitTimo – Einfach gutes Essen",
     page_icon="🍽️",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
 )
 
 # ---------- Daten ----------
@@ -97,7 +97,41 @@ section[data-testid="stSidebar"] {
     min-width: 265px !important;
 }
 section[data-testid="stSidebar"] > div { padding: 18px 14px 22px; }
-section[data-testid="stSidebar"] * { color: #f6f2e9 !important; }
+section[data-testid="stSidebar"] { color: #f6f2e9; }
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] .et-nav-title,
+section[data-testid="stSidebar"] .et-brand,
+section[data-testid="stSidebar"] .et-profile { color: #f6f2e9 !important; }
+
+/* Navigation: high-contrast buttons on the dark sidebar.
+   Do not apply the sidebar's light text color to white buttons. */
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button {
+    width: 100% !important;
+    min-height: 48px !important;
+    margin: 3px 0 !important;
+    padding: 10px 14px !important;
+    border-radius: 13px !important;
+    border: 1px solid #34483a !important;
+    background: #202d24 !important;
+    color: #f8f5ee !important;
+    text-align: left !important;
+    font-weight: 650 !important;
+    box-shadow: none !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button p,
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button span {
+    color: #f8f5ee !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button:hover {
+    background: #2d4935 !important;
+    border-color: #d89b35 !important;
+    color: #ffffff !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button:focus:not(:active) {
+    border-color: #d89b35 !important;
+    box-shadow: 0 0 0 2px rgba(216,155,53,.24) !important;
+}
 .et-brand {
     border-radius: 18px; padding: 18px 14px 14px; margin-bottom: 16px;
     background: linear-gradient(160deg,#1b241f,#0e120f);
@@ -169,6 +203,15 @@ div[data-testid="stButton"] > button {
     background:#fff !important; color:#1b2d21 !important; font-weight:700 !important;
 }
 div[data-testid="stButton"] > button:hover { border-color:#c58a2c !important; }
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button {
+    background:#202d24 !important;
+    color:#f8f5ee !important;
+    border-color:#34483a !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stButton"] > button:hover {
+    background:#2d4935 !important;
+    border-color:#d89b35 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
