@@ -43,7 +43,7 @@ def marktguru_headers():
         return None
     return {"x-clientkey": clientkey, "x-apikey": apikey}
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(ttl=900, show_spinner=False)
 def marktguru_angebot(zutat, plz, markt):
     """Sucht ein passendes aktuelles Angebot für eine Zutat und einen Markt."""
     headers = marktguru_headers()
@@ -285,6 +285,10 @@ st.session_state.setdefault("week_portions", 2)
 st.session_state.setdefault("shopping_checked", set())
 st.session_state.setdefault("marketguru_offers", {})
 st.session_state.setdefault("marketguru_error", "")
+st.session_state.setdefault("week_offer_scan", {})
+st.session_state.setdefault("week_offer_snapshot", {})
+st.session_state.setdefault("week_offer_scan_error", "")
+st.session_state.setdefault("week_plan_offer_hits", {})
 
 # Styling
 st.markdown("""
@@ -526,33 +530,150 @@ elif page == "Wochenpläne":
     if not pool:
         pool = [r for r in recipes if st.session_state.week_diet == "Alle" or diet(r) == st.session_state.week_diet]
 
-    auto = st.button("✨  Woche automatisch planen", type="primary", use_container_width=True, key="generate_week_plan")
-    if auto:
-        if not re.fullmatch(r"\d{5}", str(st.session_state.postcode).strip()):
-            st.error("Bitte gib eine gültige fünfstellige Postleitzahl ein.")
+    # Schritt 1: Aktuelle Angebote des ausgewählten Markts abfragen.
+    offer_snapshot = {
+        "market": str(st.session_state.market),
+        "postcode": str(st.session_state.postcode).strip(),
+        "diet": str(st.session_state.week_diet),
+    }
+    offers_match_current_settings = (
+        bool(st.session_state.week_offer_snapshot)
+        and st.session_state.week_offer_snapshot == offer_snapshot
+        and not st.session_state.week_offer_scan_error
+    )
+
+    if st.button("1. Aktuelle Angebote abfragen", type="primary", use_container_width=True, key="scan_week_offers"):
+        if not re.fullmatch(r"\d{5}", offer_snapshot["postcode"]):
+            st.session_state.week_offer_scan_error = "Bitte gib eine gültige fünfstellige Postleitzahl ein."
+            st.session_state.week_offer_scan = {}
+            st.session_state.week_offer_snapshot = {}
+        elif not marktguru_headers():
+            st.session_state.week_offer_scan_error = "Marktguru-Zugangsdaten fehlen. Prüfe in Streamlit unter Secrets den Bereich [marktguru] mit clientkey und apikey."
+            st.session_state.week_offer_scan = {}
+            st.session_state.week_offer_snapshot = {}
         elif not pool:
-            st.error("Für diese Ernährungsform wurden keine passenden Rezepte gefunden.")
+            st.session_state.week_offer_scan_error = "Für diese Ernährungsform wurden keine passenden Rezepte gefunden."
+            st.session_state.week_offer_scan = {}
+            st.session_state.week_offer_snapshot = {}
         else:
-            # Sieben unterschiedliche warme Hauptgerichte, genau eines pro Tag.
-            shuffled = pool[:]
-            random.shuffle(shuffled)
+            # Häufig vorkommende, sinnvoll suchbare Zutaten aus der gefilterten Rezeptmenge priorisieren.
+            ignored_terms = {
+                "salz", "pfeffer", "wasser", "öl", "olivenöl", "rapsöl", "gewürze",
+                "paprikapulver", "currypulver", "italienische kräuter", "kräuter", "nach geschmack",
+                "etwas", "optional", "zum garnieren", "zitronensaft", "knoblauchpulver"
+            }
+            frequency = {}
+            display_names = {}
+            for recipe in pool:
+                seen_for_recipe = set()
+                for ingredient in recipe.get("ingredients", []):
+                    if not isinstance(ingredient, dict):
+                        continue
+                    name = re.sub(r"\s*\([^)]*\)\s*", " ", str(ingredient.get("name") or "")).strip(" ,.-")
+                    normalized = re.sub(r"\s+", " ", name).casefold()
+                    if not normalized or normalized in ignored_terms or len(normalized) < 3:
+                        continue
+                    if any(term in normalized for term in ("salz", "pfeffer", "wasser", "gewürz", "nach geschmack", "zum garnieren")):
+                        continue
+                    if normalized not in seen_for_recipe:
+                        frequency[normalized] = frequency.get(normalized, 0) + 1
+                        display_names.setdefault(normalized, name)
+                        seen_for_recipe.add(normalized)
+            # Nicht mehr als 20 API-Suchen pro Lauf; häufige Grundzutaten erhöhen die Trefferchance.
+            search_names = [display_names[key] for key, _ in sorted(frequency.items(), key=lambda item: (-item[1], item[0]))[:20]]
+            found = {}
+            errors = []
+            progress = st.progress(0, text="Frage aktuelle Marktguru-Angebote ab …")
+            for index, ingredient_name in enumerate(search_names, start=1):
+                result = marktguru_angebot(ingredient_name, offer_snapshot["postcode"], offer_snapshot["market"])
+                if result.get("error"):
+                    errors.append(result["error"])
+                    break
+                if not result.get("not_found"):
+                    found[ingredient_name.casefold()] = {**result, "search_term": ingredient_name}
+                progress.progress(index / max(1, len(search_names)), text=f"Prüfe Angebote für {ingredient_name} … ({index}/{len(search_names)})")
+            progress.empty()
+            st.session_state.week_offer_scan = found
+            st.session_state.week_offer_snapshot = offer_snapshot if not errors else {}
+            st.session_state.week_offer_scan_error = errors[0] if errors else ""
+            st.session_state.marketguru_offers = {
+                item["search_term"]: item for item in found.values()
+            }
+        st.rerun()
+
+    if st.session_state.week_offer_scan_error:
+        st.error(st.session_state.week_offer_scan_error)
+
+    if offers_match_current_settings:
+        scanned_offers = st.session_state.week_offer_scan
+        st.markdown("### Aktuelle Angebote für deine Rezeptauswahl")
+        st.caption(f"Markt: {offer_snapshot['market']} · PLZ {offer_snapshot['postcode']} · {len(scanned_offers)} passende Angebots-Treffer bei den geprüften Zutaten.")
+        if scanned_offers:
+            offer_cols = st.columns(2, gap="small")
+            for index, offer in enumerate(scanned_offers.values()):
+                with offer_cols[index % 2]:
+                    price_text = f"{offer['price']:.2f} €".replace(".", ",")
+                    st.markdown(
+                        f"<div class='recipe-card' style='padding:10px 12px'><b>{html.escape(offer['description'])}</b><br><small>{html.escape(offer['retailer'])} · Suchzutat: {html.escape(offer['search_term'])}</small><br><strong>{price_text}</strong></div>",
+                        unsafe_allow_html=True,
+                    )
+                    if offer.get("url"):
+                        st.markdown(f"[Angebot ansehen]({offer['url']})")
+        else:
+            st.info("Für die geprüften Zutaten wurden bei diesem Markt keine passenden Angebote gefunden. Du kannst trotzdem einen normalen Wochenplan aus deiner Rezeptdatenbank erstellen.")
+
+        if st.button("2. Wochenplan anhand der Angebote erstellen", type="primary", use_container_width=True, key="create_offer_week_plan"):
+            # Treffer werden pro Rezept anhand der tatsächlich geprüften Zutaten bewertet.
+            offered_terms = set(scanned_offers.keys())
+            scored = []
+            for recipe in pool:
+                recipe_terms = set()
+                for ingredient in recipe.get("ingredients", []):
+                    if not isinstance(ingredient, dict):
+                        continue
+                    name = re.sub(r"\s*\([^)]*\)\s*", " ", str(ingredient.get("name") or "")).strip()
+                    normalized = re.sub(r"\s+", " ", name).casefold()
+                    if normalized:
+                        recipe_terms.add(normalized)
+                # Sucht sowohl exakte Treffer als auch Zutaten, deren Bezeichnung einen Suchbegriff enthält.
+                hits = sum(1 for term in offered_terms if any(term == item or term in item or item in term for item in recipe_terms))
+                scored.append((hits, random.random(), recipe))
+            scored.sort(key=lambda row: (row[0], row[1]), reverse=True)
             picked = []
             seen = set()
-            for recipe in shuffled:
+            for hits, _, recipe in scored:
                 recipe_title = title(recipe)
-                if recipe_title and recipe_title not in seen:
-                    picked.append(recipe)
-                    seen.add(recipe_title)
+                if not recipe_title or recipe_title in seen:
+                    continue
+                if scanned_offers and hits == 0:
+                    continue
+                picked.append(recipe)
+                seen.add(recipe_title)
                 if len(picked) == 7:
                     break
+            # Falls weniger als sieben Rezepte über Angebotszutaten abgedeckt sind, ergänze passend zur Ernährungsform.
+            if len(picked) < 7:
+                for _, _, recipe in scored:
+                    recipe_title = title(recipe)
+                    if recipe_title and recipe_title not in seen:
+                        picked.append(recipe)
+                        seen.add(recipe_title)
+                    if len(picked) == 7:
+                        break
             if len(picked) < 7:
                 st.error("Es konnten nicht sieben unterschiedliche Gerichte gefunden werden. Bitte Ernährungsform ändern.")
             else:
                 st.session_state.week_plan = {TAGE[i]: title(recipe) for i, recipe in enumerate(picked)}
+                st.session_state.week_plan_offer_hits = {
+                    title(recipe): next((hits for hits, _, item in scored if title(item) == title(recipe)), 0)
+                    for recipe in picked
+                }
                 st.session_state.shopping_checked = set()
-                st.session_state.marketguru_offers = {}
+                st.session_state.marketguru_offers = {item["search_term"]: item for item in scanned_offers.values()}
                 st.session_state.marketguru_error = ""
                 st.rerun()
+    else:
+        st.caption("Erst werden die aktuellen Marktguru-Angebote für deinen Markt und deine PLZ abgefragt. Danach kannst du daraus deinen Wochenplan erstellen.")
 
     # Absichtlich direkt unter dem Erstellen-Button: keine manuelle Wochenplan-Eingabe und kein Speichern-Button.
     st.markdown("### Dein erstellter Wochenplan")
@@ -605,6 +726,9 @@ elif page == "Wochenpläne":
                 st.session_state.shopping_checked = set()
                 st.session_state.marketguru_offers = {}
                 st.session_state.marketguru_error = ""
+                st.session_state.week_offer_scan = {}
+                st.session_state.week_offer_snapshot = {}
+                st.session_state.week_offer_scan_error = ""
                 st.rerun()
     else:
         st.info("Dein erstellter Wochenplan erscheint hier direkt nach dem Klick auf „Woche automatisch planen“. Du musst keine Gerichte einzeln auswählen und nichts separat speichern.")
