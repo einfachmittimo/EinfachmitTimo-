@@ -1,0 +1,251 @@
+﻿ID;Rezept;kcal pro Portion;Protein g pro Portion;Kohlenhydrate g pro Portion;Fett g pro Portion;Quelle/Status
+1;Wraps mit Hähnchen;632;41.9;63.5;22.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+2;Nudelsalat mit Vollkornnudeln;232;9.7;43.4;2.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+3;Kalte Ofenkartoffeln mit Kräuterquark;288;14.2;47.5;4.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+4;Reissalat mit Thunfisch;356;55.2;24.8;3.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+5;Brotzeit-Abend;380;27.6;7.2;27.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+6;Couscous-Salat mit Halloumi;302;17.4;21.6;16.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+7;Wassermelonen-Feta-Salat;286;11.8;36.8;11.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+8;Protein-Porridge;513;35.6;59.7;12.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+9;Rührei mit Avocado;408;22.1;32.5;22.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+10;Overnight Oats;456;33.6;55.4;8.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+11;Skyr mit Beeren und Nüssen;314;26.4;21.2;13.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+12;Protein-Pancakes;524;40.6;55.6;13.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+13;Chia-Pudding;331;29.2;23.8;13.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+14;Rührei mit Spinat;346;23.2;29.3;14.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+15;Hähnchen-Gemüse-Pfanne;342;39.2;38.5;2.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+16;Lachs mit Reis und Brokkoli;459;35.8;28.2;20.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+17;Puten-Gemüse-Curry;451;40.2;21.4;23.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+18;Rindergeschnetzeltes;552;48.7;52.8;14.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+19;Hähnchen-Brokkoli-Pasta;314;37.1;31.4;3.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+20;Ofengemüse mit Feta;208;31.1;14.4;2.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+21;Putenbrust mit Gemüse;316;40.0;34.0;1.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+22;Skyr-Bowl;238;20.0;15.8;10.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+23;Thunfisch-Salat;327;55.7;17.5;3.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+24;Cottage Cheese Bowl;304;21.4;18.2;16.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+25;Caprese-Salat;353;27.9;2.8;25.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+26;Hüttenkäse mit Gurke;156;18.5;6.0;6.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+27;Räucherlachs-Wrap;386;19.4;32.5;19.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+28;Skyr mit Nussmix;248;20.3;12.0;12.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+29;Gemüse-Bolognese mit Vollkornnudeln;267;14.1;45.9;2.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+30;Ofenkartoffeln mit Rohkost;334;15.2;57.2;4.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+31;Wraps zum Selbstbefüllen;652;27.1;79.3;25.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+32;Kichererbsen-Gemüse-Curry;622;22.3;77.7;26.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+33;Gemüse-Puffer mit Apfelmus;240;5.8;53.9;0.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+34;Selbstgemachte Gemüse-Pizza;674;28.1;96.2;18.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+35;Gemüsesuppe mit Brot;157;6.6;31.8;0.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+36;Hähnchen-Reis-Brokkoli-Pfanne;367;41.7;31.1;7.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+37;Chili con Carne mit Reis;836;55.6;85.5;25.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+38;Lachs mit Ofenkartoffeln und Gemüse;572;38.7;54.5;20.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+39;Puten-Nudelpfanne mit Gemüse;344;43.6;34.0;3.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+40;Kartoffel-Hack-Pfanne mit Paprika;522;32.0;54.7;19.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+41;Lachs-Kartoffel-Spinat-Pfanne;508;31.2;35.5;25.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+42;Reis-Linsen-Gemüse-Pfanne;224;9.4;42.3;0.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+43;Putenschnitzel mit Ofenkartoffeln;472;50.4;52.7;5.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+44;Hähnchen-Reis-Pfanne mit Paprika;388;41.1;44.3;4.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+45;Kartoffeln mit Kräuterquark und Ei;501;32.5;49.9;18.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+46;Hähnchen-Wok mit Gemüse und Reis;352;41.6;35.8;3.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+47;Protein-Kartoffelpfanne mit Kräuterquark;470;28.8;52.5;15.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+48;Kichererbsen-Curry mit Reis;698;25.9;90.9;27.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+49;Rindergeschnetzeltes mit Reis und Gemüse;462;45.2;34.5;14.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+50;Protein-Eintopf mit Rind und Kartoffeln;614;38.8;66.0;19.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+51;Mediterrane Hähnchen-Gemüse-Pfanne;450;45.1;41.0;10.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+52;Thunfisch-Reis-Salat;442;58.4;40.8;4.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+53;Pasta mit Tomaten und Garnelen;350;35.8;47.4;2.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+54;Omelett mit Spinat und Feta;445;28.5;30.8;22.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+55;Feta-Gurken-Tomaten-Salat mit Vollkornbrot;159;6.2;29.2;1.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+56;Thunfisch-Bohnensalat;392;62.2;23.9;2.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+57;Mozzarella-Tomaten-Salat mit Vollkornbrot;307;18.9;25.6;13.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+58;Skyr-Beeren-Nuss-Bowl;395;29.5;38.0;12.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+59;Griechischer Joghurt mit Beeren und Nüssen;374;21.6;26.4;20.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+60;Couscous-Bowl mit Feta und Gemüse;130;4.8;26.2;0.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+61;Antipasti-Teller mit Vollkornbrot;315;17.8;33.9;11.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+62;Big Mac Waffel;463;45.0;37.0;14.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+63;Grillsalat Granatapfel;330;13.0;59.0;11.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+64;Feierabend Pfannenbrot;829;47.0;118.0;15.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+65;Marry Me Chicken;967;68.0;122.0;21.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+66;Vorkochen für Faule;728;59.0;75.0;20.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+67;Der fluffigste Proteinkuchen;218;13.0;30.0;5.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+68;Gemüse Döner;823;45.0;110.0;20.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+69;Sparende Ritter;809;46.0;79.0;34.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+70;Haferflocken Brownie;288;15.0;33.0;9.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+71;Wochenend Auflauf;856;62.0;98.0;23.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+72;15 Min Muskelaufbau Rezept;765;53.0;106.0;12.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+73;Das köstlichste Frühstück;520;25.0;20.0;29.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+74;Reis-Gemüse Pfanne;720;45.0;96.0;15.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+75;Brotzeit;832;48.0;112.0;14.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+76;10 Minuten Feierabend;820;43.0;100.0;26.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+77;Pizza Brötchen;405;34.0;36.0;13.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+78;Chili Cheese Brötchen;334;31.0;26.0;12.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+79;Börekpfanne;800;60.0;98.0;17.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+80;Brotzeit (nicht öde);697;38.0;58.0;24.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+81;2 Gerichte 1 Abwasch;1025;43.0;119.0;35.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+82;Gemüse war noch nie so köstlich;726;32.0;119.0;9.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+83;2 Tage für je 3,38€;785;41.0;90.0;25.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+84;Frühstück für Faule;502;36.0;65.0;9.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+85;Schönste Laugenstange der Welt;691;38.0;85.0;21.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+86;Blaubeer Grillsalat;334;14.0;32.0;12.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+87;Bifteki Foodprep;798;51.0;110.0;13.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+88;Die besten Frühstückseier;925;62.0;74.0;37.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+89;5 Minuten Ofen Gnocchi;730;34.0;98.0;24.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+90;Thunfisch Nudeln;603;37.0;93.0;7.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+91;4 Tage 80% für 8,50€;1850;112.0;162.0;75.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+92;BIMO Burrito;711;42.0;76.0;24.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+93;Lotus Frühstück;612;56.0;64.0;13.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+94;One Pot Spicy Feta Pulled Chicken;280;33.0;9.0;10.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+95;Smashed Vegetables;568;52.0;56.0;16.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+96;Crispy Chicken Süß Sauer;965;64.0;145.0;10.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+97;Reeses Frühstück;728;46.0;84.0;20.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+98;Creamy Egg Pasta;921;40.0;104.0;37.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+99;Granola;200;6.0;20.0;10.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+100;Creamy Chicken Pasta;677;52.0;80.0;16.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+101;Big Mac Chicken Bowl;454;47.7;52.5;5.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+102;Teriyaki Chicken Reis-Bowl;450;50.8;42.2;6.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+103;Crispy Chicken Kartoffel-Bowl;559;53.6;66.0;8.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+104;Chicken Feta Reis-Pfanne;409;46.3;34.1;9.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+105;BBQ Hack Kartoffelpfanne;595;34.9;66.8;21.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+106;Mexican Chicken Reis-Bowl;485;48.2;56.8;5.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+107;Chicken Curry Kartoffelpfanne;483;51.0;53.7;6.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+108;Gyros Chicken Pita;690;57.0;88.6;10.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+109;Chicken Caesar Wrap Light;463;48.1;37.5;13.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+110;Chicken Pesto Pasta Light;460;48.3;25.4;17.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+111;Thunfisch Reis Crunch Bowl;396;46.5;36.6;6.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+112;Thunfisch Kartoffel Salat Protein;394;41.0;48.0;4.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+113;Lachs Teriyaki Reis-Bowl;503;36.6;32.4;22.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+114;Lachs Kartoffel Kräuter Bowl;534;36.2;47.8;21.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+115;Garnelen Knoblauch Reis;363;43.0;31.1;7.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+116;Burrito Kartoffel Bowl;604;32.6;68.0;22.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+117;Bifteki Kartoffel Teller;483;30.6;47.5;19.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+118;Hackfleisch Feta Reis Bowl;440;29.5;35.8;20.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+119;Cheeseburger Wrap;490;32.2;38.2;23.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+120;Chicken Parmesan Kartoffel-Wrap;597;54.8;61.0;14.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+121;Mediterrane Chicken Pasta;437;48.7;28.4;13.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+122;Tomaten-Hähnchen Gnocchi;569;48.6;67.6;9.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+123;Protein Döner Bowl;364;41.7;34.0;6.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+124;Chicken Schnitzel Reis Bowl;425;44.6;42.3;7.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+125;Curry Thunfisch Wrap;418;41.7;43.4;8.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+126;Lachs Avocado Wrap;534;33.3;40.7;26.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+127;Garnelen Gemüse Nudeln;335;44.0;27.7;5.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+128;Protein Bauernsalat mit Chicken;410;46.5;40.2;6.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+129;Chicken Tzatziki Kartoffel Teller;454;49.4;45.6;7.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+130;Hack-Tomaten Reis One Pot;409;24.5;39.1;17.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+131;Chicken Fajita Kartoffel Bowl;461;45.8;56.6;5.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+132;Mediterrane Thunfisch Kartoffel Bowl;422;48.0;49.0;4.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+133;Chicken Brokkoli Frischkäse Reis;444;51.5;29.6;11.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+134;Hack-Paprika Frischkäse Pasta;498;33.8;31.6;25.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+135;Chicken BBQ Wrap;471;47.9;46.2;10.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+136;Thunfisch Mais Käse Toast;388;42.9;34.8;8.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+137;Protein Pizza Wrap;468;45.5;39.3;14.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+138;Chicken Teriyaki Kartoffel Bowl;443;45.9;49.6;5.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+139;Greek Chicken Reis-Salat;366;45.5;28.4;7.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+140;Lachs Gurken Reis Bowl;481;34.4;30.7;22.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+141;Chocolate Banana Bowl;470;13.0;55.0;20.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+142;Green Detox Bowl;360;7.0;42.0;16.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+143;Berry Bliss Bowl;360;7.0;50.0;11.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+144;Acai Bowl;390;6.0;57.0;14.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+145;Tropical Mango Bowl;420;6.0;63.0;13.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+146;Peanut Butter Bowl;480;15.0;47.0;23.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+147;Peach Sunset Bowl;380;16.0;45.0;12.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+148;Blueberry Coconut Bowl;360;6.0;42.0;18.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+149;Strawberry Cheesecake Bowl;410;18.0;48.0;14.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+150;Piña Colada Bowl;380;14.0;44.0;16.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+151;Zarter Rinderschmorbraten mit Gemüse;592;73.1;8.0;25.9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+152;Türkischer Kuru Fasulye Schmortopf;264;12.4;28.9;8.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+153;Kartoffel-Hackfleisch-Schmortopf mit Käse;647;35.3;48.1;36.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+154;Cremiger Paprika-Sahne-Hähnchentopf;428;37.7;11.8;25.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+155;Cremiger Pilzrahm-Schmortopf;388;13.8;10.9;33.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+156;Rinderrouladen;284;15.2;8.6;20.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+157;Orientalischer Kichererbsen-Hähnchentopf;423;40.1;38.4;12.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+158;Tomatiger Hackbällchen-Schmortopf;386;27.2;12.7;24.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+159;Würziger Gulaschtopf wie vom Brauhaus;421;50.8;9.0;18.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+160;Deftiger Bauerntopf mit Kartoffeln & Paprika;529;27.7;34.7;30.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+161;Avocado Pasta Salat;840;18.6;88.1;49.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+162;Türkischer Joghurt-Nudelsalat;813;21.2;77.5;47.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+163;Bruschetta Nudelsalat;907;26.1;76.2;56.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+164;Asia Gurken-Nudelsalat;487;19.3;81.5;8.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+165;Feta-Honig Nudelsalat;1039;33.7;81.9;64.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+166;Zucchini-Nudel Mix Salat;422;11.6;52.9;18.4;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+167;Mexican Pasta Salat;1428;65.8;217.0;27.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+168;Protein Pasta Salat mit Hähnchen;640;38.3;73.5;21.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+169;Thunfisch Pasta Salat;952;111.9;78.5;22.3;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+170;Fruchtiger Joghurt-Pasta-Salat;748;23.5;129.7;17.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+171;Crispy Rice Tuna Salad;550;80.5;11.3;20.0;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+172;Hähnchen-Bowl;471;42.6;48.6;12.1;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+173;Frikadellen-Bowl;688;41.7;39.0;43.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+174;Thunfisch-Bowl;730;117.7;48.0;7.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+175;Gemüse-Bowl;321;14.3;35.0;14.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+176;Steak-Bowl;567;46.1;45.2;22.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+177;Lachs-Bowl;630;48.0;33.3;32.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+178;Teriyaki-Hähnchen-Bowl;571;48.7;52.3;18.2;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+179;Mexiko-Bowl;776;46.0;82.1;32.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+180;Falafel-Bowl;457;15.4;45.1;26.5;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+181;Korean-Beef-Bowl;600;51.5;46.1;21.7;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+182;Lachs-Avocado-Bowl;726;43.5;51.6;37.8;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+183;Greek-Chicken-Bowl;689;45.7;31.0;42.6;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+184;Mediterrane Ofenpfanne;450;16;22;31;Richtwert
+185;Zucchini-Nudeln mit Pesto & Garnelen;359;21;8;27;Richtwert
+186;Linsensuppe mit Kokos & Curry;586;24;71;29;Richtwert
+187;Hähnchen-Salat mit Avocado;450;42;15;25;Richtwert
+188;Rührei mit Spinat & Tomaten;324;21;6;25;Richtwert
+189;Cremige Paprika-Hähnchen-Pfanne mit Reis;520;46;56;12;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+190;Ofenkartoffeln mit Kräuterquark & Gurkensalat;410;28;55;9;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+191;Mediterrane Hack-Zucchini-Pfanne mit Feta;430;34;47;26;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+192;Lachs-Spinat-Pasta mit Zitrone;520;40;48;18;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+193;Knusprige Ofen-Wrap-Pizza mit Mozzarella & Gemüse;380;20;42;19;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+194;Bratkartoffel-Pfanne mit Spiegelei & Gewürzgurken;410;14;34;22;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+195;Hähnchen-Paprika-Reis-Pfanne;490;29;30;18;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+196;Gnocchi-Champignon-Spinat-Pfanne;440;15;50;19;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+197;Rösti-Käse-Rolle mit Hähnchen;674;63;44;26;"Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
+198;Mohn-Vanille-Porridge;340;19;44;8;berechnet (geschätzt)
+199;Ofen-Ei-Muffins mit Spinat, Feta & Tomaten;420;32;18;22;angegeben
+200;Rindfleisch-Bowl mit Süßkartoffel, Brokkoli & Joghurtsauce;580;40;55;18;angegeben
+201;Schoko-Bananen-Protein-Pudding;310;28;32;8;angegeben
+202;Thai-Curry mit Garnelen, Zucchini & Kokosmilch;490;20;50;22;angegeben
+203;Protein-Hähnchen-Wraps;210;22;20;6.5;aus Nutzer-Screenshot (ca.)
+204;Big Mac Blech;297;20;19;12;aus Nutzer-Screenshot (ca.)
+205;Crispy Salmon Bowl;480;36;44;16;aus Nutzer-Screenshot (ca.)
+206;Schoko-Brownie-Muffins;150;9;9;9;aus Nutzer-Screenshot (ca.)
+207;Udon-Pfanne mit Hackfleisch;420;36;57;6;aus Nutzer-Screenshot (ca.)
+208;Hähnchenflügel mit Bulgur und Salat;520;42;48;14;aus Nutzer-Screenshot (ca.)
+209;Protein-Frühstück mit Low-Carb-Brötchen;420;32;;;"aus Nutzer-Screenshot; teilweise nicht lesbar"
+tiramisu-zum-fruehstueck;Tiramisu zum Frühstück?!;400;35;43;9;angegeben
+feierabend-blech-gyros-h-hnchen-mit-kartoffeln;Feierabend-Blech Gyros-Hähnchen mit Kartoffeln;390;46;39;10;angegeben
+schupfnudel-feierabend-blech-flammkuchen-style;Schupfnudel-Feierabend-Blech Flammkuchen Style;450;38;45;15;angegeben
+gef-llter-k-rbis-mit-feta-couscous;Gefüllter Kürbis mit Feta & Couscous;520;33;65;15;angegeben
+kartoffel-w-rstchen-eintopf-mit-buttergem-se;Kartoffel-Würstchen-Eintopf mit Buttergemüse;495;35;56;15;angegeben
+cheeseburger-blech-mit-knack-back;Cheeseburger-Blech mit Knack & Back;475;35;42;18;angegeben
+cremige-ofen-gnocchi-caprese-style;Cremige Ofen-Gnocchi Caprese Style;485;31;65;11;angegeben
+xxl-protein-apfel-pancake-vom-blech;XXL Protein-Apfel-Pancake vom Blech;430;29;61;9;angegeben
+griechische-haehnchen-bowl;Griechische Hähnchen-Bowl;520;45;55;16;berechnet (geschätzt)
+216;Fischstäbchen-Kartoffel-Bowl;625;40;62;22;geschätzt / teilweise aus Quellenangabe
+217;Chicken Alfredo;650;60;65;18;geschätzt / teilweise aus Quellenangabe
+218;Garnelen-Zucchini-Pfanne;280;25;12;10;geschätzt / teilweise aus Quellenangabe
+219;Cremige Hähnchen-Pasta mit Tomaten;430;31;43;11;geschätzt / teilweise aus Quellenangabe
+220;Schnelle Gemüsepfanne mit Hähnchen;380;30;25;13;geschätzt / teilweise aus Quellenangabe
+221;Thunfisch-Wrap;390;31;39;10;geschätzt / teilweise aus Quellenangabe
+222;Paprika-Feta-Pfanne mit Reis;420;15;43;20;geschätzt / teilweise aus Quellenangabe
+223;Hähnchen-Salat mit Joghurt-Dressing;350;29;17;15;geschätzt / teilweise aus Quellenangabe
+224;Reisnudel-Gemüse-Bowl;400;13;65;9;geschätzt / teilweise aus Quellenangabe
+225;Ofenlachs mit Brokkoli;450;38;12;27;geschätzt / teilweise aus Quellenangabe
+226;10-Minuten-Pfannen-Lasagne;495;44;57;19;angegeben
+227;Knusprige Kartoffel-Hack-Bowl;470;44;46;12;angegeben
+228;Crispy Kartoffel-Pizza aus der Pfanne;430;31;48;14;angegeben
+229;Flammkuchen-Risoni-Pfanne;460;41;49;10;angegeben
+230;Cremige One-Pot Hähnchen-Reispfanne;445;43;55;9;angegeben
+231;Zimtschnecken-Apfel-Auflauf;390;31;49;9;angegeben
+232;Couscous-Gemüse-Bowl;390;14;58;11;"Kalorien aus Quellenangabe; fehlende Makros aus Zutaten geschätzt"
+233;Spinat-Feta-Omelett;320;22;5;23;"Kalorien aus Quellenangabe; fehlende Makros aus Zutaten geschätzt"
+210;High Protein Döner-Kartoffel Bowl;620;72;72;14;angegeben
+211;Chicken Meatballs mit Cottage-Cheese-Sauce;350;44;18;12;angegeben
+212;Hot-Honey Süßkartoffel Beef Bowl;420;42;38;13;angegeben
+213;Cottage-Cheese Flatbread Pizza;380;38;32;14;angegeben
+214;Protein Schoko-Pancake vom Blech;350;20;40;10;angegeben
+215;Teriyaki Chicken Meal Prep;520;48;62;8;angegeben
+234;Fluffige Bananen-Quark-Pancakes;350;24;43;8;berechnet (geschätzt)
+235;Mini-Pizza-Muffins;115;8;14;3;berechnet (geschätzt)
+236;Cremige Käse-Hähnchen-Nudeln;390;32;42;10;berechnet (geschätzt)
+237;Schoko-Bananen-Waffeln;125;8;17;3;berechnet (geschätzt)
+238;Knusprige Kartoffel-Käse-Taler;270;16;31;8;berechnet (geschätzt)
+239;Erdbeer-Cheesecake im Glas;150;14;18;3;berechnet (geschätzt)
+240;Mini-Hähnchen-Nuggets;260;35;16;6;berechnet (geschätzt)
+241;Knusprige Pulled-Chicken-Wraps aus dem Airfryer;590;48;55;18;berechnet (geschätzt)

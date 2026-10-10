@@ -47,7 +47,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 632,
+      "protein": 41.9,
+      "carbs": 63.5,
+      "fat": 22.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Nudelsalat mit Vollkornnudeln",
@@ -96,7 +106,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 232,
+      "protein": 9.7,
+      "carbs": 43.4,
+      "fat": 2.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Kalte Ofenkartoffeln mit Kräuterquark",
@@ -141,7 +161,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 288,
+      "protein": 14.2,
+      "carbs": 47.5,
+      "fat": 4.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Reissalat mit Thunfisch",
@@ -186,7 +216,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 356,
+      "protein": 55.2,
+      "carbs": 24.8,
+      "fat": 3.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Brotzeit-Abend",
@@ -235,7 +275,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 380,
+      "protein": 27.6,
+      "carbs": 7.2,
+      "fat": 27.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Couscous-Salat mit Halloumi",
@@ -286,7 +336,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 302,
+      "protein": 17.4,
+      "carbs": 21.6,
+      "fat": 16.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Wassermelonen-Feta-Salat",
@@ -334,7 +394,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 286,
+      "protein": 11.8,
+      "carbs": 36.8,
+      "fat": 11.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein-Porridge",
@@ -382,7 +452,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 513,
+      "protein": 35.6,
+      "carbs": 59.7,
+      "fat": 12.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Rührei mit Avocado",
@@ -431,7 +511,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 408,
+      "protein": 22.1,
+      "carbs": 32.5,
+      "fat": 22.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Overnight Oats",
@@ -474,7 +564,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 456,
+      "protein": 33.6,
+      "carbs": 55.4,
+      "fat": 8.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Skyr mit Beeren und Nüssen",
@@ -517,7 +617,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 314,
+      "protein": 26.4,
+      "carbs": 21.2,
+      "fat": 13.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein-Pancakes",
@@ -565,7 +675,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 524,
+      "protein": 40.6,
+      "carbs": 55.6,
+      "fat": 13.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chia-Pudding",
@@ -608,7 +728,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 331,
+      "protein": 29.2,
+      "carbs": 23.8,
+      "fat": 13.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Rührei mit Spinat",
@@ -657,7 +787,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 346,
+      "protein": 23.2,
+      "carbs": 29.3,
+      "fat": 14.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Gemüse-Pfanne",
@@ -696,7 +836,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 342,
+      "protein": 39.2,
+      "carbs": 38.5,
+      "fat": 2.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs mit Reis und Brokkoli",
@@ -740,7 +890,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 459,
+      "protein": 35.8,
+      "carbs": 28.2,
+      "fat": 20.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Puten-Gemüse-Curry",
@@ -785,7 +945,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 451,
+      "protein": 40.2,
+      "carbs": 21.4,
+      "fat": 23.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Rindergeschnetzeltes",
@@ -824,7 +994,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 552,
+      "protein": 48.7,
+      "carbs": 52.8,
+      "fat": 14.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Brokkoli-Pasta",
@@ -869,7 +1049,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 314,
+      "protein": 37.1,
+      "carbs": 31.4,
+      "fat": 3.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Ofengemüse mit Feta",
@@ -913,7 +1103,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 208,
+      "protein": 31.1,
+      "carbs": 14.4,
+      "fat": 2.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Putenbrust mit Gemüse",
@@ -951,7 +1151,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 316,
+      "protein": 40.0,
+      "carbs": 34.0,
+      "fat": 1.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Skyr-Bowl",
@@ -988,7 +1198,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 238,
+      "protein": 20.0,
+      "carbs": 15.8,
+      "fat": 10.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch-Salat",
@@ -1032,7 +1252,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 327,
+      "protein": 55.7,
+      "carbs": 17.5,
+      "fat": 3.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Cottage Cheese Bowl",
@@ -1068,7 +1298,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 304,
+      "protein": 21.4,
+      "carbs": 18.2,
+      "fat": 16.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Caprese-Salat",
@@ -1106,7 +1346,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 353,
+      "protein": 27.9,
+      "carbs": 2.8,
+      "fat": 25.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hüttenkäse mit Gurke",
@@ -1145,7 +1395,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 156,
+      "protein": 18.5,
+      "carbs": 6.0,
+      "fat": 6.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Räucherlachs-Wrap",
@@ -1190,7 +1450,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 386,
+      "protein": 19.4,
+      "carbs": 32.5,
+      "fat": 19.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Skyr mit Nussmix",
@@ -1227,7 +1497,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 248,
+      "protein": 20.3,
+      "carbs": 12.0,
+      "fat": 12.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gemüse-Bolognese mit Vollkornnudeln",
@@ -1276,7 +1556,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 267,
+      "protein": 14.1,
+      "carbs": 45.9,
+      "fat": 2.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Ofenkartoffeln mit Rohkost",
@@ -1326,7 +1616,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 334,
+      "protein": 15.2,
+      "carbs": 57.2,
+      "fat": 4.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Wraps zum Selbstbefüllen",
@@ -1375,7 +1675,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 652,
+      "protein": 27.1,
+      "carbs": 79.3,
+      "fat": 25.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Kichererbsen-Gemüse-Curry",
@@ -1420,7 +1730,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 622,
+      "protein": 22.3,
+      "carbs": 77.7,
+      "fat": 26.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gemüse-Puffer mit Apfelmus",
@@ -1464,7 +1784,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 240,
+      "protein": 5.8,
+      "carbs": 53.9,
+      "fat": 0.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Selbstgemachte Gemüse-Pizza",
@@ -1515,7 +1845,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 674,
+      "protein": 28.1,
+      "carbs": 96.2,
+      "fat": 18.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gemüsesuppe mit Brot",
@@ -1560,7 +1900,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 157,
+      "protein": 6.6,
+      "carbs": 31.8,
+      "fat": 0.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Reis-Brokkoli-Pfanne",
@@ -1614,7 +1964,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 367,
+      "protein": 41.7,
+      "carbs": 31.1,
+      "fat": 7.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chili con Carne mit Reis",
@@ -1673,7 +2033,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 836,
+      "protein": 55.6,
+      "carbs": 85.5,
+      "fat": 25.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs mit Ofenkartoffeln und Gemüse",
@@ -1722,7 +2092,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 572,
+      "protein": 38.7,
+      "carbs": 54.5,
+      "fat": 20.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Puten-Nudelpfanne mit Gemüse",
@@ -1777,7 +2157,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 344,
+      "protein": 43.6,
+      "carbs": 34.0,
+      "fat": 3.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Kartoffel-Hack-Pfanne mit Paprika",
@@ -1826,7 +2216,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 522,
+      "protein": 32.0,
+      "carbs": 54.7,
+      "fat": 19.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs-Kartoffel-Spinat-Pfanne",
@@ -1871,7 +2271,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 508,
+      "protein": 31.2,
+      "carbs": 35.5,
+      "fat": 25.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Reis-Linsen-Gemüse-Pfanne",
@@ -1925,7 +2335,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 224,
+      "protein": 9.4,
+      "carbs": 42.3,
+      "fat": 0.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Putenschnitzel mit Ofenkartoffeln",
@@ -1975,7 +2395,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 472,
+      "protein": 50.4,
+      "carbs": 52.7,
+      "fat": 5.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Reis-Pfanne mit Paprika",
@@ -2024,7 +2454,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 388,
+      "protein": 41.1,
+      "carbs": 44.3,
+      "fat": 4.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Kartoffeln mit Kräuterquark und Ei",
@@ -2074,7 +2514,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 501,
+      "protein": 32.5,
+      "carbs": 49.9,
+      "fat": 18.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Wok mit Gemüse und Reis",
@@ -2128,7 +2578,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 352,
+      "protein": 41.6,
+      "carbs": 35.8,
+      "fat": 3.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein-Kartoffelpfanne mit Kräuterquark",
@@ -2178,7 +2638,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 470,
+      "protein": 28.8,
+      "carbs": 52.5,
+      "fat": 15.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Kichererbsen-Curry mit Reis",
@@ -2233,7 +2703,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 698,
+      "protein": 25.9,
+      "carbs": 90.9,
+      "fat": 27.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Rindergeschnetzeltes mit Reis und Gemüse",
@@ -2282,7 +2762,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 462,
+      "protein": 45.2,
+      "carbs": 34.5,
+      "fat": 14.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein-Eintopf mit Rind und Kartoffeln",
@@ -2333,7 +2823,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 614,
+      "protein": 38.8,
+      "carbs": 66.0,
+      "fat": 19.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mediterrane Hähnchen-Gemüse-Pfanne",
@@ -2388,7 +2888,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 450,
+      "protein": 45.1,
+      "carbs": 41.0,
+      "fat": 10.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch-Reis-Salat",
@@ -2438,7 +2948,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 442,
+      "protein": 58.4,
+      "carbs": 40.8,
+      "fat": 4.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Pasta mit Tomaten und Garnelen",
@@ -2488,7 +3008,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 350,
+      "protein": 35.8,
+      "carbs": 47.4,
+      "fat": 2.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Omelett mit Spinat und Feta",
@@ -2539,7 +3069,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 445,
+      "protein": 28.5,
+      "carbs": 30.8,
+      "fat": 22.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Feta-Gurken-Tomaten-Salat mit Vollkornbrot",
@@ -2587,7 +3127,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 159,
+      "protein": 6.2,
+      "carbs": 29.2,
+      "fat": 1.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch-Bohnensalat",
@@ -2636,7 +3186,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 392,
+      "protein": 62.2,
+      "carbs": 23.9,
+      "fat": 2.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mozzarella-Tomaten-Salat mit Vollkornbrot",
@@ -2679,7 +3239,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 307,
+      "protein": 18.9,
+      "carbs": 25.6,
+      "fat": 13.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Skyr-Beeren-Nuss-Bowl",
@@ -2721,7 +3291,17 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 395,
+      "protein": 29.5,
+      "carbs": 38.0,
+      "fat": 12.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Griechischer Joghurt mit Beeren und Nüssen",
@@ -2764,7 +3344,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 374,
+      "protein": 21.6,
+      "carbs": 26.4,
+      "fat": 20.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Couscous-Bowl mit Feta und Gemüse",
@@ -2813,7 +3403,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 130,
+      "protein": 4.8,
+      "carbs": 26.2,
+      "fat": 0.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Antipasti-Teller mit Vollkornbrot",
@@ -2867,7 +3467,17 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 315,
+      "protein": 17.8,
+      "carbs": 33.9,
+      "fat": 11.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Big Mac Waffel",
@@ -2930,7 +3540,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "463 kcal | 45g Protein | 37g Kohlenhydrate | 14g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 01",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -2948,9 +3558,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 463,
-      "protein": 45,
-      "carbs": 37,
-      "fat": 14
+      "protein": 45.0,
+      "carbs": 37.0,
+      "fat": 14.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 62,
@@ -2959,7 +3570,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Grillsalat Granatapfel",
@@ -3037,7 +3650,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "330 kcal | 13g Protein | 59g Kohlenhydrate | 11g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 02",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -3053,9 +3666,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 330,
-      "protein": 13,
-      "carbs": 59,
-      "fat": 11
+      "protein": 13.0,
+      "carbs": 59.0,
+      "fat": 11.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 63,
@@ -3064,7 +3678,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Feierabend Pfannenbrot",
@@ -3157,7 +3773,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "829 kcal | 47g Protein | 118g Kohlenhydrate | 15g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 03",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3175,9 +3791,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 829,
-      "protein": 47,
-      "carbs": 118,
-      "fat": 15
+      "protein": 47.0,
+      "carbs": 118.0,
+      "fat": 15.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 64,
@@ -3186,7 +3803,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Marry Me Chicken",
@@ -3244,7 +3863,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "967 kcal | 68g Protein | 122g Kohlenhydrate | 21g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 05",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3263,9 +3882,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 967,
-      "protein": 68,
-      "carbs": 122,
-      "fat": 21
+      "protein": 68.0,
+      "carbs": 122.0,
+      "fat": 21.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 65,
@@ -3274,7 +3894,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Vorkochen für Faule",
@@ -3327,7 +3949,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "728 kcal | 59g Protein | 75g Kohlenhydrate | 20g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 06",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3341,9 +3963,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 728,
-      "protein": 59,
-      "carbs": 75,
-      "fat": 20
+      "protein": 59.0,
+      "carbs": 75.0,
+      "fat": 20.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 66,
@@ -3352,7 +3975,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 1,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Der fluffigste Proteinkuchen",
@@ -3405,7 +4030,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "218 kcal | 13g Protein | 30g Kohlenhydrate | 5g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 07",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -3422,9 +4047,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 218,
-      "protein": 13,
-      "carbs": 30,
-      "fat": 5
+      "protein": 13.0,
+      "carbs": 30.0,
+      "fat": 5.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 67,
@@ -3432,7 +4058,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gemüse Döner",
@@ -3500,7 +4128,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "823 kcal | 45g Protein | 110g Kohlenhydrate | 20g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 08",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3516,9 +4144,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 823,
-      "protein": 45,
-      "carbs": 110,
-      "fat": 20
+      "protein": 45.0,
+      "carbs": 110.0,
+      "fat": 20.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 68,
@@ -3527,7 +4156,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Sparende Ritter",
@@ -3560,7 +4191,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "809 kcal | 46g Protein | 79g Kohlenhydrate | 34g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 09",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -3575,9 +4206,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 809,
-      "protein": 46,
-      "carbs": 79,
-      "fat": 34
+      "protein": 46.0,
+      "carbs": 79.0,
+      "fat": 34.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 69,
@@ -3585,7 +4217,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Haferflocken Brownie",
@@ -3638,7 +4272,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "288 kcal | 15g Protein | 33g Kohlenhydrate | 9g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 10",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3653,9 +4287,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 288,
-      "protein": 15,
-      "carbs": 33,
-      "fat": 9
+      "protein": 15.0,
+      "carbs": 33.0,
+      "fat": 9.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 70,
@@ -3664,7 +4299,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 6,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Wochenend Auflauf",
@@ -3747,7 +4384,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "856 kcal | 62g Protein | 98g Kohlenhydrate | 23g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 11",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3768,9 +4405,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 856,
-      "protein": 62,
-      "carbs": 98,
-      "fat": 23
+      "protein": 62.0,
+      "carbs": 98.0,
+      "fat": 23.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 71,
@@ -3779,7 +4417,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "15 Min Muskelaufbau Rezept",
@@ -3832,7 +4472,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "765 kcal | 53g Protein | 106g Kohlenhydrate | 12g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 12",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -3848,9 +4488,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 765,
-      "protein": 53,
-      "carbs": 106,
-      "fat": 12
+      "protein": 53.0,
+      "carbs": 106.0,
+      "fat": 12.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 72,
@@ -3859,7 +4500,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Das köstlichste Frühstück",
@@ -3907,7 +4550,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "520 kcal | 25g Protein | 20g Kohlenhydrate | 29g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 13",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -3924,9 +4567,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 520,
-      "protein": 25,
-      "carbs": 20,
-      "fat": 29
+      "protein": 25.0,
+      "carbs": 20.0,
+      "fat": 29.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 73,
@@ -3934,7 +4578,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Reis-Gemüse Pfanne",
@@ -3982,7 +4628,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "720 kcal | 45g Protein | 96g Kohlenhydrate | 15g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 14",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -4000,9 +4646,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 720,
-      "protein": 45,
-      "carbs": 96,
-      "fat": 15
+      "protein": 45.0,
+      "carbs": 96.0,
+      "fat": 15.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 74,
@@ -4011,7 +4658,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Brotzeit",
@@ -4064,7 +4713,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "832 kcal | 48g Protein | 112g Kohlenhydrate | 14g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 15",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -4080,9 +4729,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 832,
-      "protein": 48,
-      "carbs": 112,
-      "fat": 14
+      "protein": 48.0,
+      "carbs": 112.0,
+      "fat": 14.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 75,
@@ -4091,7 +4741,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "10 Minuten Feierabend",
@@ -4134,7 +4786,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "820 kcal | 43g Protein | 100g Kohlenhydrate | 26g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 16",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -4148,9 +4800,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 820,
-      "protein": 43,
-      "carbs": 100,
-      "fat": 26
+      "protein": 43.0,
+      "carbs": 100.0,
+      "fat": 26.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 76,
@@ -4159,7 +4812,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Pizza Brötchen",
@@ -4197,7 +4852,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "405 kcal | 34g Protein | 36g Kohlenhydrate | 13g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 17",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -4214,9 +4869,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 405,
-      "protein": 34,
-      "carbs": 36,
-      "fat": 13
+      "protein": 34.0,
+      "carbs": 36.0,
+      "fat": 13.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 77,
@@ -4225,7 +4881,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chili Cheese Brötchen",
@@ -4263,7 +4921,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "334 kcal | 31g Protein | 26g Kohlenhydrate | 12g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 18",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -4280,9 +4938,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 334,
-      "protein": 31,
-      "carbs": 26,
-      "fat": 12
+      "protein": 31.0,
+      "carbs": 26.0,
+      "fat": 12.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 78,
@@ -4291,7 +4950,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Börekpfanne",
@@ -4339,7 +5000,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "800 kcal | 60g Protein | 98g Kohlenhydrate | 17g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 19",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -4357,9 +5018,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 800,
-      "protein": 60,
-      "carbs": 98,
-      "fat": 17
+      "protein": 60.0,
+      "carbs": 98.0,
+      "fat": 17.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 79,
@@ -4368,7 +5030,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Brotzeit (nicht öde)",
@@ -4421,7 +5085,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "697 kcal | 38g Protein | 58g Kohlenhydrate | 24g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 20",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -4436,9 +5100,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 697,
-      "protein": 38,
-      "carbs": 58,
-      "fat": 24
+      "protein": 38.0,
+      "carbs": 58.0,
+      "fat": 24.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 80,
@@ -4447,7 +5112,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "2 Gerichte 1 Abwasch",
@@ -4520,7 +5187,7 @@
       }
     ],
     "diet": "fisch",
-    "nutrition_source": "1025 kcal | 43g Protein | 119g Kohlenhydrate | 35g Fett / 721 kcal | 36g Protein | 85g\n Kohlenhydrate | 25g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 21",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -4541,9 +5208,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 1025,
-      "protein": 43,
-      "carbs": 119,
-      "fat": 35
+      "protein": 43.0,
+      "carbs": 119.0,
+      "fat": 35.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 81,
@@ -4552,7 +5220,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gemüse war noch nie so köstlich",
@@ -4610,7 +5280,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "726 kcal | 32g Protein | 119g Kohlenhydrate | 9g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 22",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -4630,9 +5300,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 726,
-      "protein": 32,
-      "carbs": 119,
-      "fat": 9
+      "protein": 32.0,
+      "carbs": 119.0,
+      "fat": 9.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 82,
@@ -4641,7 +5312,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "2 Tage für je 3,38€",
@@ -4729,7 +5402,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "785 kcal | 41g Protein | 90g Kohlenhydrate | 25g Fett / 719 kcal | 25g Protein | 108g\n Kohlenhydrate | 18g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 23",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -4754,9 +5427,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 785,
-      "protein": 41,
-      "carbs": 90,
-      "fat": 25
+      "protein": 41.0,
+      "carbs": 90.0,
+      "fat": 25.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 83,
@@ -4765,7 +5439,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Frühstück für Faule",
@@ -4808,7 +5484,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "502 kcal | 36g Protein | 65g Kohlenhydrate | 9g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 24",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -4821,9 +5497,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 502,
-      "protein": 36,
-      "carbs": 65,
-      "fat": 9
+      "protein": 36.0,
+      "carbs": 65.0,
+      "fat": 9.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 84,
@@ -4831,7 +5508,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Schönste Laugenstange der Welt",
@@ -4869,7 +5548,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "691 kcal | 38g Protein | 85g Kohlenhydrate | 21g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 25",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -4886,9 +5565,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 691,
-      "protein": 38,
-      "carbs": 85,
-      "fat": 21
+      "protein": 38.0,
+      "carbs": 85.0,
+      "fat": 21.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 85,
@@ -4896,7 +5576,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Blaubeer Grillsalat",
@@ -4984,7 +5666,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "334 kcal | 14g Protein | 32g Kohlenhydrate | 12g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 26",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -5001,9 +5683,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 334,
-      "protein": 14,
-      "carbs": 32,
-      "fat": 12
+      "protein": 14.0,
+      "carbs": 32.0,
+      "fat": 12.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 86,
@@ -5012,7 +5695,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 6,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Bifteki Foodprep",
@@ -5080,7 +5765,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "798 kcal | 51g Protein | 110g Kohlenhydrate | 13g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 27",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5100,9 +5785,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 798,
-      "protein": 51,
-      "carbs": 110,
-      "fat": 13
+      "protein": 51.0,
+      "carbs": 110.0,
+      "fat": 13.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 87,
@@ -5111,7 +5797,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Die besten Frühstückseier",
@@ -5164,7 +5852,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "925 kcal | 62g Protein | 74g Kohlenhydrate | 37g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 28",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -5181,9 +5869,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 925,
-      "protein": 62,
-      "carbs": 74,
-      "fat": 37
+      "protein": 62.0,
+      "carbs": 74.0,
+      "fat": 37.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 88,
@@ -5191,7 +5880,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "5 Minuten Ofen Gnocchi",
@@ -5239,7 +5930,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "730 kcal | 34g Protein | 98g Kohlenhydrate | 24g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 29",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5259,9 +5950,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 730,
-      "protein": 34,
-      "carbs": 98,
-      "fat": 24
+      "protein": 34.0,
+      "carbs": 98.0,
+      "fat": 24.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 89,
@@ -5270,7 +5962,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch Nudeln",
@@ -5323,7 +6017,7 @@
       }
     ],
     "diet": "fisch",
-    "nutrition_source": "603 kcal | 37g Protein | 93g Kohlenhydrate | 7g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 30",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5342,9 +6036,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 603,
-      "protein": 37,
-      "carbs": 93,
-      "fat": 7
+      "protein": 37.0,
+      "carbs": 93.0,
+      "fat": 7.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 90,
@@ -5353,7 +6048,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "4 Tage 80% für 8,50€",
@@ -5436,7 +6133,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "1850 kcal | 112g Protein | 162g Kohlenhydrate | 75g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 31",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5454,9 +6151,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 1850,
-      "protein": 112,
-      "carbs": 162,
-      "fat": 75
+      "protein": 112.0,
+      "carbs": 162.0,
+      "fat": 75.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 91,
@@ -5465,7 +6163,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 1,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "BIMO Burrito",
@@ -5528,7 +6228,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "711 kcal | 42g Protein | 76g Kohlenhydrate | 24g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 32",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5546,9 +6246,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 711,
-      "protein": 42,
-      "carbs": 76,
-      "fat": 24
+      "protein": 42.0,
+      "carbs": 76.0,
+      "fat": 24.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 92,
@@ -5557,7 +6258,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lotus Frühstück",
@@ -5605,7 +6308,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "612 kcal | 56g Protein | 64g Kohlenhydrate | 13g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 33",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -5622,9 +6325,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 612,
-      "protein": 56,
-      "carbs": 64,
-      "fat": 13
+      "protein": 56.0,
+      "carbs": 64.0,
+      "fat": 13.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 93,
@@ -5632,7 +6336,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 3,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "One Pot Spicy Feta Pulled Chicken",
@@ -5700,7 +6406,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "280 kcal | 33g Protein | 9g Kohlenhydrate | 10g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 34",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5720,9 +6426,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 280,
-      "protein": 33,
-      "carbs": 9,
-      "fat": 10
+      "protein": 33.0,
+      "carbs": 9.0,
+      "fat": 10.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 94,
@@ -5731,7 +6438,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Smashed Vegetables",
@@ -5769,7 +6478,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "568 kcal | 52g Protein | 56g Kohlenhydrate | 16g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 35",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5786,9 +6495,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 568,
-      "protein": 52,
-      "carbs": 56,
-      "fat": 16
+      "protein": 52.0,
+      "carbs": 56.0,
+      "fat": 16.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 95,
@@ -5797,7 +6507,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Crispy Chicken Süß Sauer",
@@ -5890,7 +6602,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "965 kcal | 64g Protein | 145g Kohlenhydrate | 10g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 36",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -5914,9 +6626,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 965,
-      "protein": 64,
-      "carbs": 145,
-      "fat": 10
+      "protein": 64.0,
+      "carbs": 145.0,
+      "fat": 10.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 96,
@@ -5925,7 +6638,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Reeses Frühstück",
@@ -5973,7 +6688,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "728 kcal | 46g Protein | 84g Kohlenhydrate | 20g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 37",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -5986,9 +6701,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 728,
-      "protein": 46,
-      "carbs": 84,
-      "fat": 20
+      "protein": 46.0,
+      "carbs": 84.0,
+      "fat": 20.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 97,
@@ -5996,7 +6712,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Creamy Egg Pasta",
@@ -6049,7 +6767,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "921 kcal | 40g Protein | 104g Kohlenhydrate | 37g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 38",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6064,9 +6782,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 921,
-      "protein": 40,
-      "carbs": 104,
-      "fat": 37
+      "protein": 40.0,
+      "carbs": 104.0,
+      "fat": 37.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 98,
@@ -6075,7 +6794,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Granola",
@@ -6108,7 +6829,7 @@
       }
     ],
     "diet": "vegetarisch",
-    "nutrition_source": "200 kcal | 6g Protein | 20g Kohlenhydrate | 10g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 39",
     "kategorie": "Frühstück",
     "category": "Frühstück",
@@ -6121,9 +6842,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 200,
-      "protein": 6,
-      "carbs": 20,
-      "fat": 10
+      "protein": 6.0,
+      "carbs": 20.0,
+      "fat": 10.0,
+      "source": "angegeben"
     },
     "base_servings_status": "nicht in Quelle angegeben",
     "id": 99,
@@ -6131,7 +6853,9 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_servings": 4,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Creamy Chicken Pasta",
@@ -6189,7 +6913,7 @@
       }
     ],
     "diet": "fleisch",
-    "nutrition_source": "677 kcal | 52g Protein | 80g Kohlenhydrate | 16g Fett",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "How to Hybrid – 100 Workout Challenge, Rezept 40",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6208,9 +6932,10 @@
     "zubereitung_status": "quelle: How to Hybrid, exakt aus bereitgestellter PDF übernommen",
     "nutrition": {
       "kcal": 677,
-      "protein": 52,
-      "carbs": 80,
-      "fat": 16
+      "protein": 52.0,
+      "carbs": 80.0,
+      "fat": 16.0,
+      "source": "angegeben"
     },
     "base_servings_status": "Quellenangabe",
     "id": 100,
@@ -6219,7 +6944,9 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_servings": 3,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Big Mac Chicken Bowl",
@@ -6281,7 +7008,7 @@
     "protein": 48,
     "carbs": 55,
     "fat": 16,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6300,7 +7027,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 454,
+      "protein": 47.7,
+      "carbs": 52.5,
+      "fat": 5.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Teriyaki Chicken Reis-Bowl",
@@ -6352,7 +7088,7 @@
     "protein": 48,
     "carbs": 70,
     "fat": 12,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6372,7 +7108,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 450,
+      "protein": 50.8,
+      "carbs": 42.2,
+      "fat": 6.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Crispy Chicken Kartoffel-Bowl",
@@ -6424,7 +7169,7 @@
     "protein": 49,
     "carbs": 62,
     "fat": 11,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6444,7 +7189,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 559,
+      "protein": 53.6,
+      "carbs": 66.0,
+      "fat": 8.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Feta Reis-Pfanne",
@@ -6491,7 +7245,7 @@
     "protein": 47,
     "carbs": 65,
     "fat": 14,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6510,7 +7264,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 409,
+      "protein": 46.3,
+      "carbs": 34.1,
+      "fat": 9.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "BBQ Hack Kartoffelpfanne",
@@ -6557,7 +7320,7 @@
     "protein": 43,
     "carbs": 60,
     "fat": 18,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6576,7 +7339,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 595,
+      "protein": 34.9,
+      "carbs": 66.8,
+      "fat": 21.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mexican Chicken Reis-Bowl",
@@ -6628,7 +7400,7 @@
     "protein": 49,
     "carbs": 78,
     "fat": 9,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6648,7 +7420,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 485,
+      "protein": 48.2,
+      "carbs": 56.8,
+      "fat": 5.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Curry Kartoffelpfanne",
@@ -6690,7 +7471,7 @@
     "protein": 50,
     "carbs": 58,
     "fat": 12,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6710,7 +7491,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 483,
+      "protein": 51.0,
+      "carbs": 53.7,
+      "fat": 6.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gyros Chicken Pita",
@@ -6762,7 +7552,7 @@
     "protein": 47,
     "carbs": 68,
     "fat": 15,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -6781,7 +7571,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 690,
+      "protein": 57.0,
+      "carbs": 88.6,
+      "fat": 10.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Caesar Wrap Light",
@@ -6828,7 +7627,7 @@
     "protein": 50,
     "carbs": 52,
     "fat": 17,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -6847,7 +7646,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 463,
+      "protein": 48.1,
+      "carbs": 37.5,
+      "fat": 13.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Pesto Pasta Light",
@@ -6889,7 +7697,7 @@
     "protein": 51,
     "carbs": 67,
     "fat": 15,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6909,7 +7717,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 460,
+      "protein": 48.3,
+      "carbs": 25.4,
+      "fat": 17.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch Reis Crunch Bowl",
@@ -6961,7 +7778,7 @@
     "protein": 45,
     "carbs": 68,
     "fat": 11,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -6981,7 +7798,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 396,
+      "protein": 46.5,
+      "carbs": 36.6,
+      "fat": 6.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch Kartoffel Salat Protein",
@@ -7028,7 +7854,7 @@
     "protein": 44,
     "carbs": 55,
     "fat": 9,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -7047,7 +7873,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 394,
+      "protein": 41.0,
+      "carbs": 48.0,
+      "fat": 4.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs Teriyaki Reis-Bowl",
@@ -7089,7 +7924,7 @@
     "protein": 39,
     "carbs": 68,
     "fat": 22,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7108,7 +7943,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 503,
+      "protein": 36.6,
+      "carbs": 32.4,
+      "fat": 22.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs Kartoffel Kräuter Bowl",
@@ -7150,7 +7994,7 @@
     "protein": 38,
     "carbs": 55,
     "fat": 21,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7170,7 +8014,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 534,
+      "protein": 36.2,
+      "carbs": 47.8,
+      "fat": 21.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Garnelen Knoblauch Reis",
@@ -7217,7 +8070,7 @@
     "protein": 47,
     "carbs": 72,
     "fat": 9,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7236,7 +8089,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 363,
+      "protein": 43.0,
+      "carbs": 31.1,
+      "fat": 7.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Burrito Kartoffel Bowl",
@@ -7283,7 +8145,7 @@
     "protein": 42,
     "carbs": 58,
     "fat": 19,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7302,7 +8164,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 604,
+      "protein": 32.6,
+      "carbs": 68.0,
+      "fat": 22.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Bifteki Kartoffel Teller",
@@ -7344,7 +8215,7 @@
     "protein": 45,
     "carbs": 54,
     "fat": 17,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7363,7 +8234,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 483,
+      "protein": 30.6,
+      "carbs": 47.5,
+      "fat": 19.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hackfleisch Feta Reis Bowl",
@@ -7405,7 +8285,7 @@
     "protein": 44,
     "carbs": 67,
     "fat": 17,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7424,7 +8304,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 440,
+      "protein": 29.5,
+      "carbs": 35.8,
+      "fat": 20.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Cheeseburger Wrap",
@@ -7476,7 +8365,7 @@
     "protein": 43,
     "carbs": 55,
     "fat": 18,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -7495,7 +8384,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 490,
+      "protein": 32.2,
+      "carbs": 38.2,
+      "fat": 23.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Parmesan Kartoffel-Wrap",
@@ -7537,7 +8435,7 @@
     "protein": 51,
     "carbs": 63,
     "fat": 14,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -7556,7 +8454,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 597,
+      "protein": 54.8,
+      "carbs": 61.0,
+      "fat": 14.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mediterrane Chicken Pasta",
@@ -7603,7 +8510,7 @@
     "protein": 50,
     "carbs": 68,
     "fat": 13,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7623,7 +8530,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 437,
+      "protein": 48.7,
+      "carbs": 28.4,
+      "fat": 13.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Tomaten-Hähnchen Gnocchi",
@@ -7665,7 +8581,7 @@
     "protein": 47,
     "carbs": 72,
     "fat": 12,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7685,7 +8601,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 569,
+      "protein": 48.6,
+      "carbs": 67.6,
+      "fat": 9.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein Döner Bowl",
@@ -7737,7 +8662,7 @@
     "protein": 51,
     "carbs": 67,
     "fat": 10,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7757,7 +8682,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 364,
+      "protein": 41.7,
+      "carbs": 34.0,
+      "fat": 6.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Schnitzel Reis Bowl",
@@ -7804,7 +8738,7 @@
     "protein": 50,
     "carbs": 69,
     "fat": 10,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -7824,7 +8758,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 425,
+      "protein": 44.6,
+      "carbs": 42.3,
+      "fat": 7.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Curry Thunfisch Wrap",
@@ -7871,7 +8814,7 @@
     "protein": 45,
     "carbs": 49,
     "fat": 12,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -7890,7 +8833,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 418,
+      "protein": 41.7,
+      "carbs": 43.4,
+      "fat": 8.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs Avocado Wrap",
@@ -7937,7 +8889,7 @@
     "protein": 38,
     "carbs": 48,
     "fat": 23,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -7956,7 +8908,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 534,
+      "protein": 33.3,
+      "carbs": 40.7,
+      "fat": 26.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Garnelen Gemüse Nudeln",
@@ -7998,7 +8959,7 @@
     "protein": 49,
     "carbs": 67,
     "fat": 9,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8018,7 +8979,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 335,
+      "protein": 44.0,
+      "carbs": 27.7,
+      "fat": 5.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein Bauernsalat mit Chicken",
@@ -8065,7 +9035,7 @@
     "protein": 51,
     "carbs": 51,
     "fat": 14,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -8084,7 +9054,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 410,
+      "protein": 46.5,
+      "carbs": 40.2,
+      "fat": 6.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Tzatziki Kartoffel Teller",
@@ -8131,7 +9110,7 @@
     "protein": 53,
     "carbs": 57,
     "fat": 11,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8150,7 +9129,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 454,
+      "protein": 49.4,
+      "carbs": 45.6,
+      "fat": 7.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hack-Tomaten Reis One Pot",
@@ -8192,7 +9180,7 @@
     "protein": 44,
     "carbs": 73,
     "fat": 12,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8210,7 +9198,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 409,
+      "protein": 24.5,
+      "carbs": 39.1,
+      "fat": 17.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Fajita Kartoffel Bowl",
@@ -8257,7 +9254,7 @@
     "protein": 51,
     "carbs": 65,
     "fat": 9,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8277,7 +9274,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 461,
+      "protein": 45.8,
+      "carbs": 56.6,
+      "fat": 5.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mediterrane Thunfisch Kartoffel Bowl",
@@ -8324,7 +9330,7 @@
     "protein": 46,
     "carbs": 53,
     "fat": 14,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8343,7 +9349,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 422,
+      "protein": 48.0,
+      "carbs": 49.0,
+      "fat": 4.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Brokkoli Frischkäse Reis",
@@ -8385,7 +9400,7 @@
     "protein": 55,
     "carbs": 65,
     "fat": 11,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8404,7 +9419,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 444,
+      "protein": 51.5,
+      "carbs": 29.6,
+      "fat": 11.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hack-Paprika Frischkäse Pasta",
@@ -8446,7 +9470,7 @@
     "protein": 45,
     "carbs": 70,
     "fat": 15,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8466,7 +9490,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 498,
+      "protein": 33.8,
+      "carbs": 31.6,
+      "fat": 25.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken BBQ Wrap",
@@ -8513,7 +9546,7 @@
     "protein": 49,
     "carbs": 55,
     "fat": 15,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -8532,7 +9565,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 471,
+      "protein": 47.9,
+      "carbs": 46.2,
+      "fat": 10.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch Mais Käse Toast",
@@ -8574,7 +9616,7 @@
     "protein": 43,
     "carbs": 51,
     "fat": 14,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -8592,7 +9634,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 388,
+      "protein": 42.9,
+      "carbs": 34.8,
+      "fat": 8.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein Pizza Wrap",
@@ -8639,7 +9690,7 @@
     "protein": 52,
     "carbs": 47,
     "fat": 16,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -8658,7 +9709,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 468,
+      "protein": 45.5,
+      "carbs": 39.3,
+      "fat": 14.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chicken Teriyaki Kartoffel Bowl",
@@ -8700,7 +9760,7 @@
     "protein": 51,
     "carbs": 62,
     "fat": 12,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8719,7 +9779,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 443,
+      "protein": 45.9,
+      "carbs": 49.6,
+      "fat": 5.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Greek Chicken Reis-Salat",
@@ -8766,7 +9835,7 @@
     "protein": 49,
     "carbs": 58,
     "fat": 16,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Abendessen",
     "category": "Abendessen",
@@ -8786,7 +9855,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 366,
+      "protein": 45.5,
+      "carbs": 28.4,
+      "fat": 7.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs Gurken Reis Bowl",
@@ -8833,7 +9911,7 @@
     "protein": 39,
     "carbs": 64,
     "fat": 20,
-    "nutrition_source": "Berechnete Näherungswerte anhand der angegebenen Zutaten.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Eigenkreation aus der bestehenden Rezeptdatenbank",
     "kategorie": "Mittagessen",
     "category": "Mittagessen",
@@ -8853,7 +9931,16 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 481,
+      "protein": 34.4,
+      "carbs": 30.7,
+      "fat": 22.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 2,
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Chocolate Banana Bowl",
@@ -8902,7 +9989,7 @@
     "carbs": 55,
     "fat": 20,
     "fiber": 8,
-    "nutrition_source": "Ca. 470 kcal pro Portion; 55 g Kohlenhydrate; 13 g Eiweiß; 20 g Fett; 8 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Banane, Kakaopulver, Datteln, Mandelmilch, Erdnussmus, Ahornsirup und Vanille in einen Mixer geben.",
       "Cremig und dick pürieren.",
@@ -8925,9 +10012,10 @@
     ],
     "nutrition": {
       "kcal": 470,
-      "protein": 13,
-      "carbs": 55,
-      "fat": 20
+      "protein": 13.0,
+      "carbs": 55.0,
+      "fat": 20.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -8941,7 +10029,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Green Detox Bowl",
@@ -8984,7 +10073,7 @@
     "carbs": 42,
     "fat": 16,
     "fiber": 9,
-    "nutrition_source": "Ca. 360 kcal pro Portion; 42 g Kohlenhydrate; 7 g Eiweiß; 16 g Fett; 9 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Avocado, Banane, Spinat, Kokoswasser, Limettensaft und Honig in einen Mixer geben.",
       "Cremig und glatt mixen.",
@@ -9006,9 +10095,10 @@
     ],
     "nutrition": {
       "kcal": 360,
-      "protein": 7,
-      "carbs": 42,
-      "fat": 16
+      "protein": 7.0,
+      "carbs": 42.0,
+      "fat": 16.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9023,7 +10113,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Berry Bliss Bowl",
@@ -9061,7 +10152,7 @@
     "carbs": 50,
     "fat": 11,
     "fiber": 7,
-    "nutrition_source": "Ca. 360 kcal pro Portion; 50 g Kohlenhydrate; 7 g Eiweiß; 11 g Fett; 7 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Gefrorene Beeren, Banane, Mandelmilch, Ahornsirup und Chiasamen in einen Mixer geben.",
       "Cremig und dickflüssig mixen.",
@@ -9083,9 +10174,10 @@
     ],
     "nutrition": {
       "kcal": 360,
-      "protein": 7,
-      "carbs": 50,
-      "fat": 11
+      "protein": 7.0,
+      "carbs": 50.0,
+      "fat": 11.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9099,7 +10191,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Acai Bowl",
@@ -9137,7 +10230,7 @@
     "carbs": 57,
     "fat": 14,
     "fiber": 7,
-    "nutrition_source": "Ca. 390 kcal pro Portion; 57 g Kohlenhydrate; 6 g Eiweiß; 14 g Fett; 7 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Acai-Püree, gefrorene Banane, Beeren, Mandelmilch und Honig in einen Mixer geben.",
       "Alles cremig und dickflüssig mixen. Bei Bedarf etwas mehr Mandelmilch hinzufügen.",
@@ -9159,9 +10252,10 @@
     ],
     "nutrition": {
       "kcal": 390,
-      "protein": 6,
-      "carbs": 57,
-      "fat": 14
+      "protein": 6.0,
+      "carbs": 57.0,
+      "fat": 14.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9175,7 +10269,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Tropical Mango Bowl",
@@ -9213,7 +10308,7 @@
     "carbs": 63,
     "fat": 13,
     "fiber": 8,
-    "nutrition_source": "Ca. 420 kcal pro Portion; 63 g Kohlenhydrate; 6 g Eiweiß; 13 g Fett; 8 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Gefrorene Mango, Banane, Kokoswasser, Kurkuma und Limettensaft in einen Mixer geben.",
       "Cremig und dickflüssig mixen.",
@@ -9235,9 +10330,10 @@
     ],
     "nutrition": {
       "kcal": 420,
-      "protein": 6,
-      "carbs": 63,
-      "fat": 13
+      "protein": 6.0,
+      "carbs": 63.0,
+      "fat": 13.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9251,7 +10347,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Peanut Butter Bowl",
@@ -9289,7 +10386,7 @@
     "carbs": 47,
     "fat": 23,
     "fiber": 7,
-    "nutrition_source": "Ca. 480 kcal pro Portion; 47 g Kohlenhydrate; 15 g Eiweiß; 23 g Fett; 7 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Banane, Erdnussbutter, Hafermilch, Kakaopulver und Ahornsirup in einen Mixer geben.",
       "Cremig und dick mixen.",
@@ -9312,9 +10409,10 @@
     ],
     "nutrition": {
       "kcal": 480,
-      "protein": 15,
-      "carbs": 47,
-      "fat": 23
+      "protein": 15.0,
+      "carbs": 47.0,
+      "fat": 23.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9328,7 +10426,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Peach Sunset Bowl",
@@ -9371,7 +10470,7 @@
     "carbs": 45,
     "fat": 12,
     "fiber": 7,
-    "nutrition_source": "Ca. 380 kcal pro Portion; 45 g Kohlenhydrate; 16 g Eiweiß; 12 g Fett; 7 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Pfirsich, Banane, Joghurt, Orangensaft, Honig und Chiasamen in einen Mixer geben.",
       "Cremig und glatt mixen.",
@@ -9393,9 +10492,10 @@
     ],
     "nutrition": {
       "kcal": 380,
-      "protein": 16,
-      "carbs": 45,
-      "fat": 12
+      "protein": 16.0,
+      "carbs": 45.0,
+      "fat": 12.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9410,7 +10510,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Blueberry Coconut Bowl",
@@ -9458,7 +10559,7 @@
     "carbs": 42,
     "fat": 18,
     "fiber": 7,
-    "nutrition_source": "Ca. 360 kcal pro Portion; 42 g Kohlenhydrate; 6 g Eiweiß; 18 g Fett; 7 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Gefrorene Heidelbeeren, Banane, Kokosmilch, Kokosjoghurt, Ahornsirup, Chiasamen und Kokosflocken in einen Mixer geben.",
       "Cremig und glatt mixen.",
@@ -9480,9 +10581,10 @@
     ],
     "nutrition": {
       "kcal": 360,
-      "protein": 6,
-      "carbs": 42,
-      "fat": 18
+      "protein": 6.0,
+      "carbs": 42.0,
+      "fat": 18.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9497,7 +10599,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Strawberry Cheesecake Bowl",
@@ -9545,7 +10648,7 @@
     "carbs": 48,
     "fat": 14,
     "fiber": 6,
-    "nutrition_source": "Ca. 410 kcal pro Portion; 48 g Kohlenhydrate; 18 g Eiweiß; 14 g Fett; 6 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Gefrorene Erdbeeren, Banane, Joghurt, Frischkäse, Mandelmilch, Honig und Vanilleextrakt in einen Mixer geben.",
       "Cremig und dick pürieren. Bei Bedarf etwas mehr Mandelmilch hinzufügen.",
@@ -9568,9 +10671,10 @@
     ],
     "nutrition": {
       "kcal": 410,
-      "protein": 18,
-      "carbs": 48,
-      "fat": 14
+      "protein": 18.0,
+      "carbs": 48.0,
+      "fat": 14.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9585,7 +10689,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Piña Colada Bowl",
@@ -9633,7 +10738,7 @@
     "carbs": 44,
     "fat": 16,
     "fiber": 7,
-    "nutrition_source": "Ca. 380 kcal pro Portion; 44 g Kohlenhydrate; 14 g Eiweiß; 16 g Fett; 7 g Ballaststoffe. Quelle: Angaben auf der bereitgestellten Rezeptkarte.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "preparation": [
       "Gefrorene Ananas, Banane, Kokosmilch, Joghurt, Honig, Kokosraspeln und Chiasamen in einen Mixer geben.",
       "Cremig und glatt mixen.",
@@ -9656,9 +10761,10 @@
     ],
     "nutrition": {
       "kcal": 380,
-      "protein": 14,
-      "carbs": 44,
-      "fat": 16
+      "protein": 14.0,
+      "carbs": 44.0,
+      "fat": 16.0,
+      "source": "angegeben"
     },
     "nutrition_servings": 1,
     "saison": "Ganzjährig",
@@ -9673,7 +10779,8 @@
     "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
     "geeignet_fuer": [
       "Frühstück"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Zarter Rinderschmorbraten mit Gemüse",
@@ -9784,7 +10891,7 @@
       "herzhaft"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -9802,7 +10909,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 592,
+      "protein": 73.1,
+      "carbs": 8.0,
+      "fat": 25.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Türkischer Kuru Fasulye Schmortopf",
@@ -9917,7 +11032,7 @@
       "vegetarisch"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -9940,7 +11055,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 264,
+      "protein": 12.4,
+      "carbs": 28.9,
+      "fat": 8.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Kartoffel-Hackfleisch-Schmortopf mit Käse",
@@ -10050,7 +11173,7 @@
       "herzhaft"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10074,7 +11197,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 647,
+      "protein": 35.3,
+      "carbs": 48.1,
+      "fat": 36.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Cremiger Paprika-Sahne-Hähnchentopf",
@@ -10173,7 +11304,7 @@
       "Fleisch"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10194,7 +11325,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 428,
+      "protein": 37.7,
+      "carbs": 11.8,
+      "fat": 25.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Cremiger Pilzrahm-Schmortopf",
@@ -10305,7 +11444,7 @@
       "Rahm"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10330,7 +11469,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 388,
+      "protein": 13.8,
+      "carbs": 10.9,
+      "fat": 33.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Rinderrouladen",
@@ -10426,7 +11573,7 @@
       "klassisch"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10454,7 +11601,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 284,
+      "protein": 15.2,
+      "carbs": 8.6,
+      "fat": 20.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Orientalischer Kichererbsen-Hähnchentopf",
@@ -10575,7 +11730,7 @@
       "Fleisch"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10603,7 +11758,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 423,
+      "protein": 40.1,
+      "carbs": 38.4,
+      "fat": 12.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Tomatiger Hackbällchen-Schmortopf",
@@ -10719,7 +11882,7 @@
       "Paprika"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10743,7 +11906,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 386,
+      "protein": 27.2,
+      "carbs": 12.7,
+      "fat": 24.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Würziger Gulaschtopf wie vom Brauhaus",
@@ -10849,7 +12020,7 @@
       "deftig"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -10877,7 +12048,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 421,
+      "protein": 50.8,
+      "carbs": 9.0,
+      "fat": 18.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Deftiger Bauerntopf mit Kartoffeln & Paprika",
@@ -10988,7 +12167,7 @@
       "Paprika"
     ],
     "saison": "Ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Bereitgestellte Rezeptkarte",
     "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11013,7 +12192,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 529,
+      "protein": 27.7,
+      "carbs": 34.7,
+      "fat": 30.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Avocado Pasta Salat",
@@ -11080,7 +12267,7 @@
       "Avocado"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11099,7 +12286,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 840,
+      "protein": 18.6,
+      "carbs": 88.1,
+      "fat": 49.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Türkischer Joghurt-Nudelsalat",
@@ -11167,7 +12362,7 @@
       "Dill"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11184,7 +12379,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 813,
+      "protein": 21.2,
+      "carbs": 77.5,
+      "fat": 47.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Bruschetta Nudelsalat",
@@ -11247,7 +12450,7 @@
       "Basilikum"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11266,7 +12469,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 907,
+      "protein": 26.1,
+      "carbs": 76.2,
+      "fat": 56.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Asia Gurken-Nudelsalat",
@@ -11339,7 +12550,7 @@
       "asiatisch"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11356,7 +12567,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 487,
+      "protein": 19.3,
+      "carbs": 81.5,
+      "fat": 8.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Feta-Honig Nudelsalat",
@@ -11424,7 +12643,7 @@
       "Honig"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11443,7 +12662,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 1039,
+      "protein": 33.7,
+      "carbs": 81.9,
+      "fat": 64.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Zucchini-Nudel Mix Salat",
@@ -11516,7 +12743,7 @@
       "Gemüse"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11533,7 +12760,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 422,
+      "protein": 11.6,
+      "carbs": 52.9,
+      "fat": 18.4,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mexican Pasta Salat",
@@ -11612,7 +12847,7 @@
       "Avocado"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11629,7 +12864,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 1428,
+      "protein": 65.8,
+      "carbs": 217.0,
+      "fat": 27.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Protein Pasta Salat mit Hähnchen",
@@ -11702,7 +12945,7 @@
       "Hähnchen"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11720,7 +12963,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 640,
+      "protein": 38.3,
+      "carbs": 73.5,
+      "fat": 21.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch Pasta Salat",
@@ -11793,7 +13044,7 @@
       "proteinreich"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11811,7 +13062,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 952,
+      "protein": 111.9,
+      "carbs": 78.5,
+      "fat": 22.3,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Fruchtiger Joghurt-Pasta-Salat",
@@ -11879,7 +13138,7 @@
       "Früchte"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -11896,7 +13155,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 748,
+      "protein": 23.5,
+      "carbs": 129.7,
+      "fat": 17.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Crispy Rice Tuna Salad",
@@ -12010,9 +13277,9 @@
       "asiatisch"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "nicht angegeben",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "vom Nutzer bereitgestellte Rezeptkarte",
-    "nutrition_servings": null,
+    "nutrition_servings": 4,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
     "zubereitung": [
       "Für den knusprigen Reis den Reis vom Vortag mit Sojasauce und Avocadoöl vermischen und bei 180 °C backen, bis er knusprig ist.",
@@ -12031,7 +13298,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 550,
+      "protein": 80.5,
+      "carbs": 11.3,
+      "fat": 20.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Bowl",
@@ -12098,7 +13373,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12116,7 +13391,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 471,
+      "protein": 42.6,
+      "carbs": 48.6,
+      "fat": 12.1,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Frikadellen-Bowl",
@@ -12179,7 +13462,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12196,7 +13479,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 688,
+      "protein": 41.7,
+      "carbs": 39.0,
+      "fat": 43.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Thunfisch-Bowl",
@@ -12259,7 +13550,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12275,7 +13566,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 730,
+      "protein": 117.7,
+      "carbs": 48.0,
+      "fat": 7.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gemüse-Bowl",
@@ -12338,7 +13637,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12355,7 +13654,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 321,
+      "protein": 14.3,
+      "carbs": 35.0,
+      "fat": 14.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Steak-Bowl",
@@ -12418,7 +13725,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12436,7 +13743,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 567,
+      "protein": 46.1,
+      "carbs": 45.2,
+      "fat": 22.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs-Bowl",
@@ -12506,7 +13821,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12524,7 +13839,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 630,
+      "protein": 48.0,
+      "carbs": 33.3,
+      "fat": 32.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Teriyaki-Hähnchen-Bowl",
@@ -12613,7 +13936,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12631,7 +13954,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 571,
+      "protein": 48.7,
+      "carbs": 52.3,
+      "fat": 18.2,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mexiko-Bowl",
@@ -12721,7 +14052,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12739,7 +14070,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 776,
+      "protein": 46.0,
+      "carbs": 82.1,
+      "fat": 32.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Falafel-Bowl",
@@ -12823,7 +14162,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12841,7 +14180,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 457,
+      "protein": 15.4,
+      "carbs": 45.1,
+      "fat": 26.5,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Korean-Beef-Bowl",
@@ -12931,7 +14278,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -12949,7 +14296,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 600,
+      "protein": 51.5,
+      "carbs": 46.1,
+      "fat": 21.7,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs-Avocado-Bowl",
@@ -13035,7 +14390,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -13053,7 +14408,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 726,
+      "protein": 43.5,
+      "carbs": 51.6,
+      "fat": 37.8,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Greek-Chicken-Bowl",
@@ -13143,7 +14506,7 @@
       "kalt"
     ],
     "saison": "ganzjährig",
-    "nutrition_source": "Keine Nährwerte auf der bereitgestellten Rezeptkarte angegeben.",
+    "nutrition_source": "recipes.pdf – Nährwerte pro Portion",
     "source": "Foodchaos.daily – 6 einfache Bowl-Rezepte",
     "nutrition_servings": 1,
     "datenbank_status": "geprüft: Kategorie + Mahlzeitentyp + Kinderfreundlich-Tag",
@@ -13161,7 +14524,15 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition": {
+      "kcal": 689,
+      "protein": 45.7,
+      "carbs": 31.0,
+      "fat": 42.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mediterrane Ofenpfanne",
@@ -13610,7 +14981,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Ofenkartoffeln mit Kräuterquark & Gurkensalat",
@@ -13683,7 +15055,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Mediterrane Hack-Zucchini-Pfanne mit Feta",
@@ -13772,7 +15145,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Lachs-Spinat-Pasta mit Zitrone",
@@ -13856,7 +15230,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Knusprige Ofen-Wrap-Pizza mit Mozzarella & Gemüse",
@@ -13930,7 +15305,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Bratkartoffel-Pfanne mit Spiegelei & Gewürzgurken",
@@ -14009,7 +15385,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Hähnchen-Paprika-Reis-Pfanne",
@@ -14088,7 +15465,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Gnocchi-Champignon-Spinat-Pfanne",
@@ -14171,7 +15549,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "name": "Rösti-Käse-Rolle mit Hähnchen",
@@ -14252,7 +15631,8 @@
     "geeignet_fuer": [
       "Mittagessen",
       "Abendessen"
-    ]
+    ],
+    "nutrition_source_status": "Quelle nicht separat dokumentiert; vorhandener Nährwertdatensatz"
   },
   {
     "id": 198,
@@ -16016,12 +17396,19 @@
       "A l l e s   i n   e i n e   B o w l   g e b e n :   K a r t o f f e l n ,   G e m ü s e ,   F i s c h s t ä b c h e n   u n d   S a u c e .",
       "O p t i o n a l   m i t   e t w a s   K ä s e   t o p p e n   u n d   g e n i e ß e n ."
     ],
-    "nutrition_source": "ca. 600–650 kcal | ca. 40 g Protein | ca. 60–65 g Kohlenhydrate | Fett nicht vollständig lesbar",
-    "nutrition_source_status": "Quelle: Screenshot; Werte teilweise lesbar",
+    "nutrition_source": "Nährwerte aus Quellenangabe übernommen; kcal/Carbs als Mittelwert der Spanne, Fett geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3576.jpeg",
-    "id": 216
+    "id": 216,
+    "nutrition": {
+      "kcal": 625,
+      "protein": 40,
+      "carbs": 62,
+      "fat": 22
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Chicken Alfredo",
@@ -16089,12 +17476,19 @@
       "P a r m e s a n   e i n r ü h r e n ;   f a l l s   d i e   S a u c e   z u   d i c k   w i r d ,   e t w a s   N u d e l w a s s e r   z u g e b e n .",
       "N u d e l n   u n d   o p t i o n a l   B r o k k o l i   z u r   S a u c e   g e b e n ,   v e r m e n g e n   u n d   a b s c h m e c k e n ."
     ],
-    "nutrition_source": "ca. 600–700 kcal | ca. 60 g Protein | ca. 60–70 g Kohlenhydrate | ca. 15–20 g Fett",
-    "nutrition_source_status": "Quelle: Screenshot; Werte als Bereiche angegeben",
+    "nutrition_source": "Nährwerte aus Quellenangabe übernommen; kcal/Carbs/Fett als Mittelwert der Spanne",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3575.jpeg",
-    "id": 217
+    "id": 217,
+    "nutrition": {
+      "kcal": 650,
+      "protein": 60,
+      "carbs": 65,
+      "fat": 18
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Garnelen-Zucchini-Pfanne",
@@ -16148,12 +17542,19 @@
       "A l l e s   5 – 7   M i n u t e n   g a r e n .",
       "M i t   Z i t r o n e n s a f t   u n d   G e w ü r z e n   a b s c h m e c k e n ."
     ],
-    "nutrition_source": "ca. 280 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3574.jpeg",
-    "id": 218
+    "id": 218,
+    "nutrition": {
+      "kcal": 280,
+      "protein": 25,
+      "carbs": 12,
+      "fat": 10
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Cremige Hähnchen-Pasta mit Tomaten",
@@ -16207,12 +17608,19 @@
       "F r i s c h k ä s e   l i g h t   u n d   e t w a s   N u d e l w a s s e r   e i n r ü h r e n .",
       "N u d e l n   u n d   S p i n a t   u n t e r h e b e n ,   w ü r z e n   u n d   s e r v i e r e n ."
     ],
-    "nutrition_source": "ca. 430 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3571.jpeg",
-    "id": 219
+    "id": 219,
+    "nutrition": {
+      "kcal": 430,
+      "protein": 31,
+      "carbs": 43,
+      "fat": 11
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Schnelle Gemüsepfanne mit Hähnchen",
@@ -16271,12 +17679,19 @@
       "M i t   S o j a s o ß e   u n d   G e w ü r z e n   a b s c h m e c k e n .",
       "H e i ß   s e r v i e r e n ."
     ],
-    "nutrition_source": "ca. 380 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3572.jpeg",
-    "id": 220
+    "id": 220,
+    "nutrition": {
+      "kcal": 380,
+      "protein": 30,
+      "carbs": 25,
+      "fat": 13
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Thunfisch-Wrap",
@@ -16335,12 +17750,19 @@
       "F e s t   a u f r o l l e n   u n d   h a l b i e r e n .",
       "S o f o r t   s e r v i e r e n ."
     ],
-    "nutrition_source": "ca. 390 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3573.jpeg",
-    "id": 221
+    "id": 221,
+    "nutrition": {
+      "kcal": 390,
+      "protein": 31,
+      "carbs": 39,
+      "fat": 10
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Paprika-Feta-Pfanne mit Reis",
@@ -16394,12 +17816,19 @@
       "M i t   G e w ü r z e n   a b s c h m e c k e n .",
       "F e t a   d a r ü b e r b r ö s e l n   u n d   h e i ß   s e r v i e r e n ."
     ],
-    "nutrition_source": "ca. 420 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3570.jpeg",
-    "id": 222
+    "id": 222,
+    "nutrition": {
+      "kcal": 420,
+      "protein": 15,
+      "carbs": 43,
+      "fat": 20
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Hähnchen-Salat mit Joghurt-Dressing",
@@ -16458,12 +17887,19 @@
       "A l l e s   i n   e i n e r   B o w l   a n r i c h t e n .",
       "D r e s s i n g   d a r ü b e r g e b e n   u n d   s e r v i e r e n ."
     ],
-    "nutrition_source": "ca. 350 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3569.jpeg",
-    "id": 223
+    "id": 223,
+    "nutrition": {
+      "kcal": 350,
+      "protein": 29,
+      "carbs": 17,
+      "fat": 15
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Reisnudel-Gemüse-Bowl",
@@ -16522,12 +17958,19 @@
       "G e m ü s e   u n d   E d a m a m e   d a r a u f   a n r i c h t e n .",
       "M i t   S o j a s o ß e   u n d   S e s a m   t o p p e n ."
     ],
-    "nutrition_source": "ca. 400 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3568.jpeg",
-    "id": 224
+    "id": 224,
+    "nutrition": {
+      "kcal": 400,
+      "protein": 13,
+      "carbs": 65,
+      "fat": 9
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "Ofenlachs mit Brokkoli",
@@ -16576,12 +18019,19 @@
       "Z i t r o n e n s c h e i b e n   d a r a u f   v e r t e i l e n .",
       "A l l e s   1 5 – 1 8   M i n u t e n   b a c k e n   u n d   s e r v i e r e n ."
     ],
-    "nutrition_source": "ca. 450 kcal pro Portion",
-    "nutrition_source_status": "Quelle: Screenshot; weitere Nährwerte nicht lesbar",
+    "nutrition_source": "Kalorien aus vorhandener Quellenangabe; Protein und übrige Makros aus Zutaten geschätzt",
+    "nutrition_source_status": "geschätzt / teilweise aus Quellenangabe",
     "datenbank_status": "neu aus Screenshot extrahiert",
     "zubereitung_status": "aus Screenshot extrahiert",
     "source_image": "IMG_3565.jpeg",
-    "id": 225
+    "id": 225,
+    "nutrition": {
+      "kcal": 450,
+      "protein": 38,
+      "carbs": 12,
+      "fat": 27
+    },
+    "nutrition_servings": 1
   },
   {
     "name": "10-Minuten-Pfannen-Lasagne",
@@ -17049,10 +18499,13 @@
       "M i t   O l i v e n ö l ,   S a l z   u n d   P f e f f e r   a b s c h m e c k e n ."
     ],
     "nutrition": {
-      "kcal": 390
+      "kcal": 390,
+      "protein": 14,
+      "carbs": 58,
+      "fat": 11
     },
-    "nutrition_source": "390 kcal pro Portion; weitere Nährwerte im Bild nicht eindeutig lesbar",
-    "nutrition_source_status": "teilweise angegeben",
+    "nutrition_source": "Kalorien aus Quellenangabe; Protein, Kohlenhydrate und Fett geschätzt",
+    "nutrition_source_status": "Kalorien aus Quellenangabe; fehlende Makros aus Zutaten geschätzt",
     "nutrition_servings": 1,
     "kategorie_status": "manuell geprüft: Screenshot-Rezept",
     "datenbank_status": "neu hinzugefügt",
@@ -17105,10 +18558,13 @@
       "S t o c k e n   l a s s e n ,   z u s a m m e n k l a p p e n   u n d   s e r v i e r e n ."
     ],
     "nutrition": {
-      "kcal": 320
+      "kcal": 320,
+      "protein": 22,
+      "carbs": 5,
+      "fat": 23
     },
-    "nutrition_source": "320 kcal pro Portion; weitere Nährwerte im Bild nicht eindeutig lesbar",
-    "nutrition_source_status": "teilweise angegeben",
+    "nutrition_source": "Kalorien aus Quellenangabe; Protein, Kohlenhydrate und Fett geschätzt",
+    "nutrition_source_status": "Kalorien aus Quellenangabe; fehlende Makros aus Zutaten geschätzt",
     "nutrition_servings": 1,
     "kategorie_status": "manuell geprüft: Screenshot-Rezept",
     "datenbank_status": "neu hinzugefügt",
