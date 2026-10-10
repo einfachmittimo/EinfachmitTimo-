@@ -125,7 +125,12 @@ def diet(r):
 
 def steps_for(r):
     p = r.get("zubereitung") or r.get("preparation") or r.get("instructions") or r.get("steps") or []
-    return p if isinstance(p, list) else [str(p)]
+    if isinstance(p, list):
+        return [str(step).strip() for step in p if str(step).strip()]
+    if isinstance(p, str):
+        lines = [line.strip(" •-\t") for line in p.splitlines() if line.strip(" •-\t")]
+        return lines or ([p.strip()] if p.strip() else [])
+    return []
 
 def nutrition(r):
     n = r.get("nutrition") or {}
@@ -338,8 +343,11 @@ def render_detail(r, compact=False):
     with right:
         st.markdown("#### Zubereitung")
         steps = steps_for(r)
-        for i, s in enumerate(steps, 1):
-            st.markdown(f'<div class="step"><b>{i}</b><span>{html.escape(str(s))}</span></div>', unsafe_allow_html=True)
+        if steps:
+            for i, s in enumerate(steps, 1):
+                st.markdown(f'<div class="step"><b>{i}</b><span>{html.escape(str(s))}</span></div>', unsafe_allow_html=True)
+        else:
+            st.info("Für dieses Rezept ist noch keine Zubereitung hinterlegt.")
     if st.button("♡ Zu Favoriten hinzufügen" if title(r) not in st.session_state.favorites else "♥ Aus Favoriten entfernen", key="fav_toggle_" + re.sub(r"\W+", "_", title(r))):
         if title(r) in st.session_state.favorites: st.session_state.favorites.remove(title(r))
         else: st.session_state.favorites.add(title(r))
@@ -468,10 +476,12 @@ elif page in ("Rezepte", "Rezeptkarten", "Kategorien", "Suche", "Favoriten"):
                 with cols[i % 3]:
                     selected = title(r) == st.session_state.selected_recipe
                     st.markdown(f'<div class="recipe-card" style="border-color:{"#d89b35" if selected else "#e5ddcf"}"><div class="recipe-visual">{category_emoji(r)}</div><div class="recipe-card-body"><div class="recipe-card-title">{html.escape(title(r))}</div><span class="pill">{html.escape(category(r))}</span></div></div>', unsafe_allow_html=True)
-                    if st.button("Ausgewählt ✓" if selected else "Rezept ansehen", key=f"select_{page}_{i}_{re.sub(r'[^a-zA-Z0-9]', '_', title(r))}", use_container_width=True):
+                    if st.button("✓ Rezeptdetails geöffnet" if selected else "Zutaten & Zubereitung ansehen", key=f"select_{page}_{i}_{re.sub(r'[^a-zA-Z0-9]', '_', title(r))}", use_container_width=True):
                         st.session_state.selected_recipe = title(r); st.rerun()
         with right:
             chosen = next((r for r in filtered if title(r) == st.session_state.selected_recipe), filtered[0])
+            st.markdown("### Rezeptdetails")
+            st.caption("Zutatenmengen anpassen und die Zubereitung Schritt für Schritt ansehen.")
             st.markdown('<div class="detail-panel">', unsafe_allow_html=True)
             render_detail(chosen, compact=True)
             st.markdown('</div>', unsafe_allow_html=True)
