@@ -292,7 +292,7 @@ st.markdown("""
 :root{--forest:#173b28;--forest2:#102319;--cream:#f8f5ee;--gold:#d89b35;--line:#e5ddcf;--ink:#202720}
 .stApp{background:var(--cream);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
 [data-testid="stHeader"]{background:rgba(248,245,238,.94)}
-.block-container{padding-top:1rem;padding-bottom:1rem;max-width:1700px}
+.block-container{padding-top:2.25rem;padding-bottom:1rem;max-width:1700px}
 section[data-testid="stSidebar"]{background:linear-gradient(180deg,#101713,#17231b 70%,#101713);min-width:260px!important}
 section[data-testid="stSidebar"]>div{padding:15px 13px 20px}
 section[data-testid="stSidebar"] p,section[data-testid="stSidebar"] label,section[data-testid="stSidebar"] small{color:#f6f2e9!important}
@@ -307,7 +307,7 @@ section[data-testid="stSidebar"] div[data-testid="stButton"]>button:hover p{back
 .sidebar-profile{margin-top:16px;background:#0f1511;border:1px solid #344238;border-radius:15px;overflow:hidden}
 .sidebar-profile img{width:100%;height:190px;object-fit:cover;object-position:center 30%;display:block}
 .sidebar-profile div{padding:10px 12px;color:#fff}.sidebar-profile small{opacity:.7}
-.main-brand-banner{display:flex;align-items:center;gap:18px;background:linear-gradient(115deg,#101713,#1c3e2a);color:#fff;padding:14px 20px;border-radius:0 0 18px 18px;margin:-.5rem -1rem 16px;box-shadow:0 8px 25px #142d1b18}.main-brand-banner img{width:74px;height:74px;object-fit:cover;border-radius:50%;border:2px solid #e0b36b}.main-brand-banner strong{display:block;font-family:Georgia,serif;font-size:clamp(21px,2.4vw,32px);font-weight:600;letter-spacing:.2px}.main-brand-banner span{display:block;color:#e4d8c4;font-size:10px;letter-spacing:3px;margin-top:3px}.et-header{background:linear-gradient(120deg,#153b28,#20573a);color:#fff;padding:23px 26px;border-radius:18px;margin:0 0 20px;box-shadow:0 8px 25px #142d1b22}
+.main-brand-banner{display:flex;align-items:center;gap:18px;background:linear-gradient(115deg,#101713,#1c3e2a);color:#fff;padding:14px 20px;border-radius:0 0 18px 18px;margin:0 0 16px;box-shadow:0 8px 25px #142d1b18}.main-brand-banner img{width:74px;height:74px;object-fit:cover;border-radius:50%;border:2px solid #e0b36b}.main-brand-banner strong{display:block;font-family:Georgia,serif;font-size:clamp(21px,2.4vw,32px);font-weight:600;letter-spacing:.2px}.main-brand-banner span{display:block;color:#e4d8c4;font-size:10px;letter-spacing:3px;margin-top:3px}.et-header{background:linear-gradient(120deg,#153b28,#20573a);color:#fff;padding:23px 26px;border-radius:18px;margin:0 0 20px;box-shadow:0 8px 25px #142d1b22}
 .et-header h1{font-size:32px;margin:0;letter-spacing:-1px}.et-header p{margin:5px 0 0;color:#d8e5d9}
 .section-label{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#77796f;font-weight:800;margin:8px 0}
 .recipe-card{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-bottom:9px;box-shadow:0 3px 12px #1720180b}
@@ -348,9 +348,13 @@ div[data-testid="stButton"]>button{border-radius:10px!important;border:1px solid
  .detail-panel{position:static;max-height:none;overflow:visible}
 }
 @media(max-width:650px){
- .main-brand-banner{gap:10px;margin-left:-.4rem;margin-right:-.4rem}
+ .block-container{padding-top:5.25rem;padding-left:.65rem;padding-right:.65rem}
+ .main-brand-banner{gap:10px;margin:0 0 14px;padding:12px;border-radius:0 0 20px 20px;align-items:center}
+ .main-brand-banner img{width:54px;height:54px;flex:0 0 54px}
+ .main-brand-banner strong{font-size:clamp(18px,5vw,22px);line-height:1.1}
+ .main-brand-banner span{font-size:8px;letter-spacing:1.7px}
  .main-brand-banner strong{font-size:22px}
- .et-header{padding:18px 17px;margin-left:-.4rem;margin-right:-.4rem}
+ .et-header{padding:18px 17px;margin:0 0 18px;border-radius:0 0 22px 22px}
  .et-header h1{font-size:25px}
  .recipe-visual{height:88px}
  .recipe-card-body{padding:8px}
@@ -365,6 +369,20 @@ div[data-testid="stButton"]>button{border-radius:10px!important;border:1px solid
  .et-stat strong{font-size:17px}
  .et-stat small{font-size:9px}
  section[data-testid="stSidebar"]{min-width:0!important;width:min(86vw,300px)!important}
+ /* Mobile: content starts below Streamlit's fixed toolbar; no header overlap. */
+ .st-key-mobile_nav{display:none}
+ [data-testid="stHeader"]{height:3.25rem;background:rgba(248,245,238,.98)!important}
+ [data-testid="stToolbar"]{top:.35rem}
+ .st-key-mobile_nav{display:block;margin:0 0 14px}
+ .st-key-mobile_nav div[data-testid="stButton"]>button{font-size:11px;padding:.35rem .15rem;min-height:40px}
+ .main-brand-banner{min-height:78px;box-sizing:border-box}
+ .main-brand-banner img{object-fit:contain;background:#fff}
+ .et-header p{font-size:14px;line-height:1.45}
+ .detail-panel{padding:12px}
+ .step{font-size:13px}
+ div[data-testid="stButton"]>button{white-space:normal;line-height:1.2}
+ /* Keep the page from expanding beyond the phone width. */
+ .stApp, [data-testid="stAppViewContainer"], section.main{max-width:100vw;overflow-x:hidden}
 }
 </style>
 """, unsafe_allow_html=True)
@@ -395,6 +413,16 @@ st.markdown(
     f'<div class="main-brand-banner"><img src="{logo}" alt="EinfachmitTimo Logo"><div><strong>EinfachmitTimo</strong><span>EINFACH GUTES ESSEN</span></div></div>',
     unsafe_allow_html=True,
 )
+
+# Mobile-first quick navigation: makes page changes possible without opening the sidebar.
+with st.container(key="mobile_nav"):
+    mobile_nav_cols = st.columns(4, gap="small")
+    mobile_pages = [("⌂", "Start", "Startseite"), ("🍴", "Rezepte", "Rezepte"), ("▣", "Woche", "Wochenpläne"), ("🛒", "Einkauf", "Einkaufsliste")]
+    for nav_col, (nav_icon, nav_label, nav_page) in zip(mobile_nav_cols, mobile_pages):
+        with nav_col:
+            if st.button(f"{nav_icon} {nav_label}", key=f"mobile_nav_{nav_page}", use_container_width=True, type="primary" if page == nav_page else "secondary"):
+                st.session_state.page = nav_page
+                st.rerun()
 
 if page == "Startseite":
     st.markdown('<div class="et-header"><h1>Einfach gutes Essen.</h1><p>Rezepte entdecken, Wochen planen und clever einkaufen.</p></div>', unsafe_allow_html=True)
