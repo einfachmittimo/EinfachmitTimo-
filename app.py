@@ -1,4 +1,5 @@
 import base64
+import concurrent.futures
 import html
 import json
 import random
@@ -211,6 +212,115 @@ def ingredient_label(z):
         amount = f"{amount} {z['unit']}".strip()
     return f"{amount} {z['name']}".strip()
 
+
+PANTRY_STAPLES = {
+    "salz", "pfeffer", "wasser", "öl", "olivenöl", "rapsöl", "bratöl", "gewürze",
+    "paprikapulver", "currypulver", "italienische kräuter", "kräuter", "zucker", "honig",
+    "essig", "knoblauchpulver", "zwiebelpulver", "muskat", "chilipulver", "backpulver"
+}
+
+
+def recipe_ingredients(r):
+    """Gibt konkrete Zutaten zurück, die sinnvoll nach Angeboten gesucht werden können."""
+    result = []
+    for item in r.get("ingredients", []):
+        if not isinstance(item, dict):
+            continue
+        name = str(item.get("name") or "").strip()
+        if not name:
+            continue
+        norm = re.sub(r"\s+", " ", name.casefold()).strip()
+        if norm in PANTRY_STAPLES or any(norm.startswith(x + " (") for x in PANTRY_STAPLES):
+            continue
+        if norm not in {x.casefold() for x in result}:
+            result.append(name)
+    return result
+
+
+def build_offer_based_plan(pool, postcode, market):
+    """Sucht Angebote vor der Planung und bevorzugt Rezepte mit mehreren Angebotstreffern."""
+    headers = marktguru_headers()
+    if not headers:
+        shuffled = pool[:]
+        random.shuffle(shuffled)
+        return shuffled[:7], {}, "Marktguru-Zugangsdaten fehlen. Die Woche wurde ohne Angebotsabgleich erstellt."
+
+    # Eine begrenzte Kandidatenmenge hält die Live-Suche schnell und vermeidet unnötig viele API-Aufrufe.
+    candidates = pool[:]
+    random.shuffle(candidates)
+    candidates = candidates[:min(35, len(candidates))]
+    candidate_ingredients = []
+    seen_ingredients = set()
+    for recipe in candidates:
+        for name in recipe_ingredients(recipe):
+            key = name.casefold()
+            if key not in seen_ingredients:
+                seen_ingredients.add(key)
+                candidate_ingredients.append(name)
+    random.shuffle(candidate_ingredients)
+    search_names = candidate_ingredients[:25]
+    if not search_names:
+        shuffled = pool[:]
+        random.shuffle(shuffled)
+        return shuffled[:7], {}, "Für diese Rezepte wurden keine suchbaren Zutaten gefunden."
+
+    found = {}
+    first_error = ""
+    # Kleine Parallelgruppe: mehrere Zutaten prüfen, ohne die App durch serielle Anfragen lange zu blockieren.
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        futures = {
+            executor.submit(marktguru_angebot, ingredient, postcode, market): ingredient
+            for ingredient in search_names
+        }
+        for future in concurrent.futures.as_completed(futures):
+            ingredient = futures[future]
+            try:
+                result = future.result()
+            except Exception:
+                continue
+            if result.get("error"):
+                first_error = result["error"]
+                continue
+            if not result.get("not_found"):
+                found[ingredient.casefold()] = {**result, "matched_ingredient": ingredient}
+
+    if not found:
+        shuffled = pool[:]
+        random.shuffle(shuffled)
+        note = "Für die geprüften Zutaten wurden keine passenden Angebote gefunden. Die Woche wurde deshalb aus deinen Rezepten erstellt."
+        if first_error:
+            note += " Marktguru meldet: " + first_error
+        return shuffled[:7], {}, note
+
+    scored = []
+    for recipe in candidates:
+        matched = [name for name in recipe_ingredients(recipe) if name.casefold() in found]
+        # Primär mehr Angebotstreffer, sekundär eine hohe Trefferquote innerhalb des Rezepts.
+        score = len(matched) * 2 + (len(matched) / max(1, len(recipe_ingredients(recipe))))
+        scored.append((score, len(matched), recipe, matched))
+    scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+
+    picked = []
+    used = set()
+    for _, _, recipe, _ in scored:
+        recipe_title = title(recipe)
+        if recipe_title and recipe_title not in used:
+            picked.append(recipe)
+            used.add(recipe_title)
+        if len(picked) == 7:
+            break
+    # Falls Kandidaten zu wenig unterschiedliche Rezepte enthalten, mit übrigen Rezepten auffüllen.
+    if len(picked) < 7:
+        rest = pool[:]
+        random.shuffle(rest)
+        for recipe in rest:
+            if title(recipe) not in used:
+                picked.append(recipe)
+                used.add(title(recipe))
+            if len(picked) == 7:
+                break
+    return picked, found, f"Angebotsabgleich abgeschlossen: {len(found)} Zutaten mit passenden Angeboten gefunden. Rezepte mit mehr Angebotstreffern wurden bevorzugt."
+
 def render_detail(r, compact=False):
     st.markdown(f'<div class="detail-top"><div class="detail-visual">{category_emoji(r)}</div><div class="detail-copy"><div class="pill">{html.escape(category(r))}</div><h2>{html.escape(title(r))}</h2><p>Einfach. Schnell. Lecker.</p></div></div>', unsafe_allow_html=True)
     nv = nutrition(r)
@@ -250,6 +360,7 @@ st.session_state.setdefault("week_portions", 2)
 st.session_state.setdefault("shopping_checked", set())
 st.session_state.setdefault("marketguru_offers", {})
 st.session_state.setdefault("marketguru_error", "")
+st.session_state.setdefault("week_plan_note", "")
 
 # Styling
 st.markdown("""
@@ -394,25 +505,18 @@ elif page == "Wochenpläne":
         elif not pool:
             st.error("Für diese Ernährungsform wurden keine passenden Rezepte gefunden.")
         else:
-            # Sieben unterschiedliche warme Hauptgerichte, genau eines pro Tag.
-            shuffled = pool[:]
-            random.shuffle(shuffled)
-            picked = []
-            seen = set()
-            for recipe in shuffled:
-                recipe_title = title(recipe)
-                if recipe_title and recipe_title not in seen:
-                    picked.append(recipe)
-                    seen.add(recipe_title)
-                if len(picked) == 7:
-                    break
+            with st.spinner("Prüfe aktuelle Marktguru-Angebote und stelle danach deine Woche zusammen …"):
+                picked, offer_matches, plan_note = build_offer_based_plan(
+                    pool, str(st.session_state.postcode).strip(), st.session_state.market
+                )
             if len(picked) < 7:
                 st.error("Es konnten nicht sieben unterschiedliche Gerichte gefunden werden. Bitte Ernährungsform ändern.")
             else:
                 st.session_state.week_plan = {TAGE[i]: title(recipe) for i, recipe in enumerate(picked)}
                 st.session_state.shopping_checked = set()
-                st.session_state.marketguru_offers = {}
+                st.session_state.marketguru_offers = offer_matches
                 st.session_state.marketguru_error = ""
+                st.session_state.week_plan_note = plan_note
                 st.rerun()
 
     # Absichtlich direkt unter dem Erstellen-Button: keine manuelle Wochenplan-Eingabe und kein Speichern-Button.
@@ -422,6 +526,15 @@ elif page == "Wochenpläne":
             f'<div style="background:#e9e0cd;border:1px solid #ded3bc;border-radius:14px;padding:12px 16px;margin-bottom:14px"><b>🛒 {html.escape(st.session_state.market)}</b> · PLZ {html.escape(str(st.session_state.postcode))} · {st.session_state.week_portions} Portion(en) pro Gericht</div>',
             unsafe_allow_html=True,
         )
+        if st.session_state.get("week_plan_note"):
+            st.info(st.session_state.week_plan_note)
+        if st.session_state.marketguru_offers:
+            with st.expander(f"🏷️ {len(st.session_state.marketguru_offers)} gefundene Angebotstreffer ansehen"):
+                for offer in st.session_state.marketguru_offers.values():
+                    price_text = f'{offer["price"]:.2f} €'.replace(".", ",")
+                    st.markdown(f'**{html.escape(offer.get("matched_ingredient", "Zutat"))}** — {html.escape(offer["description"])} · **{price_text}** · {html.escape(offer["retailer"])}')
+                    if offer.get("url"):
+                        st.markdown(f'[Angebot öffnen]({offer["url"]})')
         by_title = {title(r): r for r in recipes}
         day_cols = st.columns(2, gap="medium")
         for i, day in enumerate(TAGE):
@@ -458,6 +571,7 @@ elif page == "Wochenpläne":
                 st.session_state.shopping_checked = set()
                 st.session_state.marketguru_offers = {}
                 st.session_state.marketguru_error = ""
+                st.session_state.week_plan_note = ""
                 st.rerun()
     else:
         st.info("Dein erstellter Wochenplan erscheint hier direkt nach dem Klick auf „Woche automatisch planen“. Du musst keine Gerichte einzeln auswählen und nichts separat speichern.")
