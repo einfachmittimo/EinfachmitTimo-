@@ -265,8 +265,10 @@ section[data-testid="stSidebar"] p,section[data-testid="stSidebar"] label,sectio
 .brand img{width:100%;max-width:210px;border-radius:10px}
 .brand small{display:block;color:#e6dfd0;letter-spacing:2.3px;font-size:9px;margin-top:6px}
 .nav-heading{color:#b8c2b9;letter-spacing:2px;text-transform:uppercase;font-size:11px;margin:22px 6px 8px}
-section[data-testid="stSidebar"] div[data-testid="stButton"]>button{background:#202d24!important;color:#f8f5ee!important;border:1px solid #34483a!important;border-radius:12px!important;text-align:left!important;min-height:42px!important;font-weight:650!important}
-section[data-testid="stSidebar"] div[data-testid="stButton"]>button:hover{background:#2d4935!important;border-color:var(--gold)!important}
+section[data-testid="stSidebar"] div[data-testid="stButton"]>button,
+section[data-testid="stSidebar"] div[data-testid="stButton"]>button p{background:#202d24!important;color:#f8f5ee!important;border:1px solid #34483a!important;border-radius:12px!important;text-align:left!important;min-height:42px!important;font-weight:650!important;opacity:1!important}
+section[data-testid="stSidebar"] div[data-testid="stButton"]>button:hover,
+section[data-testid="stSidebar"] div[data-testid="stButton"]>button:hover p{background:#2d4935!important;color:#fff!important;border-color:var(--gold)!important}
 .sidebar-profile{margin-top:16px;background:#0f1511;border:1px solid #344238;border-radius:15px;overflow:hidden}
 .sidebar-profile img{width:100%;height:190px;object-fit:cover;object-position:center 30%;display:block}
 .sidebar-profile div{padding:10px 12px;color:#fff}.sidebar-profile small{opacity:.7}
@@ -359,66 +361,83 @@ elif page in ("Rezepte", "Rezeptkarten", "Kategorien", "Suche", "Favoriten"):
             st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "Wochenpläne":
-    st.markdown('<div class="et-header"><h1>Wochenplan</h1><p>Plane deine Woche, wähle deinen Supermarkt und erstelle direkt die Einkaufsliste.</p></div>', unsafe_allow_html=True)
-    st.markdown("### Einstellungen")
-    c1,c2,c3 = st.columns(3)
+    st.markdown('<div class="et-header"><h1>Dein Wochenplan</h1><p>Wähle deinen Supermarkt und erstelle deinen Plan direkt – die fertige Woche erscheint gleich darunter.</p></div>', unsafe_allow_html=True)
+    st.markdown("### Planung einstellen")
+    c1, c2, c3 = st.columns([1.2, 1, 0.8])
     with c1:
-        market_plan = st.selectbox("Markt für diese Woche", MARKETS, index=MARKETS.index(st.session_state.market) if st.session_state.market in MARKETS else 0, key="week_market")
+        market_plan = st.selectbox("Supermarkt", MARKETS, index=MARKETS.index(st.session_state.market) if st.session_state.market in MARKETS else 0, key="week_market")
         st.session_state.market = market_plan
     with c2:
         postcode_plan = st.text_input("Postleitzahl", value=st.session_state.postcode, max_chars=5, key="week_postcode")
         st.session_state.postcode = postcode_plan
     with c3:
-        st.session_state.week_portions = int(st.number_input("Portionen pro Gericht", min_value=1, max_value=12, value=int(st.session_state.week_portions), step=1, key="week_portion_count"))
-    c4,c5 = st.columns(2)
-    with c4: st.session_state.week_diet = st.selectbox("Ernährungsform", ["Alle", "fleisch", "fisch", "vegetarisch", "vegan"], index=["Alle", "fleisch", "fisch", "vegetarisch", "vegan"].index(st.session_state.week_diet), key="week_diet_select")
-    with c5:
-        st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-        auto = st.button("✨ Woche automatisch planen", type="primary", use_container_width=True)
-    st.caption("Die automatische Planung nutzt deine Rezeptdatenbank und die gewählte Ernährungsform. Eine Live-Angebotsoptimierung benötigt eine konfigurierte Angebots-API.")
+        st.session_state.week_portions = int(st.number_input("Portionen", min_value=1, max_value=12, value=int(st.session_state.week_portions), step=1, key="week_portion_count"))
+    st.session_state.week_diet = st.selectbox("Ernährungsform", ["Alle", "fleisch", "fisch", "vegetarisch", "vegan"], index=["Alle", "fleisch", "fisch", "vegetarisch", "vegan"].index(st.session_state.week_diet) if st.session_state.week_diet in ["Alle", "fleisch", "fisch", "vegetarisch", "vegan"] else 0, key="week_diet_select")
+    auto = st.button("✨  Woche automatisch planen", type="primary", use_container_width=True, key="generate_week_plan")
+
     pool = [r for r in recipes if category(r).lower() in ("mittagessen", "abendessen", "hauptgericht", "lunch")]
-    if st.session_state.week_diet != "Alle": pool = [r for r in pool if diet(r) == st.session_state.week_diet]
-    if not pool: pool = [r for r in recipes if st.session_state.week_diet == "Alle" or diet(r) == st.session_state.week_diet]
+    if st.session_state.week_diet != "Alle":
+        pool = [r for r in pool if diet(r) == st.session_state.week_diet]
+    if not pool:
+        pool = [r for r in recipes if st.session_state.week_diet == "Alle" or diet(r) == st.session_state.week_diet]
+
     if auto:
         shuffled = pool[:]
         random.shuffle(shuffled)
-        picked = []
-        seen = set()
+        picked, seen = [], set()
         for r in shuffled:
             if title(r) not in seen:
-                picked.append(r); seen.add(title(r))
-            if len(picked) == 7: break
+                picked.append(r)
+                seen.add(title(r))
+            if len(picked) == 7:
+                break
         st.session_state.week_plan = {TAGE[i]: title(r) for i, r in enumerate(picked)}
-        # Alte Formularwerte entfernen, damit die neuen Gerichte sofort angezeigt werden.
-        for day in TAGE:
-            st.session_state.pop(f"week_choice_{day}", None)
+        st.session_state.shopping_checked = set()
+        st.session_state.marketguru_offers = {}
+        st.session_state.marketguru_error = ""
         st.rerun()
-    st.markdown("### Deine Woche")
-    options = ["— Gericht auswählen —"] + [title(r) for r in pool]
-    planned = dict(st.session_state.week_plan)
-    with st.form("weekly_plan_form"):
-        cols = st.columns(2)
-        for i, day in enumerate(TAGE):
-            with cols[i % 2]:
-                old = planned.get(day, "— Gericht auswählen —")
-                idx = options.index(old) if old in options else 0
-                choice = st.selectbox(f"{day} · warmes Hauptgericht", options, index=idx, key=f"week_choice_{day}")
-                if choice == "— Gericht auswählen —": planned.pop(day, None)
-                else: planned[day] = choice
-        save = st.form_submit_button("💾 Wochenplan speichern", type="primary", use_container_width=True)
-    if save:
-        st.session_state.week_plan = planned
-        st.success("Wochenplan gespeichert. Deine Einkaufsliste wurde aktualisiert.")
-        st.rerun()
+
+    # The generated plan is the primary content below the button. No separate
+    # manual-save form is shown. Users can swap an individual dish in-place.
+    st.markdown("### Deine fertige Woche")
     if st.session_state.week_plan:
-        st.markdown("### Wochenübersicht")
-        for day in TAGE:
-            recipe_name = st.session_state.week_plan.get(day)
-            if recipe_name: st.markdown(f"**{day}:** {recipe_name}")
-        st.info(f"Einkauf für **{st.session_state.week_portions} Portion(en)** bei **{st.session_state.market}** · PLZ {st.session_state.postcode}")
-        if st.button("🛒 Zur Einkaufsliste", use_container_width=True): st.session_state.page = "Einkaufsliste"; st.rerun()
+        st.markdown(f'<div style="background:#e9e0cd;border:1px solid #ded3bc;border-radius:14px;padding:12px 16px;margin-bottom:12px"><b>🛒 {html.escape(st.session_state.market)}</b> · PLZ {html.escape(str(st.session_state.postcode))} · {st.session_state.week_portions} Portion(en) pro Gericht</div>', unsafe_allow_html=True)
+        by_title = {title(r): r for r in recipes}
+        day_cols = st.columns(2, gap="medium")
+        for i, day in enumerate(TAGE):
+            with day_cols[i % 2]:
+                recipe_name = st.session_state.week_plan.get(day)
+                r = by_title.get(recipe_name)
+                st.markdown('<div class="recipe-card">', unsafe_allow_html=True)
+                st.markdown(f'<div style="padding:13px 14px 3px"><div class="section-label">{html.escape(day)}</div><div class="recipe-card-title" style="font-size:17px;min-height:0">{html.escape(recipe_name or "Noch kein Gericht")}</div><div style="margin-top:7px"><span class="pill">{html.escape(category(r) if r else "Hauptgericht")}</span></div></div>', unsafe_allow_html=True)
+                if r:
+                    nv = nutrition(r)
+                    st.markdown(f'<div style="padding:8px 14px 12px;color:#62685f;font-size:12px">🔥 {html.escape(str(nv["kcal"]))} kcal · 💪 {html.escape(str(nv["protein"]))} g Protein</div>', unsafe_allow_html=True)
+                if st.button("↻ Anderes Gericht", key="swap_" + day, use_container_width=True):
+                    current = st.session_state.week_plan.get(day)
+                    alternatives = [x for x in pool if title(x) != current]
+                    if alternatives:
+                        st.session_state.week_plan[day] = title(random.choice(alternatives))
+                        st.session_state.shopping_checked = set()
+                        st.session_state.marketguru_offers = {}
+                    st.rerun()
+                st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown("### Einkauf vorbereiten")
+        items = ingredients_for_plan(st.session_state.week_plan, st.session_state.week_portions)
+        st.caption(f"{len(items)} unterschiedliche Zutaten aus deinem Wochenplan.")
+        a, b = st.columns(2)
+        with a:
+            if st.button("🛒 Einkaufsliste öffnen", type="primary", use_container_width=True):
+                st.session_state.page = "Einkaufsliste"
+                st.rerun()
+        with b:
+            if st.button("🔄 Neue Woche erstellen", use_container_width=True):
+                st.session_state.week_plan = {}
+                st.session_state.shopping_checked = set()
+                st.session_state.marketguru_offers = {}
+                st.rerun()
     else:
-        st.info("Wähle Gerichte für die einzelnen Tage oder klicke auf „Woche automatisch planen“.")
+        st.info("Wähle oben deinen Markt und klicke auf „Woche automatisch planen“. Dein fertiger Wochenplan erscheint genau hier – du musst ihn nicht separat speichern.")
 
 elif page == "Einkaufsliste":
     st.markdown('<div class="et-header"><h1>Einkaufsliste</h1><p>Alle Zutaten aus deinem Wochenplan, nach Menge zusammengefasst.</p></div>', unsafe_allow_html=True)
