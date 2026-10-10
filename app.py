@@ -557,6 +557,11 @@ elif page == "Wochenpläne":
                     f'<div class="recipe-card"><div style="display:flex;gap:12px;align-items:center;padding:14px"><div class="recipe-visual" style="width:78px;min-width:78px;height:78px;border-radius:12px">{emoji}</div><div style="min-width:0;flex:1"><div class="section-label">{html.escape(day)} · warmes Hauptgericht</div><div class="recipe-card-title" style="font-size:16px;min-height:0">{html.escape(recipe_name or "Kein Gericht zugeordnet")}</div><div style="margin-top:7px"><span class="pill">{html.escape(category(recipe) if recipe else "Hauptgericht")}</span></div><div style="font-size:12px;color:#62685f;margin-top:7px">🔥 {html.escape(str(nv["kcal"]))} kcal · 💪 {html.escape(str(nv["protein"]))} g Protein</div></div></div></div>',
                     unsafe_allow_html=True,
                 )
+                if recipe and st.button("📖 Zutaten & Zubereitung öffnen", key="open_week_recipe_" + day, use_container_width=True):
+                    st.session_state.selected_recipe = title(recipe)
+                    st.session_state.recipe_return_page = "Wochenpläne"
+                    st.session_state.page = "Rezeptdetails"
+                    st.rerun()
                 if st.button("↻ Gericht austauschen", key="swap_" + day, use_container_width=True):
                     current = st.session_state.week_plan.get(day)
                     alternatives = [r for r in pool if title(r) != current and title(r) not in {v for k, v in st.session_state.week_plan.items() if k != day}]
@@ -585,6 +590,19 @@ elif page == "Wochenpläne":
                 st.rerun()
     else:
         st.info("Dein erstellter Wochenplan erscheint hier direkt nach dem Klick auf „Woche automatisch planen“. Du musst keine Gerichte einzeln auswählen und nichts separat speichern.")
+
+elif page == "Rezeptdetails":
+    selected = next((r for r in recipes if title(r) == st.session_state.get("selected_recipe")), None)
+    st.markdown('<div class="et-header"><h1>Rezeptdetails</h1><p>Zutaten und Zubereitung für dein ausgewähltes Gericht.</p></div>', unsafe_allow_html=True)
+    if st.button("← Zurück zum Wochenplan", use_container_width=False):
+        st.session_state.page = st.session_state.get("recipe_return_page", "Wochenpläne")
+        st.rerun()
+    if selected:
+        st.markdown('<div class="detail-panel">', unsafe_allow_html=True)
+        render_detail(selected)
+        st.markdown('</div>', unsafe_allow_html=True)
+    else:
+        st.warning("Das ausgewählte Rezept wurde in der Datenbank nicht gefunden.")
 
 elif page == "Einkaufsliste":
     st.markdown('<div class="et-header"><h1>Einkaufsliste</h1><p>Alle Zutaten aus deinem Wochenplan, nach Menge zusammengefasst.</p></div>', unsafe_allow_html=True)
