@@ -464,13 +464,45 @@ elif page in ("Rezepte", "Rezeptkarten", "Kategorien", "Suche", "Favoriten"):
                     selected = title(r) == st.session_state.selected_recipe
                     visual_html = recipe_visual(r)
                     st.markdown(f'<div class="recipe-card" style="border-color:{"#d89b35" if selected else "#e5ddcf"}">{visual_html}<div class="recipe-card-body"><div class="recipe-card-title">{html.escape(title(r))}</div><span class="pill">{html.escape(category(r))}</span></div></div>', unsafe_allow_html=True)
-                    if st.button("Ausgewählt ✓" if selected else "Rezept ansehen", key=f"select_{page}_{i}_{re.sub(r'[^a-zA-Z0-9]', '_', title(r))}", use_container_width=True):
-                        st.session_state.selected_recipe = title(r); st.rerun()
+                    if st.button("Rezeptkarte öffnen  ↗", key=f"select_{page}_{i}_{re.sub(r'[^a-zA-Z0-9]', '_', title(r))}", use_container_width=True):
+                        st.session_state.selected_recipe = title(r)
+                        st.session_state.page = "Rezeptdetail"
+                        st.rerun()
         with right:
             chosen = next((r for r in filtered if title(r) == st.session_state.selected_recipe), filtered[0])
             st.markdown('<div class="detail-panel">', unsafe_allow_html=True)
+            st.markdown("### Vorschau")
             render_detail(chosen, compact=True)
+            if st.button("Rezeptkarte groß öffnen", key="open_detail_from_preview", type="primary", use_container_width=True):
+                st.session_state.selected_recipe = title(chosen)
+                st.session_state.page = "Rezeptdetail"
+                st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
+
+elif page == "Rezeptdetail":
+    by_title = {title(r): r for r in recipes}
+    chosen = by_title.get(st.session_state.selected_recipe)
+    top_left, top_right = st.columns([1, 4])
+    with top_left:
+        if st.button("← Zurück zu den Rezepten", use_container_width=True):
+            st.session_state.page = "Rezepte"
+            st.rerun()
+    if chosen:
+        st.markdown(f'<div class="et-header"><h1>{html.escape(title(chosen))}</h1><p>Deine Rezeptkarte mit Zutaten, Zubereitung und Nährwerten.</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="detail-panel recipe-detail-full">', unsafe_allow_html=True)
+        render_detail(chosen)
+        st.markdown('</div>', unsafe_allow_html=True)
+        if st.button("Zum Wochenplan hinzufügen", type="primary", use_container_width=True, key="add_detail_to_week"):
+            # Für den nächsten freien Tag übernehmen; falls die Woche voll ist, den Sonntag ersetzen.
+            target_day = next((day for day in TAGE if not st.session_state.week_plan.get(day)), "Sonntag")
+            st.session_state.week_plan[target_day] = title(chosen)
+            st.session_state.page = "Wochenpläne"
+            st.rerun()
+    else:
+        st.warning("Das ausgewählte Rezept wurde nicht gefunden.")
+        if st.button("Zur Rezeptübersicht"):
+            st.session_state.page = "Rezepte"
+            st.rerun()
 
 elif page == "Wochenpläne":
     st.markdown('<div class="et-header"><h1>Dein Wochenplan</h1><p>Markt wählen, Woche erstellen – dein fertiger Plan erscheint direkt unter dem Button.</p></div>', unsafe_allow_html=True)
@@ -537,10 +569,18 @@ elif page == "Wochenpläne":
                 recipe = by_title.get(recipe_name)
                 nv = nutrition(recipe) if recipe else {"kcal": "–", "protein": "–"}
                 emoji = category_emoji(recipe) if recipe else "🍽️"
+                if recipe:
+                    plan_visual = recipe_visual(recipe, "recipe-visual")
+                else:
+                    plan_visual = f'<div class="recipe-visual placeholder"><span>{emoji}</span></div>'
                 st.markdown(
-                    f'<div class="recipe-card"><div style="display:flex;gap:12px;align-items:center;padding:14px"><div class="recipe-visual" style="width:78px;min-width:78px;height:78px;border-radius:12px">{emoji}</div><div style="min-width:0;flex:1"><div class="section-label">{html.escape(day)} · warmes Hauptgericht</div><div class="recipe-card-title" style="font-size:16px;min-height:0">{html.escape(recipe_name or "Kein Gericht zugeordnet")}</div><div style="margin-top:7px"><span class="pill">{html.escape(category(recipe) if recipe else "Hauptgericht")}</span></div><div style="font-size:12px;color:#62685f;margin-top:7px">🔥 {html.escape(str(nv["kcal"]))} kcal · 💪 {html.escape(str(nv["protein"]))} g Protein</div></div></div></div>',
+                    f'<div class="recipe-card"><div style="display:flex;gap:12px;align-items:center;padding:14px">{plan_visual}<div style="min-width:0;flex:1"><div class="section-label">{html.escape(day)} · warmes Hauptgericht</div><div class="recipe-card-title" style="font-size:16px;min-height:0">{html.escape(recipe_name or "Kein Gericht zugeordnet")}</div><div style="margin-top:7px"><span class="pill">{html.escape(category(recipe) if recipe else "Hauptgericht")}</span></div><div style="font-size:12px;color:#62685f;margin-top:7px">🔥 {html.escape(str(nv["kcal"]))} kcal · 💪 {html.escape(str(nv["protein"]))} g Protein</div></div></div></div>',
                     unsafe_allow_html=True,
                 )
+                if recipe and st.button("📖 Rezeptkarte öffnen", key="open_plan_recipe_" + day, type="primary", use_container_width=True):
+                    st.session_state.selected_recipe = title(recipe)
+                    st.session_state.page = "Rezeptdetail"
+                    st.rerun()
                 if st.button("↻ Gericht austauschen", key="swap_" + day, use_container_width=True):
                     current = st.session_state.week_plan.get(day)
                     alternatives = [r for r in pool if title(r) != current and title(r) not in {v for k, v in st.session_state.week_plan.items() if k != day}]
