@@ -3,6 +3,7 @@ import html
 import json
 import random
 import re
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -43,9 +44,74 @@ def marktguru_headers():
         return None
     return {"x-clientkey": clientkey, "x-apikey": apikey}
 
+def angebot_datum(value):
+    """Parst gängige Datumsangaben aus Marktguru-Antworten, sofern vorhanden."""
+    if value in (None, ""):
+        return None
+    if isinstance(value, (int, float)):
+        try:
+            # Unix-Zeitstempel (Sekunden oder Millisekunden)
+            stamp = float(value)
+            if stamp > 10_000_000_000:
+                stamp /= 1000
+            return datetime.fromtimestamp(stamp).date()
+        except (ValueError, OverflowError, OSError):
+            return None
+    text = str(value).strip()
+    try:
+        return datetime.fromisoformat(text.replace("Z", "+00:00")).date()
+    except ValueError:
+        pass
+    for fmt in ("%Y-%m-%d", "%d.%m.%Y", "%Y/%m/%d"):
+        try:
+            return datetime.strptime(text[:10], fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def angebot_gueltig_im_zeitraum(result, advertiser, start_date, end_date):
+    """Filtert anhand von Gültigkeitsdaten, falls die API diese mitliefert.
+
+    Für „Diese Woche“ werden Treffer ohne Datumsfelder akzeptiert, da die
+    Suchschnittstelle standardmäßig laufende Angebote zurückliefert. Für
+    zukünftige Wochen werden undatierte Treffer vorsichtshalber ausgeschlossen.
+    """
+    start_keys = ("validFrom", "valid_from", "startDate", "start_date", "validityStart", "validFromDate", "fromDate", "validityStartDate")
+    end_keys = ("validTo", "valid_to", "endDate", "end_date", "validityEnd", "validToDate", "toDate", "validityEndDate")
+    containers = [result, advertiser]
+    start_value = end_value = None
+    for container in containers:
+        if not isinstance(container, dict):
+            continue
+        for key in start_keys:
+            if container.get(key) not in (None, ""):
+                start_value = container.get(key)
+                break
+        for key in end_keys:
+            if container.get(key) not in (None, ""):
+                end_value = container.get(key)
+                break
+        if start_value is not None or end_value is not None:
+            break
+    valid_from = angebot_datum(start_value)
+    valid_to = angebot_datum(end_value)
+    if valid_from is None and valid_to is None:
+        return start_date <= date.today() <= end_date
+    if valid_from and valid_from > end_date:
+        return False
+    if valid_to and valid_to < start_date:
+        return False
+    return True
+
+
 @st.cache_data(ttl=900, show_spinner=False)
-def marktguru_angebot(zutat, plz, markt):
-    """Sucht ein passendes aktuelles Angebot für eine Zutat und einen Markt."""
+def marktguru_angebot(zutat, plz, markt, zeitraum_start=None, zeitraum_ende=None):
+    """Sucht ein passendes Marktguru-Angebot im ausgewählten Angebotszeitraum."""
+    today = date.today()
+    monday = today - timedelta(days=today.weekday())
+    zeitraum_start = zeitraum_start or monday.isoformat()
+    zeitraum_ende = zeitraum_ende or (monday + timedelta(days=6)).isoformat()
     headers = marktguru_headers()
     if not headers:
         return {"error": "Marktguru-Zugangsdaten fehlen. Bitte [marktguru] mit clientkey und apikey in den Streamlit Secrets hinterlegen."}
@@ -66,6 +132,10 @@ def marktguru_angebot(zutat, plz, markt):
         if price is None:
             continue
         for advertiser in result.get("advertisers", []) or []:
+            if not angebot_gueltig_im_zeitraum(
+                result, advertiser, date.fromisoformat(zeitraum_start), date.fromisoformat(zeitraum_ende)
+            ):
+                continue
             unique = str(advertiser.get("uniqueName", "")).casefold()
             name = str(advertiser.get("name", "")).strip()
             # Exact retailer identifier first; fall back to a conservative name match.
@@ -521,6 +591,25 @@ elif page == "Wochenpläne":
     with c3:
         portion_value = st.number_input("Portionen je Gericht", min_value=1, max_value=12, value=int(st.session_state.week_portions), step=1, key="week_portion_count")
         st.session_state.week_portions = int(portion_value)
+    period_options = ["Diese Woche", "Nächste Woche"]
+    st.session_state.setdefault("week_offer_period", "Diese Woche")
+    st.session_state.week_offer_period = st.selectbox(
+        "Angebotszeitraum",
+        period_options,
+        index=period_options.index(st.session_state.week_offer_period) if st.session_state.week_offer_period in period_options else 0,
+        key="week_offer_period_select",
+        help="Der ausgewählte Zeitraum wird beim Abfragen der Marktguru-Angebote und bei der Rezeptauswahl berücksichtigt.",
+    )
+    today = date.today()
+    this_monday = today - timedelta(days=today.weekday())
+    if st.session_state.week_offer_period == "Nächste Woche":
+        period_start = this_monday + timedelta(days=7)
+    else:
+        period_start = this_monday
+    period_end = period_start + timedelta(days=6)
+    period_start_iso = period_start.isoformat()
+    period_end_iso = period_end.isoformat()
+
     diet_options = ["Alle", "fleisch", "fisch", "vegetarisch", "vegan"]
     st.session_state.week_diet = st.selectbox("Ernährungsform", diet_options, index=diet_options.index(st.session_state.week_diet) if st.session_state.week_diet in diet_options else 0, key="week_diet_select")
 
@@ -530,11 +619,14 @@ elif page == "Wochenpläne":
     if not pool:
         pool = [r for r in recipes if st.session_state.week_diet == "Alle" or diet(r) == st.session_state.week_diet]
 
-    # Schritt 1: Aktuelle Angebote des ausgewählten Markts abfragen.
+    # Die Auswahl des Zeitraums ist Bestandteil der Marktguru-Abfrage und der Rezeptplanung.
     offer_snapshot = {
         "market": str(st.session_state.market),
         "postcode": str(st.session_state.postcode).strip(),
         "diet": str(st.session_state.week_diet),
+        "period": str(st.session_state.week_offer_period),
+        "period_start": period_start_iso,
+        "period_end": period_end_iso,
     }
     offers_match_current_settings = (
         bool(st.session_state.week_offer_snapshot)
@@ -583,15 +675,21 @@ elif page == "Wochenpläne":
             search_names = [display_names[key] for key, _ in sorted(frequency.items(), key=lambda item: (-item[1], item[0]))[:20]]
             found = {}
             errors = []
-            progress = st.progress(0, text="Frage aktuelle Marktguru-Angebote ab …")
+            progress = st.progress(0, text=f"Frage Marktguru-Angebote für {offer_snapshot['period']} ab …")
             for index, ingredient_name in enumerate(search_names, start=1):
-                result = marktguru_angebot(ingredient_name, offer_snapshot["postcode"], offer_snapshot["market"])
+                result = marktguru_angebot(
+                    ingredient_name,
+                    offer_snapshot["postcode"],
+                    offer_snapshot["market"],
+                    offer_snapshot["period_start"],
+                    offer_snapshot["period_end"],
+                )
                 if result.get("error"):
                     errors.append(result["error"])
                     break
                 if not result.get("not_found"):
                     found[ingredient_name.casefold()] = {**result, "search_term": ingredient_name}
-                progress.progress(index / max(1, len(search_names)), text=f"Prüfe Angebote für {ingredient_name} … ({index}/{len(search_names)})")
+                progress.progress(index / max(1, len(search_names)), text=f"Prüfe {offer_snapshot['period']}: {ingredient_name} … ({index}/{len(search_names)})")
             progress.empty()
             st.session_state.week_offer_scan = found
             st.session_state.week_offer_snapshot = offer_snapshot if not errors else {}
@@ -712,8 +810,8 @@ elif page == "Wochenpläne":
     # Angebote bewusst unter dem fertigen Wochenplan anzeigen.
     if offers_match_current_settings:
         scanned_offers = st.session_state.week_offer_scan
-        st.markdown("### Aktuelle Angebote für deine Rezeptauswahl")
-        st.caption(f"Markt: {offer_snapshot['market']} · PLZ {offer_snapshot['postcode']} · {len(scanned_offers)} passende Angebots-Treffer bei den geprüften Zutaten.")
+        st.markdown(f"### Angebote für deine Rezeptauswahl · {offer_snapshot['period']}")
+        st.caption(f"Markt: {offer_snapshot['market']} · PLZ {offer_snapshot['postcode']} · Zeitraum {period_start.strftime('%d.%m.%Y')}–{period_end.strftime('%d.%m.%Y')} · {len(scanned_offers)} passende Angebots-Treffer bei den geprüften Zutaten.")
         if scanned_offers:
             offer_cols = st.columns(2, gap="small")
             for index, offer in enumerate(scanned_offers.values()):
