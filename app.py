@@ -650,28 +650,6 @@ elif page == "Wochenpläne":
     if st.session_state.week_offer_scan_error:
         st.error(st.session_state.week_offer_scan_error)
 
-    if offers_match_current_settings:
-        scanned_offers = st.session_state.week_offer_scan
-        st.markdown("### Aktuelle Angebote für deine Rezeptauswahl")
-        st.caption(f"Markt: {offer_snapshot['market']} · PLZ {offer_snapshot['postcode']} · {len(scanned_offers)} passende Angebots-Treffer bei den geprüften Zutaten.")
-        if scanned_offers:
-            offer_cols = st.columns(2, gap="small")
-            for index, offer in enumerate(scanned_offers.values()):
-                with offer_cols[index % 2]:
-                    price_text = f"{offer['price']:.2f} €".replace(".", ",")
-                    st.markdown(
-                        f"<div class='recipe-card' style='padding:10px 12px'><b>{html.escape(offer['description'])}</b><br><small>{html.escape(offer['retailer'])} · Suchzutat: {html.escape(offer['search_term'])}</small><br><strong>{price_text}</strong></div>",
-                        unsafe_allow_html=True,
-                    )
-                    if offer.get("url"):
-                        st.markdown(f"[Angebot ansehen]({offer['url']})")
-        else:
-            st.info("Für die geprüften Zutaten wurden bei diesem Markt keine passenden Angebote gefunden. Du kannst trotzdem einen normalen Wochenplan aus deiner Rezeptdatenbank erstellen.")
-
-
-    else:
-        st.caption("Mit einem Klick werden zuerst die aktuellen Marktguru-Angebote geprüft und anschließend direkt dein Wochenplan erstellt.")
-
     # Absichtlich direkt unter dem Erstellen-Button: keine manuelle Wochenplan-Eingabe und kein Speichern-Button.
     st.markdown("### Dein erstellter Wochenplan")
     if st.session_state.week_plan:
@@ -729,6 +707,30 @@ elif page == "Wochenpläne":
                 st.rerun()
     else:
         st.info("Dein erstellter Wochenplan erscheint hier direkt nach dem Klick auf „Woche automatisch planen“. Du musst keine Gerichte einzeln auswählen und nichts separat speichern.")
+
+
+    # Angebote bewusst unter dem fertigen Wochenplan anzeigen.
+    if offers_match_current_settings:
+        scanned_offers = st.session_state.week_offer_scan
+        st.markdown("### Aktuelle Angebote für deine Rezeptauswahl")
+        st.caption(f"Markt: {offer_snapshot['market']} · PLZ {offer_snapshot['postcode']} · {len(scanned_offers)} passende Angebots-Treffer bei den geprüften Zutaten.")
+        if scanned_offers:
+            offer_cols = st.columns(2, gap="small")
+            for index, offer in enumerate(scanned_offers.values()):
+                with offer_cols[index % 2]:
+                    price_text = f"{offer['price']:.2f} €".replace(".", ",")
+                    st.markdown(
+                        f"<div class='recipe-card' style='padding:10px 12px'><b>{html.escape(offer['description'])}</b><br><small>{html.escape(offer['retailer'])} · Suchzutat: {html.escape(offer['search_term'])}</small><br><strong>{price_text}</strong></div>",
+                        unsafe_allow_html=True,
+                    )
+                    if offer.get("url"):
+                        st.markdown(f"[Angebot ansehen]({offer['url']})")
+        else:
+            st.info("Für die geprüften Zutaten wurden bei diesem Markt keine passenden Angebote gefunden. Du kannst trotzdem einen normalen Wochenplan aus deiner Rezeptdatenbank erstellen.")
+
+
+    else:
+        st.caption("Mit einem Klick werden zuerst die aktuellen Marktguru-Angebote geprüft und anschließend direkt dein Wochenplan erstellt.")
 
 elif page == "Einkaufsliste":
     st.markdown('<div class="et-header"><h1>Einkaufsliste</h1><p>Alle Zutaten aus deinem Wochenplan, nach Menge zusammengefasst.</p></div>', unsafe_allow_html=True)
