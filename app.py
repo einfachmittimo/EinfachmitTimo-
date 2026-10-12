@@ -542,7 +542,7 @@ elif page == "Wochenpläne":
         and not st.session_state.week_offer_scan_error
     )
 
-    if st.button("1. Aktuelle Angebote abfragen", type="primary", use_container_width=True, key="scan_week_offers"):
+    if st.button("✨ Angebote prüfen & Wochenplan erstellen", type="primary", use_container_width=True, key="scan_week_offers"):
         if not re.fullmatch(r"\d{5}", offer_snapshot["postcode"]):
             st.session_state.week_offer_scan_error = "Bitte gib eine gültige fünfstellige Postleitzahl ein."
             st.session_state.week_offer_scan = {}
@@ -599,6 +599,52 @@ elif page == "Wochenpläne":
             st.session_state.marketguru_offers = {
                 item["search_term"]: item for item in found.values()
             }
+
+            # In einem einzigen Klick: erst Angebote abfragen, danach sofort den Wochenplan daraus erstellen.
+            if not errors:
+                offered_terms = set(found.keys())
+                scored = []
+                for recipe in pool:
+                    recipe_terms = set()
+                    for ingredient in recipe.get("ingredients", []):
+                        if not isinstance(ingredient, dict):
+                            continue
+                        name = re.sub(r"\s*\([^)]*\)\s*", " ", str(ingredient.get("name") or "")).strip()
+                        normalized = re.sub(r"\s+", " ", name).casefold()
+                        if normalized:
+                            recipe_terms.add(normalized)
+                    hits = sum(1 for term in offered_terms if any(term == item or term in item or item in term for item in recipe_terms))
+                    scored.append((hits, random.random(), recipe))
+                scored.sort(key=lambda row: (row[0], row[1]), reverse=True)
+                picked = []
+                seen = set()
+                for hits, _, recipe in scored:
+                    recipe_title = title(recipe)
+                    if not recipe_title or recipe_title in seen:
+                        continue
+                    if found and hits == 0:
+                        continue
+                    picked.append(recipe)
+                    seen.add(recipe_title)
+                    if len(picked) == 7:
+                        break
+                # Wenn Angebote nicht für sieben Gerichte reichen, restliche Plätze mit passenden Rezepten auffüllen.
+                if len(picked) < 7:
+                    for _, _, recipe in scored:
+                        recipe_title = title(recipe)
+                        if recipe_title and recipe_title not in seen:
+                            picked.append(recipe)
+                            seen.add(recipe_title)
+                        if len(picked) == 7:
+                            break
+                if len(picked) == 7:
+                    st.session_state.week_plan = {TAGE[i]: title(recipe) for i, recipe in enumerate(picked)}
+                    st.session_state.week_plan_offer_hits = {
+                        title(recipe): next((hits for hits, _, item in scored if title(item) == title(recipe)), 0)
+                        for recipe in picked
+                    }
+                    st.session_state.shopping_checked = set()
+                    st.session_state.marketguru_error = ""
         st.rerun()
 
     if st.session_state.week_offer_scan_error:
@@ -622,58 +668,9 @@ elif page == "Wochenpläne":
         else:
             st.info("Für die geprüften Zutaten wurden bei diesem Markt keine passenden Angebote gefunden. Du kannst trotzdem einen normalen Wochenplan aus deiner Rezeptdatenbank erstellen.")
 
-        if st.button("2. Wochenplan anhand der Angebote erstellen", type="primary", use_container_width=True, key="create_offer_week_plan"):
-            # Treffer werden pro Rezept anhand der tatsächlich geprüften Zutaten bewertet.
-            offered_terms = set(scanned_offers.keys())
-            scored = []
-            for recipe in pool:
-                recipe_terms = set()
-                for ingredient in recipe.get("ingredients", []):
-                    if not isinstance(ingredient, dict):
-                        continue
-                    name = re.sub(r"\s*\([^)]*\)\s*", " ", str(ingredient.get("name") or "")).strip()
-                    normalized = re.sub(r"\s+", " ", name).casefold()
-                    if normalized:
-                        recipe_terms.add(normalized)
-                # Sucht sowohl exakte Treffer als auch Zutaten, deren Bezeichnung einen Suchbegriff enthält.
-                hits = sum(1 for term in offered_terms if any(term == item or term in item or item in term for item in recipe_terms))
-                scored.append((hits, random.random(), recipe))
-            scored.sort(key=lambda row: (row[0], row[1]), reverse=True)
-            picked = []
-            seen = set()
-            for hits, _, recipe in scored:
-                recipe_title = title(recipe)
-                if not recipe_title or recipe_title in seen:
-                    continue
-                if scanned_offers and hits == 0:
-                    continue
-                picked.append(recipe)
-                seen.add(recipe_title)
-                if len(picked) == 7:
-                    break
-            # Falls weniger als sieben Rezepte über Angebotszutaten abgedeckt sind, ergänze passend zur Ernährungsform.
-            if len(picked) < 7:
-                for _, _, recipe in scored:
-                    recipe_title = title(recipe)
-                    if recipe_title and recipe_title not in seen:
-                        picked.append(recipe)
-                        seen.add(recipe_title)
-                    if len(picked) == 7:
-                        break
-            if len(picked) < 7:
-                st.error("Es konnten nicht sieben unterschiedliche Gerichte gefunden werden. Bitte Ernährungsform ändern.")
-            else:
-                st.session_state.week_plan = {TAGE[i]: title(recipe) for i, recipe in enumerate(picked)}
-                st.session_state.week_plan_offer_hits = {
-                    title(recipe): next((hits for hits, _, item in scored if title(item) == title(recipe)), 0)
-                    for recipe in picked
-                }
-                st.session_state.shopping_checked = set()
-                st.session_state.marketguru_offers = {item["search_term"]: item for item in scanned_offers.values()}
-                st.session_state.marketguru_error = ""
-                st.rerun()
+
     else:
-        st.caption("Erst werden die aktuellen Marktguru-Angebote für deinen Markt und deine PLZ abgefragt. Danach kannst du daraus deinen Wochenplan erstellen.")
+        st.caption("Mit einem Klick werden zuerst die aktuellen Marktguru-Angebote geprüft und anschließend direkt dein Wochenplan erstellt.")
 
     # Absichtlich direkt unter dem Erstellen-Button: keine manuelle Wochenplan-Eingabe und kein Speichern-Button.
     st.markdown("### Dein erstellter Wochenplan")
