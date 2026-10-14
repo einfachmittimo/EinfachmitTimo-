@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 """
-EinfachmitTimo – Essensplaner FINAL DESIGN
-Warmes professionelles Theme, Banner, größere Kacheln, Wochenplan mit Auswahl.
-
-Lokal starten:
-    pip install streamlit requests pillow
-    streamlit run app_final.py
+EinfachmitTimo – FINALES DESIGN
+Großer Banner, kompakte Cards, modernes Layout
 """
 
 import json
@@ -14,9 +10,7 @@ import requests
 import streamlit as st
 from pathlib import Path
 from PIL import Image
-from datetime import datetime, timedelta
 
-# ---- Konfiguration ----
 RECIPES_FILE = Path(__file__).parent / "recipes.json"
 PORTRAIT_FILE = Path(__file__).parent / "timo_portrait.png"
 API_URL = "https://api.marktguru.de/api/v1/offers/search"
@@ -47,82 +41,107 @@ DIET_OPTIONEN = {
     "Vegan": {"vegan"},
     "Pescetarisch": {"vegan", "vegetarisch", "fisch"},
 }
-KATEGORIEN = ["Frühstück", "Mittagessen", "Abendessen", "Soßen"]
+KATEGORIEN = ["Frühstück", "Mittagessen", "Abendessen", "Soßen", "Dessert"]
 
 # ============================================================
-#  STYLING – Professionelles warmes Design
+#  STYLING – Kompakt, Modern, Sauber
 # ============================================================
 st.set_page_config(page_title="EinfachmitTimo", page_icon="🍽️", layout="wide")
 
 st.markdown("""
 <style>
-    * { font-family: 'Segoe UI', Tahoma, sans-serif; }
+    * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     
     .stApp { 
-        background: linear-gradient(to bottom, #faf8f5, #f5f1ed);
+        background: #faf8f5;
         color: #2c2417;
+        padding: 0 !important;
     }
+    
+    .main { padding: 0 !important; }
+    [data-testid="stAppViewContainer"] { padding: 0 !important; }
     
     section[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #4a3f34 0%, #3d332a 100%);
-        border-right: 3px solid #d4a574;
+        border-right: 2px solid #d4a574;
     }
-    
     section[data-testid="stSidebar"] * { color: #f5f1ed !important; }
     
-    /* Header Banner */
-    .banner {
+    /* Banner - GROSS */
+    .banner-hero {
         background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%);
-        padding: 20px; border-radius: 12px; margin-bottom: 24px;
-        text-align: center; color: #2c2417; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 32px 24px; border-radius: 0;
+        text-align: center; color: #2c2417;
+        margin-bottom: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
-    .banner-title { font-size: 32px; font-weight: 800; margin: 0; }
-    .banner-sub { font-size: 13px; letter-spacing: 1.5px; opacity: 0.9; margin: 4px 0 0 0; }
+    .banner-hero-title { 
+        font-size: 40px; font-weight: 900; margin: 0; letter-spacing: 0.5px;
+    }
+    
+    .banner-hero-sub { 
+        font-size: 14px; letter-spacing: 2px; margin: 6px 0 0 0; opacity: 0.95;
+        font-weight: 500;
+    }
     
     /* Sidebar */
-    .brand { text-align: center; padding: 16px 0; border-bottom: 1px solid #5a4d42; }
-    .brand-title { font-size: 20px; font-weight: 800; color: #d4a574; margin: 0; }
-    .brand-sub { font-size: 10px; letter-spacing: 1px; color: #a89080; margin: 4px 0 0 0; }
+    .brand { text-align: center; padding: 14px 0; border-bottom: 1px solid #5a4d42; }
+    .brand-title { font-size: 18px; font-weight: 800; color: #d4a574; margin: 0; }
+    .brand-sub { font-size: 9px; letter-spacing: 1px; color: #a89080; margin: 3px 0 0 0; }
     
-    .portrait-container { text-align: center; padding: 16px 0; }
-    .portrait-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #d4a574; object-fit: cover; }
+    .portrait-container { text-align: center; padding: 14px 0; }
+    .portrait-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #d4a574; object-fit: cover; }
     
     div[role="radiogroup"] > label {
-        display: block; padding: 10px 14px; margin-bottom: 5px;
+        display: block; padding: 9px 12px; margin-bottom: 4px;
         border-radius: 8px; cursor: pointer; background-color: #5a4d42;
-        color: #f5f1ed; font-size: 14px;
+        color: #f5f1ed; font-size: 13px;
     }
     div[role="radiogroup"] > label:has(input:checked) {
         background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%);
         color: #2c2417 !important; font-weight: 600;
     }
     
-    /* Rezept-Karten */
-    .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+    /* Cards für Startseite */
+    .card-main {
+        background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%);
+        border-radius: 12px; padding: 24px; text-align: center;
+        color: #2c2417; cursor: pointer; transition: all 0.3s;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
     
+    .card-main:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .card-main-icon { font-size: 36px; margin-bottom: 12px; }
+    .card-main-title { font-size: 18px; font-weight: 700; margin: 0; }
+    
+    /* Rezept-Karten */
     .recipe-card {
-        background: white; border-radius: 14px; overflow: hidden;
-        border: 1px solid #e0d5ca; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        transition: all 0.3s ease; cursor: pointer;
+        background: white; border-radius: 12px; overflow: hidden;
+        border: 1px solid #e0d5ca; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: all 0.3s; cursor: pointer;
     }
     
     .recipe-card:hover {
-        transform: translateY(-4px); box-shadow: 0 6px 20px rgba(212, 165, 116, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(212, 165, 116, 0.2);
     }
     
     .recipe-card-img {
-        font-size: 70px; text-align: center; padding: 40px 0;
+        font-size: 60px; text-align: center; padding: 32px 0;
         background: linear-gradient(135deg, #f5e6d3 0%, #ede3d6 100%);
-        min-height: 180px; display: flex; align-items: center; justify-content: center;
+        min-height: 150px; display: flex; align-items: center; justify-content: center;
     }
     
-    .recipe-card-body { padding: 16px; }
-    .recipe-card-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #2c2417; }
+    .recipe-card-body { padding: 14px; }
+    .recipe-card-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #2c2417; }
     
     .badge {
-        display: inline-block; font-size: 11px; padding: 4px 10px;
-        border-radius: 18px; margin-right: 6px; margin-bottom: 6px;
+        display: inline-block; font-size: 10px; padding: 3px 8px;
+        border-radius: 16px; margin-right: 4px; margin-bottom: 5px;
         font-weight: 600; white-space: nowrap;
     }
     
@@ -131,36 +150,28 @@ st.markdown("""
     .badge-Mittagessen { background-color: #e8f5e9; color: #558b2f; }
     .badge-Abendessen { background-color: #e3f2fd; color: #1565c0; }
     .badge-Soßen { background-color: #fff3e0; color: #e65100; }
-    .badge-diet { background-color: #f0e6d2; color: #6d5c47; font-size: 10px; }
+    .badge-Dessert { background-color: #f8e8d8; color: #b8651d; }
+    .badge-diet { background-color: #f0e6d2; color: #6d5c47; font-size: 9px; }
     .badge-deal { background-color: #d4a574; color: #2c2417; font-weight: 700; }
     
-    /* Detail-Seite */
-    .detail-container { background: white; border-radius: 14px; padding: 24px; border: 1px solid #e0d5ca; }
-    .detail-header { display: flex; gap: 24px; margin-bottom: 24px; }
-    .detail-icon { font-size: 100px; min-width: 120px; text-align: center; }
-    .detail-info h2 { margin: 0 0 12px 0; font-size: 28px; }
-    
-    /* Buttons */
     .stButton > button {
         border-radius: 10px; border: none;
         background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%);
-        color: #2c2417; font-weight: 600; padding: 10px 20px;
-        transition: all 0.2s;
+        color: #2c2417; font-weight: 600; font-size: 14px;
     }
     
     .stButton > button:hover {
         background: linear-gradient(135deg, #c98f4c 0%, #b87a2f 100%);
-        transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
-    hr { border-color: #e0d5ca; margin: 24px 0; }
+    hr { border-color: #e0d5ca; margin: 20px 0; }
     h1, h2, h3 { color: #2c2417; }
 </style>
 """, unsafe_allow_html=True)
 
 
 # ============================================================
-#  Daten laden
+#  DATEN LADEN
 # ============================================================
 def lade_rezepte():
     with open(RECIPES_FILE, encoding="utf-8") as f:
@@ -224,7 +235,7 @@ def suche_angebot(zutat: str, zip_code: str, retailers: tuple):
 
 
 # ============================================================
-#  Session State
+#  SESSION STATE
 # ============================================================
 ss = st.session_state
 ss.setdefault("nav", "Startseite")
@@ -252,7 +263,7 @@ with st.sidebar:
         try:
             img = Image.open(PORTRAIT_FILE)
             st.markdown('<div class="portrait-container">', unsafe_allow_html=True)
-            st.image(img, use_container_width=False, width=100)
+            st.image(img, use_container_width=False, width=90)
             st.markdown('</div>', unsafe_allow_html=True)
         except Exception:
             pass
@@ -268,7 +279,8 @@ with st.sidebar:
         )
         ss["portionen"] = st.number_input("Portionen", min_value=1, max_value=12, value=ss["portionen"])
         ss["ernaehrungsweise"] = st.selectbox(
-            "Ernährungsweise", options=list(DIET_OPTIONEN.keys()), index=list(DIET_OPTIONEN.keys()).index(ss["ernaehrungsweise"]),
+            "Ernährungsweise", options=list(DIET_OPTIONEN.keys()), 
+            index=list(DIET_OPTIONEN.keys()).index(ss["ernaehrungsweise"]),
         )
 
 
@@ -280,13 +292,12 @@ def angebot_fuer(name):
 
 
 def zeige_karte(rezept):
-    """Karte für Grid-Anzeige"""
     st.markdown(f"""
     <div class="recipe-card">
         <div class="recipe-card-img">{rezept['icon']}</div>
         <div class="recipe-card-body">
             <div class="recipe-card-title">{rezept['name']}</div>
-            <span class="badge badge-time">⏱ {rezept['time_min']} Min</span>
+            <span class="badge badge-time">⏱ {rezept['time_min']}m</span>
             <span class="badge badge-{rezept['category']}">{rezept['category']}</span>
             <span class="badge badge-diet">{rezept['diet']}</span>
         </div>
@@ -295,7 +306,7 @@ def zeige_karte(rezept):
     
     c1, c2 = st.columns([3, 1])
     with c1:
-        if st.button("Ansehen", key=f"ansehen_{rezept['name']}", use_container_width=True):
+        if st.button("Ansehen", key=f"view_{rezept['name']}", use_container_width=True):
             ss["selected_recipe"] = rezept["name"]
             st.rerun()
     with c2:
@@ -309,11 +320,9 @@ def zeige_karte(rezept):
 
 
 def zeige_grid(liste):
-    """Grid-Layout für Rezepte"""
     if not liste:
         st.info("Keine Rezepte gefunden.")
         return
-    
     cols = st.columns(3, gap="large")
     for idx, rezept in enumerate(liste):
         with cols[idx % 3]:
@@ -321,25 +330,12 @@ def zeige_grid(liste):
 
 
 def zeige_detail(rezept):
-    """Detail-Ansicht mit großem Layout"""
     if st.button("← Zurück"):
         ss["selected_recipe"] = None
         st.rerun()
     
-    st.markdown(f"""
-    <div class="detail-container">
-        <div class="detail-header">
-            <div class="detail-icon">{rezept['icon']}</div>
-            <div class="detail-info">
-                <h2 style="margin-bottom: 12px;">{rezept['name']}</h2>
-                <span class="badge badge-time">⏱ {rezept['time_min']} Min</span>
-                <span class="badge badge-{rezept['category']}">{rezept['category']}</span>
-                <span class="badge badge-diet">{rezept['difficulty']}</span>
-                <span class="badge badge-diet">{rezept['diet']}</span>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"## {rezept['icon']} {rezept['name']}")
+    st.markdown(f"⏱ {rezept['time_min']} Min • {rezept['category']} • {rezept['difficulty']} • {rezept['diet']}")
     
     portionen = ss["portionen"]
     basis = rezept.get("base_servings", 4)
@@ -348,7 +344,7 @@ def zeige_detail(rezept):
     col1, col2 = st.columns([1, 1], gap="large")
 
     with col1:
-        st.markdown(f"### Zutaten *(für {portionen} Portionen)*")
+        st.markdown(f"### Zutaten *(für {portionen})*")
         for z in rezept["ingredients"]:
             name = zutat_name(z)
             if isinstance(z, dict):
@@ -358,9 +354,7 @@ def zeige_detail(rezept):
                 mengen_text = ""
             angebot = angebot_fuer(name)
             if angebot:
-                st.markdown(
-                    f"- **{mengen_text} {name}** 🏷️ *{angebot['preis']}€ {angebot['haendler']}*"
-                )
+                st.markdown(f"- **{mengen_text} {name}** 🏷️ *{angebot['preis']}€ {angebot['haendler']}*")
             else:
                 st.markdown(f"- {mengen_text} {name}")
 
@@ -369,17 +363,15 @@ def zeige_detail(rezept):
         if rezept.get("steps"):
             for i, step in enumerate(rezept["steps"], start=1):
                 st.markdown(f"**{i}.** {step}")
-        else:
-            st.caption("Keine Schritte hinterlegt.")
 
     st.divider()
-    st.markdown("### Nährwerte pro Portion *(geschätzt)*")
+    st.markdown("### Nährwerte *(pro Portion)*")
     n1, n2, n3, n4, n5 = st.columns(5)
-    n1.metric("🔥 Kalorien", f"{rezept.get('kcal', '–')} kcal")
-    n2.metric("🥩 Eiweiß", f"{rezept.get('protein', '–')} g")
-    n3.metric("🍞 Kohlenhydrate", f"{rezept.get('carbs', '–')} g")
-    n4.metric("🥑 Fett", f"{rezept.get('fett', '–')} g")
-    n5.metric("🌿 Ballaststoffe", f"{rezept.get('ballaststoffe', '–')} g")
+    n1.metric("Kalorien", f"{rezept.get('kcal', '–')}")
+    n2.metric("Eiweiß", f"{rezept.get('protein', '–')}g")
+    n3.metric("KH", f"{rezept.get('carbs', '–')}g")
+    n4.metric("Fett", f"{rezept.get('fett', '–')}g")
+    n5.metric("Fasern", f"{rezept.get('ballaststoffe', '–')}g")
 
 
 def filter_und_suche(liste, kategorie, suchtext, diet_filter):
@@ -398,8 +390,6 @@ def filter_und_suche(liste, kategorie, suchtext, diet_filter):
 # ============================================================
 #  SEITEN
 # ============================================================
-
-# Detail-Ansicht priorisiert
 if ss["selected_recipe"] is not None:
     aktuelles = next((r for r in rezepte if r["name"] == ss["selected_recipe"]), None)
     if aktuelles:
@@ -408,26 +398,29 @@ if ss["selected_recipe"] is not None:
         ss["selected_recipe"] = None
 
 elif ss["nav"] == "Startseite":
-    st.markdown('<div class="banner"><div class="banner-title">🍽️ EinfachmitTimo</div><div class="banner-sub">EINFACH GUTES ESSEN</div></div>', unsafe_allow_html=True)
-    st.markdown("### Willkommen!")
-    st.write("Dein Essensplaner mit aktuellen Aldi- & Lidl-Angeboten. Wähle eine Option:")
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">🍽️ EinfachmitTimo</div><div class="banner-hero-sub">EINFACH GUTES ESSEN</div></div>', unsafe_allow_html=True)
+    
+    st.write("Dein Essensplaner mit Aldi- & Lidl-Angeboten. Wähle eine Option:")
     
     c1, c2, c3 = st.columns(3, gap="large")
+    
     with c1:
-        st.markdown("**📖 Rezepte**")
+        st.markdown('<div class="card-main"><div class="card-main-icon">📖</div><div class="card-main-title">Rezepte</div></div>', unsafe_allow_html=True)
         if st.button("Durchstöbern", key="btn_rezepte", use_container_width=True):
             ss["nav"] = "Rezepte"; st.rerun()
+    
     with c2:
-        st.markdown("**📋 Wochenplan**")
+        st.markdown('<div class="card-main"><div class="card-main-icon">📋</div><div class="card-main-title">Wochenplan</div></div>', unsafe_allow_html=True)
         if st.button("Erstellen", key="btn_plan", use_container_width=True):
             ss["nav"] = "Wochenplan"; st.rerun()
+    
     with c3:
-        st.markdown("**❤️ Favoriten**")
+        st.markdown('<div class="card-main"><div class="card-main-icon">❤️</div><div class="card-main-title">Favoriten</div></div>', unsafe_allow_html=True)
         if st.button("Ansehen", key="btn_fav", use_container_width=True):
             ss["nav"] = "Favoriten"; st.rerun()
 
 elif ss["nav"] == "Rezepte":
-    st.markdown('<div class="banner"><div class="banner-title">Alle Rezepte</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">📖 Alle Rezepte</div></div>', unsafe_allow_html=True)
     
     c1, c2 = st.columns([3, 1])
     with c1:
@@ -448,13 +441,13 @@ elif ss["nav"] == "Rezepte":
             zeige_grid(gefiltert)
 
 elif ss["nav"] == "Favoriten":
-    st.markdown('<div class="banner"><div class="banner-title">❤️ Deine Favoriten</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">❤️ Deine Favoriten</div></div>', unsafe_allow_html=True)
     favoriten = [r for r in rezepte if r.get("favorite")]
     zeige_grid(favoriten)
 
 elif ss["nav"] == "Kategorien":
-    st.markdown('<div class="banner"><div class="banner-title">Kategorien</div></div>', unsafe_allow_html=True)
-    cols = st.columns(4, gap="large")
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">Kategorien</div></div>', unsafe_allow_html=True)
+    cols = st.columns(len(KATEGORIEN), gap="large")
     for col, kat in zip(cols, KATEGORIEN):
         with col:
             anzahl = len([r for r in rezepte if r["category"] == kat])
@@ -464,7 +457,7 @@ elif ss["nav"] == "Kategorien":
                 st.rerun()
 
 elif ss["nav"] == "Suche":
-    st.markdown('<div class="banner"><div class="banner-title">🔍 Suche</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">🔍 Suche</div></div>', unsafe_allow_html=True)
     suchtext = st.text_input("Rezept oder Zutat suchen")
     if suchtext:
         ergebnisse = filter_und_suche(rezepte, "Alle", suchtext, ss["ernaehrungsweise"])
@@ -472,27 +465,34 @@ elif ss["nav"] == "Suche":
         zeige_grid(ergebnisse)
 
 elif ss["nav"] == "Wochenplan":
-    st.markdown('<div class="banner"><div class="banner-title">📋 Wochenplan</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">📋 Wochenplan</div></div>', unsafe_allow_html=True)
     
-    c1, c2, c3 = st.columns([1, 1, 2])
+    c1, c2, c3, c4 = st.columns([1, 1, 1, 2])
     with c1:
-        anzahl = st.slider("Rezepte", 3, 15, 7)
+        anzahl = st.slider("Rezepte", 3, 15, 7, label_visibility="collapsed")
     with c2:
         ss["wochenplan_choice"] = st.radio(
-            "Angebote für:",
+            "Woche:",
             ["diese_woche", "naechste_woche"],
-            format_func=lambda x: "Diese Woche" if x == "diese_woche" else "Nächste Woche",
+            format_func=lambda x: "Diese" if x == "diese_woche" else "Nächste",
             label_visibility="collapsed"
         )
     with c3:
+        ss["retailer_auswahl"] = st.multiselect(
+            "Märkte:",
+            options=["lidl", "aldi-sued", "aldi-nord"],
+            default=ss["retailer_auswahl"],
+            label_visibility="collapsed"
+        )
+    with c4:
         starten = st.button("🔍 Plan erstellen", type="primary", use_container_width=True)
     
     if starten:
         if not ss["retailer_auswahl"]:
-            st.error("Märkte in Einstellungen auswählen!")
+            st.error("Mindestens einen Markt auswählen!")
         else:
             alle_namen = sorted({zutat_name(z) for r in rezepte for z in r["ingredients"]})
-            fortschritt = st.progress(0, text="Angebote suchen...")
+            fortschritt = st.progress(0, text="Suche Angebote...")
             angebot_je_zutat = {}
             for idx, name in enumerate(alle_namen):
                 treffer = suche_angebot(name, ss["zip_code"], tuple(ss["retailer_auswahl"]))
@@ -523,10 +523,10 @@ elif ss["nav"] == "Wochenplan":
             n = min(anzahl, len(gefiltert))
             auswahl = [gefiltert[(offset + i) % len(gefiltert)] for i in range(n)]
             
-            wochen_text = "Diese Woche" if ss["wochenplan_choice"] == "diese_woche" else "Nächste Woche"
-            st.subheader(f"Top {n} Rezepte · {wochen_text} · {ss['portionen']} Portionen")
+            wochen = "Diese Woche" if ss["wochenplan_choice"] == "diese_woche" else "Nächste Woche"
+            st.subheader(f"Top {n} • {wochen} • {ss['portionen']} Portionen")
             
-            if len(gefiltert) > n and st.button("🔀 Andere vorschlagen", use_container_width=True):
+            if len(gefiltert) > n and st.button("🔀 Andere", use_container_width=True):
                 ss["offset"] = offset + n
                 st.rerun()
             
@@ -556,12 +556,9 @@ elif ss["nav"] == "Wochenplan":
                 im_angebot = "🏷️" if name in ss["angebot_je_zutat"] else ""
                 cols[idx % 3].checkbox(f"{mengen_text} {name} {im_angebot}", key=f"item_{name}")
     else:
-        st.info("Klick oben auf 'Plan erstellen'")
+        st.info("Klick oben auf 'Plan erstellen' um zu starten")
 
 elif ss["nav"] == "Über":
-    st.markdown('<div class="banner"><div class="banner-title">Über EinfachmitTimo</div></div>', unsafe_allow_html=True)
-    st.write(
-        "Dieser Essensplaner gleicht deine Rezeptsammlung mit aktuellen "
-        "Aldi- & Lidl-Angeboten ab und schlägt passende Gerichte vor."
-    )
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">Über EinfachmitTimo</div></div>', unsafe_allow_html=True)
+    st.write("Dieser Essensplaner gleicht deine Rezeptsammlung mit aktuellen Aldi- & Lidl-Angeboten ab.")
     st.caption("Angebote via inoffizielle Marktguru-API (privat nur)")
