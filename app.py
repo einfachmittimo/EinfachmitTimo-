@@ -403,34 +403,35 @@ elif ss["nav"] == "Startseite":
     
     st.write("Dein Essensplaner mit Aldi- & Lidl-Angeboten. Wähle eine Option:")
     
-    st.markdown("""
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
-        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 24px; text-align: center; color: #2c2417;">
-            <div style="font-size: 36px; margin-bottom: 12px;">📖</div>
-            <div style="font-size: 18px; font-weight: 700;">Rezepte</div>
-        </div>
-        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 24px; text-align: center; color: #2c2417;">
-            <div style="font-size: 36px; margin-bottom: 12px;">📋</div>
-            <div style="font-size: 18px; font-weight: 700;">Wochenplan</div>
-        </div>
-        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 24px; text-align: center; color: #2c2417;">
-            <div style="font-size: 36px; margin-bottom: 12px;">❤️</div>
-            <div style="font-size: 18px; font-weight: 700;">Favoriten</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    c1, c2, c3 = st.columns(3, gap="large")
+    c1, c2, c3 = st.columns(3, gap="medium")
     
     with c1:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 20px; text-align: center; color: #2c2417; margin-bottom: 10px;">
+            <div style="font-size: 36px; margin-bottom: 10px;">📖</div>
+            <div style="font-size: 16px; font-weight: 700;">Rezepte</div>
+        </div>
+        """, unsafe_allow_html=True)
         if st.button("Durchstöbern", key="btn_rezepte", use_container_width=True):
             ss["nav"] = "Rezepte"; st.rerun()
     
     with c2:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 20px; text-align: center; color: #2c2417; margin-bottom: 10px;">
+            <div style="font-size: 36px; margin-bottom: 10px;">📋</div>
+            <div style="font-size: 16px; font-weight: 700;">Wochenplan</div>
+        </div>
+        """, unsafe_allow_html=True)
         if st.button("Erstellen", key="btn_plan", use_container_width=True):
             ss["nav"] = "Wochenplan"; st.rerun()
     
     with c3:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 20px; text-align: center; color: #2c2417; margin-bottom: 10px;">
+            <div style="font-size: 36px; margin-bottom: 10px;">❤️</div>
+            <div style="font-size: 16px; font-weight: 700;">Favoriten</div>
+        </div>
+        """, unsafe_allow_html=True)
         if st.button("Ansehen", key="btn_fav", use_container_width=True):
             ss["nav"] = "Favoriten"; st.rerun()
 
@@ -489,10 +490,11 @@ elif ss["nav"] == "Wochenplan":
         ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"], label_visibility="collapsed")
     with c3:
         ss["wochenplan_choice"] = st.radio(
-            "Woche:",
+            "Angebote:",
             ["diese_woche", "naechste_woche"],
-            format_func=lambda x: "Diese" if x == "diese_woche" else "Nächste",
-            label_visibility="collapsed"
+            format_func=lambda x: "Angebote aus dieser Woche" if x == "diese_woche" else "Angebote der nächsten Woche",
+            label_visibility="collapsed",
+            horizontal=True
         )
     with c4:
         ss["retailer_auswahl"] = st.multiselect(
