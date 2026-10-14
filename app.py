@@ -211,11 +211,11 @@ def formatiere_menge(amount, unit):
     return f"{amount} {unit}"
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(ttl=7200, show_spinner=False)
 def suche_angebot(zutat: str, zip_code: str, retailers: tuple):
-    params = {"as": "web", "limit": 10, "offset": 0, "q": zutat, "zipCode": zip_code}
+    params = {"as": "web", "limit": 5, "offset": 0, "q": zutat, "zipCode": zip_code}
     try:
-        r = requests.get(API_URL, headers=HEADERS, params=params, timeout=10)
+        r = requests.get(API_URL, headers=HEADERS, params=params, timeout=8)
         r.raise_for_status()
         data = r.json()
     except Exception:
@@ -229,6 +229,7 @@ def suche_angebot(zutat: str, zip_code: str, retailers: tuple):
             if adv.get("uniqueName", "") in retailers:
                 treffer.append({"beschreibung": result.get("description", ""),
                                  "preis": preis, "haendler": adv.get("name", "")})
+                break  # Nur erste Markt-Option
     if not treffer:
         return None
     return min(treffer, key=lambda t: t["preis"])
@@ -481,43 +482,51 @@ elif ss["nav"] == "Suche":
 elif ss["nav"] == "Wochenplan":
     st.markdown('<div class="banner-hero"><div class="banner-hero-title">📋 Wochenplan</div></div>', unsafe_allow_html=True)
     
-    c1, c2, c3, c4 = st.columns([1, 1, 1, 2])
+    c1, c2, c3, c4, c5 = st.columns([0.8, 0.8, 1, 1, 1.5])
     with c1:
         anzahl = st.slider("Rezepte", 3, 15, 7, label_visibility="collapsed")
     with c2:
+        ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"], label_visibility="collapsed")
+    with c3:
         ss["wochenplan_choice"] = st.radio(
             "Woche:",
             ["diese_woche", "naechste_woche"],
             format_func=lambda x: "Diese" if x == "diese_woche" else "Nächste",
             label_visibility="collapsed"
         )
-    with c3:
+    with c4:
         ss["retailer_auswahl"] = st.multiselect(
             "Märkte:",
             options=["lidl", "aldi-sued", "aldi-nord"],
             default=ss["retailer_auswahl"],
             label_visibility="collapsed"
         )
-    with c4:
+    with c5:
         starten = st.button("🔍 Plan erstellen", type="primary", use_container_width=True)
     
     if starten:
         if not ss["retailer_auswahl"]:
             st.error("Mindestens einen Markt auswählen!")
         else:
-            alle_namen = sorted({zutat_name(z) for r in rezepte for z in r["ingredients"]})
+            # Nur Top-Zutaten suchen (max 5 pro Rezept)
+            alle_top_zutaten = set()
+            for r in rezepte:
+                top_zutaten = [zutat_name(z) for z in r["ingredients"][:5]]
+                alle_top_zutaten.update(top_zutaten)
+            
+            alle_namen = sorted(alle_top_zutaten)
             fortschritt = st.progress(0, text="Suche Angebote...")
             angebot_je_zutat = {}
             for idx, name in enumerate(alle_namen):
                 treffer = suche_angebot(name, ss["zip_code"], tuple(ss["retailer_auswahl"]))
                 if treffer:
                     angebot_je_zutat[name] = treffer
-                fortschritt.progress((idx + 1) / len(alle_namen), text=f"Suche...")
+                fortschritt.progress((idx + 1) / len(alle_namen), text=f"Suche ({idx+1}/{len(alle_namen)})...")
             fortschritt.empty()
             
             bewertung = []
             for rezept in rezepte:
-                namen = [zutat_name(z) for z in rezept["ingredients"]]
+                namen = [zutat_name(z) for z in rezept["ingredients"][:5]]
                 treffer_namen = [n for n in namen if n in angebot_je_zutat]
                 bewertung.append((rezept, treffer_namen))
             bewertung.sort(key=lambda x: len(x[1]), reverse=True)
