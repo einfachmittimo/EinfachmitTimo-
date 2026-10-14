@@ -402,20 +402,34 @@ elif ss["nav"] == "Startseite":
     
     st.write("Dein Essensplaner mit Aldi- & Lidl-Angeboten. Wähle eine Option:")
     
+    st.markdown("""
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
+        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 24px; text-align: center; color: #2c2417;">
+            <div style="font-size: 36px; margin-bottom: 12px;">📖</div>
+            <div style="font-size: 18px; font-weight: 700;">Rezepte</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 24px; text-align: center; color: #2c2417;">
+            <div style="font-size: 36px; margin-bottom: 12px;">📋</div>
+            <div style="font-size: 18px; font-weight: 700;">Wochenplan</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 24px; text-align: center; color: #2c2417;">
+            <div style="font-size: 36px; margin-bottom: 12px;">❤️</div>
+            <div style="font-size: 18px; font-weight: 700;">Favoriten</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     c1, c2, c3 = st.columns(3, gap="large")
     
     with c1:
-        st.markdown('<div class="card-main"><div class="card-main-icon">📖</div><div class="card-main-title">Rezepte</div></div>', unsafe_allow_html=True)
         if st.button("Durchstöbern", key="btn_rezepte", use_container_width=True):
             ss["nav"] = "Rezepte"; st.rerun()
     
     with c2:
-        st.markdown('<div class="card-main"><div class="card-main-icon">📋</div><div class="card-main-title">Wochenplan</div></div>', unsafe_allow_html=True)
         if st.button("Erstellen", key="btn_plan", use_container_width=True):
             ss["nav"] = "Wochenplan"; st.rerun()
     
     with c3:
-        st.markdown('<div class="card-main"><div class="card-main-icon">❤️</div><div class="card-main-title">Favoriten</div></div>', unsafe_allow_html=True)
         if st.button("Ansehen", key="btn_fav", use_container_width=True):
             ss["nav"] = "Favoriten"; st.rerun()
 
