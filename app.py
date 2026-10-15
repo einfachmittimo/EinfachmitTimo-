@@ -6,13 +6,11 @@ Max 40 Zutaten, schnelles Caching, ChatGPT-Optimierungen
 """
 
 import json
-import math
-import random
 import requests
 import streamlit as st
 from pathlib import Path
 from PIL import Image
-from datetime import datetime, timedelta, date
+from datetime import timedelta, date
 
 RECIPES_FILE = Path(__file__).parent / "recipes.json"
 PORTRAIT_FILE = Path(__file__).parent / "timo_portrait.png"
@@ -30,73 +28,118 @@ st.set_page_config(page_title="EinfachmitTimo", page_icon="🍽️", layout="wid
 
 st.markdown("""
 <style>
-    * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    .stApp { background: #faf8f5; color: #2c2417; }
-    section[data-testid="stSidebar"] { background: linear-gradient(180deg, #4a3f34 0%, #3d332a 100%); }
-    section[data-testid="stSidebar"] * { color: #f5f1ed !important; }
-    .banner-hero {
-        background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%);
-        padding: 32px 24px; border-radius: 0; text-align: center;
-        color: #2c2417; margin-bottom: 24px;
-    }
-    .banner-hero-title { font-size: 40px; font-weight: 900; margin: 0; }
-    .banner-hero-sub { font-size: 14px; letter-spacing: 2px; margin: 6px 0 0 0; }
-    .recipe-card {
-        background: white; border-radius: 12px; border: 1px solid #e0d5ca;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s;
-    }
-    .recipe-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(212, 165, 116, 0.2); }
-    .recipe-card-img {
-        font-size: 60px; text-align: center; padding: 32px 0;
-        background: linear-gradient(135deg, #f5e6d3 0%, #ede3d6 100%);
-        min-height: 150px;
-    }
-    .stButton > button {
-        border-radius: 10px; border: none;
-        background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%);
-        color: #2c2417; font-weight: 600;
-    }
+:root{--cream:#f7f3ec;--paper:#fffdf9;--ink:#20201d;--muted:#77736d;--gold:#a97732;--line:#e8e0d4}
+*{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.stApp{background:var(--cream);color:var(--ink)}
+[data-testid="stHeader"]{background:rgba(247,243,236,.94)}
+.block-container{padding-top:1rem;padding-bottom:5rem;max-width:1440px}
+section[data-testid="stSidebar"]{background:linear-gradient(180deg,#171918,#292720);border-right:1px solid #39362e}
+section[data-testid="stSidebar"] *{color:#f7f3ec}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label{padding:.55rem .7rem;border-radius:12px}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover{background:#403627}
+.banner-hero{background:linear-gradient(110deg,#191b19,#292821 62%,#5b472d);padding:24px 28px;border-radius:22px;color:#fffaf0;margin:0 0 22px;border:1px solid #403a2e;box-shadow:0 8px 24px #231d141a}
+.banner-hero-title{font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-.8px;margin:0}
+.banner-hero-sub{color:#d9b77b;font-size:11px;letter-spacing:3px;margin-top:5px}
+.recipe-card{background:var(--paper);border-radius:18px;border:1px solid var(--line);box-shadow:0 3px 12px #2c24170e;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+.recipe-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #2c24171a}
+.recipe-card-img{font-size:46px;text-align:center;padding:23px 0;background:linear-gradient(135deg,#f0e3d1,#e8ddcb);min-height:92px}
+.recipe-card-meta{display:flex;gap:6px;flex-wrap:wrap;color:#61594f;font-size:11px;margin-top:8px}
+.section-title{font-size:24px;font-weight:850;letter-spacing:-.5px;margin:0 0 4px}
+.section-subtitle{color:var(--muted);font-size:13px;margin-bottom:18px}
+div[data-testid="stMetric"]{background:var(--paper);border:1px solid var(--line);padding:14px 16px;border-radius:16px}
+.stButton>button{border-radius:12px;border:1px solid #e5d6bd;background:#fffdf9;color:#3b3020;font-weight:650;min-height:42px}
+.stButton>button:hover{border-color:#b88a4a;color:#80591e;background:#fbf3e6}
+.stButton>button[kind="primary"]{background:linear-gradient(135deg,#b78948,#8f632a);color:white;border:0}
+input,textarea,[data-baseweb="select"]>div{border-radius:12px!important}
+[data-testid="stTabs"] button{border-radius:18px;padding:.45rem .9rem}
+[data-testid="stTabs"] [aria-selected="true"]{color:#8d6025!important}
+@media(max-width:760px){.block-container{padding:.7rem .7rem 5rem}.banner-hero{padding:18px;border-radius:17px;margin-bottom:16px}.banner-hero-title{font-size:25px}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:40px;font-size:13px}[data-testid="stHorizontalBlock"]{gap:.55rem}}
 </style>
 """, unsafe_allow_html=True)
 
 
 def hole_marktguru_keys():
+    """Lädt API-Zugangsdaten ausschließlich aus Streamlit-Secrets."""
     try:
-        return {
-            "x-clientkey": st.secrets["marktguru"]["clientkey"],
-            "x-apikey": st.secrets["marktguru"]["apikey"],
-        }
+        secrets = st.secrets["marktguru"]
+        clientkey = str(secrets.get("clientkey", "")).strip()
+        apikey = str(secrets.get("apikey", "")).strip()
     except Exception:
-        return {
-            "x-clientkey": "WU/RH+PMGDi+gkZer3WbMelt6zcYHSTytNB7VpTia90=",
-            "x-apikey": "8Kk+pmbf7TgJ9nVj2cXeA7P5zBGv8iuutVVMRfOfvNE=",
-        }
+        clientkey = apikey = ""
+
+    if not clientkey or not apikey:
+        return None
+    return {"x-clientkey": clientkey, "x-apikey": apikey}
 
 
 HEADERS = hole_marktguru_keys()
 
 
+def _normalisiere_rezept(r):
+    """Vereinheitlicht englische und deutsche JSON-Feldnamen, ohne Quelldatei umzuschreiben."""
+    r = dict(r)
+    r["name"] = str(r.get("name", r.get("titel", "Rezept ohne Titel")))
+    r["category"] = str(r.get("category", r.get("kategorie", "Mittagessen")))
+    r["diet"] = str(r.get("diet", r.get("ernaehrung", "vegetarisch"))).lower()
+    r["icon"] = str(r.get("icon", "🍽️"))
+    r["time_min"] = r.get("time_min", r.get("zubereitungszeit_min", r.get("zubereitungszeit", 20)))
+    r["difficulty"] = str(r.get("difficulty", r.get("schwierigkeit", "Einfach")))
+    r["steps"] = r.get("steps", r.get("zubereitung", [])) or []
+    r["ingredients"] = r.get("ingredients", r.get("zutaten", [])) or []
+    r["nutrition"] = r.get("nutrition", r.get("naehrwerte_pro_portion", {})) or {}
+    for z in r["ingredients"]:
+        if isinstance(z, dict):
+            z.setdefault("name", z.get("name", ""))
+            z.setdefault("amount", z.get("menge", ""))
+            z.setdefault("unit", z.get("einheit", ""))
+    # Kompatible Ernährungsbegriffe für Filter
+    mapping = {
+        "fleisch": "fleisch", "fleischhaltig": "fleisch",
+        "fisch": "fisch", "pescetarisch": "fisch",
+        "vegetarisch": "vegetarisch", "vegan": "vegan",
+    }
+    r["diet"] = mapping.get(r["diet"], r["diet"])
+    r.setdefault("favorite", False)
+    return r
+
+
 def lade_rezepte():
-    with open(RECIPES_FILE, encoding="utf-8") as f:
-        rezepte = json.load(f)
-    for r in rezepte:
-        r.setdefault("favorite", False)
-        r.setdefault("category", "Mittagessen")
-        r.setdefault("icon", "🍽️")
-        r.setdefault("time_min", 20)
-        r.setdefault("difficulty", "Einfach")
-        r.setdefault("diet", "vegetarisch")
-        r.setdefault("steps", [])
-    return rezepte
+    if not RECIPES_FILE.exists():
+        st.error(f"Die Datei {RECIPES_FILE.name} wurde nicht gefunden. Bitte im selben Ordner wie app.py ablegen.")
+        st.stop()
+    try:
+        with RECIPES_FILE.open(encoding="utf-8") as f:
+            daten = json.load(f)
+    except (OSError, json.JSONDecodeError) as exc:
+        st.error(f"Rezepte konnten nicht geladen werden: {exc}")
+        st.stop()
+    if not isinstance(daten, list):
+        st.error("recipes.json muss eine JSON-Liste mit Rezepten enthalten.")
+        st.stop()
+    return [_normalisiere_rezept(r) for r in daten if isinstance(r, dict)]
 
 
 def speichere_rezepte(rezepte):
-    with open(RECIPES_FILE, "w", encoding="utf-8") as f:
-        json.dump(rezepte, f, ensure_ascii=False, indent=2)
+    """Speichert Favoriten atomar und erhält unbekannte Felder der Originaldatensätze."""
+    try:
+        with RECIPES_FILE.open(encoding="utf-8") as f:
+            original = json.load(f)
+        by_name = {str(r.get("name", r.get("titel", ""))): r for r in original if isinstance(r, dict)}
+        for r in rezepte:
+            name = r.get("name", "")
+            if name in by_name:
+                by_name[name]["favorite"] = bool(r.get("favorite", False))
+        tmp = RECIPES_FILE.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(original, ensure_ascii=False, indent=2), encoding="utf-8")
+        tmp.replace(RECIPES_FILE)
+    except (OSError, json.JSONDecodeError) as exc:
+        st.error(f"Favoriten konnten nicht gespeichert werden: {exc}")
 
 
 def zutat_name(z):
-    return z["name"] if isinstance(z, dict) else z
+    if isinstance(z, dict):
+        return str(z.get("name", z.get("zutat", "")))
+    return str(z)
 
 
 def get_week_dates(wochenplan_choice):
@@ -116,38 +159,63 @@ def get_week_dates(wochenplan_choice):
 
 @st.cache_data(ttl=900, show_spinner=False)
 def suche_angebot(zutat: str, plz: str, markt: str):
-    """Sucht ein Angebot bei einem bestimmten Markt"""
-    params = {"as": "web", "limit": 5, "offset": 0, "q": zutat, "zipCode": plz}
-    try:
-        r = requests.get(API_URL, headers=HEADERS, params=params, timeout=8)
-        r.raise_for_status()
-        data = r.json()
-    except Exception:
+    """Sucht ein Angebot. Liefert bei fehlender Konfiguration/Fehlern None."""
+    if not HEADERS:
         return None
-    
-    markt_map = {
-        "lidl": "lidl",
-        "aldi-sued": "aldi-sued",
-        "aldi-nord": "aldi-nord",
-        "edeka": "edeka",
-        "rewe": "rewe",
-        "netto": "netto",
-        "norma": "norma",
-    }
-    target = markt_map.get(markt, markt)
-    
+    params = {"as": "web", "limit": 10, "offset": 0, "q": zutat, "zipCode": plz}
+    try:
+        response = requests.get(API_URL, headers=HEADERS, params=params, timeout=(3.05, 8))
+        response.raise_for_status()
+        data = response.json()
+        if not isinstance(data, dict):
+            return None
+    except (requests.RequestException, ValueError):
+        return None
+
+    target = markt.lower()
     for result in data.get("results", []):
-        preis = result.get("price")
-        if preis is None:
+        if not isinstance(result, dict) or result.get("price") is None:
             continue
-        for adv in result.get("advertisers", []):
-            if adv.get("uniqueName", "") == target:
+        for advertiser in result.get("advertisers", []):
+            if str(advertiser.get("uniqueName", "")).lower() == target:
                 return {
-                    "beschreibung": result.get("description", ""),
-                    "preis": preis,
-                    "haendler": adv.get("name", markt),
+                    "beschreibung": str(result.get("description", "")),
+                    "preis": result.get("price"),
+                    "haendler": str(advertiser.get("name", markt)),
+                    "gueltig_von": result.get("validFrom") or result.get("startDate"),
+                    "gueltig_bis": result.get("validTo") or result.get("endDate"),
                 }
     return None
+
+
+def plz_gueltig(plz):
+    return bool(__import__("re").fullmatch(r"\d{5}", str(plz).strip()))
+
+
+def html_sicher(wert):
+    """Escaped dynamische Inhalte vor der Ausgabe in HTML."""
+    import html
+    return html.escape(str(wert), quote=True)
+
+
+def zutat_menge_einheit(z):
+    if not isinstance(z, dict):
+        return "", "", zutat_name(z)
+    menge = z.get("amount", z.get("menge", ""))
+    einheit = z.get("unit", z.get("einheit", ""))
+    name = zutat_name(z)
+    return menge, einheit, name
+
+
+def ernaehrung_kompatibel(diet, erlaubte):
+    diet = str(diet or "").lower()
+    aliases = {"fleischhaltig": "fleisch", "pescetarisch": "fisch"}
+    diet = aliases.get(diet, diet)
+    if diet in erlaubte:
+        return True
+    if diet == "vegetarisch" and "vegan" in erlaubte:
+        return False
+    return False
 
 
 # ============================================================
@@ -163,7 +231,9 @@ ss.setdefault("ernaehrungsweise", "Alles")
 ss.setdefault("wochenplan_choice", "diese_woche")
 ss.setdefault("meal_types", "Alles")
 ss.setdefault("angebote", {})  # Gefundene Angebote
-ss.setdefault("wochenplan", {})  # Generierter Plan
+ss.setdefault("wochenplan", [])  # Generierter Plan
+ss.setdefault("plan_rezepte_names", [])
+ss.setdefault("einkauf_abgehakt", [])
 
 rezepte = lade_rezepte()
 
@@ -189,12 +259,12 @@ with st.sidebar:
         except Exception:
             pass
     
-    nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Favoriten", "Kategorien", "Über"]
+    nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Einkaufsliste", "Favoriten", "Kategorien", "Über"]
     ss["nav"] = st.radio("Navigation", nav_optionen, index=nav_optionen.index(ss["nav"]), label_visibility="collapsed")
 
     st.divider()
     with st.expander("⚙️ Einstellungen"):
-        ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"])
+        ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"], max_chars=5)
         markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "netto", "norma"]
         ss["markt"] = st.selectbox("Markt", markt_optionen, index=markt_optionen.index(ss["markt"]) if ss["markt"] in markt_optionen else 0)
         ss["portionen"] = st.number_input("Portionen", min_value=1, max_value=12, value=ss["portionen"])
@@ -206,6 +276,7 @@ with st.sidebar:
 # ============================================================
 #  SEITEN
 # ============================================================
+st.markdown('<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;"><div style="font-weight:850;font-size:16px;">♨️ Einfachmit<span style="color:#a97732;">Timo</span><div style="font-size:9px;letter-spacing:2px;color:#81796e;font-weight:600;">EINFACH GUTES ESSEN</div></div><div style="font-size:12px;color:#77736d;background:#fffdf9;border:1px solid #e8e0d4;padding:8px 12px;border-radius:20px;">Dein Rezept- & Wochenplaner</div></div>', unsafe_allow_html=True)
 
 if ss["nav"] == "Startseite":
     st.markdown('<div class="banner-hero"><div class="banner-hero-title">🍽️ EinfachmitTimo</div><div class="banner-hero-sub">EINFACH GUTES ESSEN</div></div>', unsafe_allow_html=True)
@@ -228,7 +299,7 @@ if ss["nav"] == "Startseite":
             ss["nav"] = "Favoriten"; st.rerun()
 
 elif ss["nav"] == "Rezepte":
-    st.markdown('<div class="banner-hero"><div class="banner-hero-title">📖 Alle Rezepte</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Rezepte</div><div class="section-subtitle">Durchsuche deine Sammlung und speichere deine Lieblingsgerichte.</div>', unsafe_allow_html=True)
     
     suchtext = st.text_input("🔍 Suchen...", placeholder="Nach Rezepten suchen...")
     
@@ -237,10 +308,10 @@ elif ss["nav"] == "Rezepte":
     
     if suchtext:
         s = suchtext.lower()
-        gefiltert = [r for r in gefiltert if s in r["name"].lower()
+        gefiltert = [r for r in gefiltert if s in str(r.get("name", "")).lower()
                     or any(s in zutat_name(z).lower() for z in r.get("ingredients", []))]
     
-    gefiltert = [r for r in gefiltert if r.get("diet", "vegetarisch") in erlaubte_diets]
+    gefiltert = [r for r in gefiltert if ernaehrung_kompatibel(r.get("diet", "vegetarisch"), erlaubte_diets)]
     
     tabs = st.tabs(["Alle"] + KATEGORIEN)
     for tab, kat in zip(tabs, ["Alle"] + KATEGORIEN):
@@ -251,21 +322,21 @@ elif ss["nav"] == "Rezepte":
                 kat_rezepte = gefiltert
             
             if kat_rezepte:
-                cols = st.columns(3, gap="large")
+                cols = st.columns(3, gap="medium")
                 for idx, rezept in enumerate(kat_rezepte):
                     with cols[idx % 3]:
-                        st.markdown(f'<div class="recipe-card"><div class="recipe-card-img">{rezept["icon"]}</div><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">{rezept["name"]}</div><span style="display: inline-block; background: #f5e6d3; color: #7a5f35; font-size: 10px; padding: 3px 8px; border-radius: 16px; margin-right: 4px;">⏱ {rezept["time_min"]}m</span><span style="display: inline-block; background: #f0e6d2; color: #6d5c47; font-size: 10px; padding: 3px 8px; border-radius: 16px;">{rezept["diet"]}</span></div></div>', unsafe_allow_html=True)
+                        st.markdown(f'<div class="recipe-card"><div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">{html_sicher(rezept.get("name", "Rezept"))}</div><span style="display: inline-block; background: #f5e6d3; color: #7a5f35; font-size: 10px; padding: 3px 8px; border-radius: 16px; margin-right: 4px;">⏱ {rezept.get("time_min", 20)}m</span><span style="display: inline-block; background: #f0e6d2; color: #6d5c47; font-size: 10px; padding: 3px 8px; border-radius: 16px;">{rezept["diet"]}</span></div></div>', unsafe_allow_html=True)
                         
                         c1, c2 = st.columns([3, 1])
                         with c1:
-                            if st.button("Ansehen", key=f"view_{rezept['name']}", use_container_width=True):
-                                ss["selected_recipe"] = rezept["name"]
+                            if st.button("Ansehen", key=f"view_{idx}_{rezept.get('name', 'Rezept')}", use_container_width=True):
+                                ss["selected_recipe"] = rezept.get("name", "Rezept")
                                 st.rerun()
                         with c2:
                             herz = "❤️" if rezept.get("favorite") else "🤍"
-                            if st.button(herz, key=f"fav_{rezept['name']}", use_container_width=True):
+                            if st.button(herz, key=f"fav_{idx}_{rezept.get('name', 'Rezept')}", use_container_width=True):
                                 for r in rezepte:
-                                    if r["name"] == rezept["name"]:
+                                    if r.get("name") == rezept.get("name"):
                                         r["favorite"] = not r.get("favorite", False)
                                 speichere_rezepte(rezepte)
                                 st.rerun()
@@ -295,7 +366,7 @@ elif ss["nav"] == "Wochenplan":
     if starten:
         # WORKFLOW: Zuerst Angebote suchen, dann Plan generieren
         erlaubte_diets = DIET_OPTIONEN[ss["ernaehrungsweise"]]
-        plan_rezepte = [r for r in rezepte if r.get("diet", "vegetarisch") in erlaubte_diets]
+        plan_rezepte = [r for r in rezepte if ernaehrung_kompatibel(r.get("diet", "vegetarisch"), erlaubte_diets)]
         
         # Filter nach Mahlzeiten
         if ss["meal_types"] != "Alles":
@@ -304,13 +375,25 @@ elif ss["nav"] == "Wochenplan":
         # Alle Zutaten sammeln (max 40!)
         alle_zutaten = set()
         for r in plan_rezepte:
-            for z in r.get("ingredients", [])[:5]:
+            for z in r.get("ingredients", []):
                 alle_zutaten.add(zutat_name(z))
         
         alle_zutaten = sorted(alle_zutaten)[:40]
         
+        if not plz_gueltig(ss["zip_code"]):
+            st.error("Bitte gib eine gültige fünfstellige deutsche PLZ ein.")
+            st.stop()
+        if not HEADERS:
+            st.error("Marktguru-Zugangsdaten fehlen. Hinterlege clientkey und apikey unter [marktguru] in .streamlit/secrets.toml.")
+            st.stop()
+
+        # Marktguru liefert je nach Treffer keine verlässlichen Gültigkeitsdaten.
+        # Für die nächste Woche deshalb keine zukünftige Angebotsgültigkeit vortäuschen.
+        if ss["wochenplan_choice"] == "naechste_woche":
+            st.warning("Marktguru liefert nicht bei jedem Treffer ein Gültigkeitsdatum. Angebote ohne Datum können nicht sicher der nächsten Woche zugeordnet werden.")
+
         # SCHRITT 1: Angebote abfragen
-        st.info("📌 Schritt 1: Angebote suchen...")
+        st.info("Schritt 1: Angebote suchen, danach Rezepte auswählen...")
         fortschritt = st.progress(0, text="Suche Angebote...")
         angebote = {}
         
@@ -321,58 +404,62 @@ elif ss["nav"] == "Wochenplan":
             fortschritt.progress((idx + 1) / len(alle_zutaten), text=f"Suche ({idx+1}/{len(alle_zutaten)})...")
         
         fortschritt.empty()
-        st.success(f"✅ {len(angebote)} Angebote gefunden!")
+        st.success(f"{len(angebote)} passende Angebotstreffer gefunden.")
+        if alle_zutaten and not angebote:
+            st.warning("Es wurden keine passenden Angebote gefunden. Der Plan wird dann nach Rezeptnamen sortiert und nicht nach Angebotsvorteilen.")
         
         # SCHRITT 2: Plan generieren basierend auf Angeboten
         st.info("📌 Schritt 2: Wochenplan generieren...")
         
         bewertung = []
         for rezept in plan_rezepte:
-            zutaten = [zutat_name(z) for z in rezept.get("ingredients", [])[:5]]
+            zutaten = [zutat_name(z) for z in rezept.get("ingredients", [])]
             treffer = sum(1 for z in zutaten if z in angebote)
             bewertung.append((rezept, treffer))
         
-        # Sortieren nach Angeboten, aber mit Randomisierung
-        # Rezepte mit gleich vielen Angeboten werden gemischt
-        bewertung_sorted = sorted(bewertung, key=lambda x: (x[1], random.random()), reverse=True)
-        
+        # Stabil sortieren; keine zufälligen Änderungen bei jedem Neuladen.
+        bewertung_sorted = sorted(bewertung, key=lambda x: (-x[1], str(x[0].get("name", "")).casefold()))
         ss["wochenplan"] = [(r, t) for r, t in bewertung_sorted[:7]]
+        ss["plan_rezepte_names"] = [r.get("name", "") for r, _ in ss["wochenplan"]]
         ss["angebote"] = angebote
-        
-        st.success(f"✅ Wochenplan mit 7 Top-Rezepten erstellt!")
+        if not ss["wochenplan"]:
+            st.warning("Mit diesen Filtern wurden keine passenden Rezepte gefunden.")
+        else:
+            st.success(f"Wochenplan mit {len(ss['wochenplan'])} Rezepten erstellt.")
     
     if ss["wochenplan"]:
         st.markdown("### 🍽️ Dein Wochenplan")
-        st.markdown(f"**Markt:** {ss['markt'].upper()} | **PLZ:** {ss['zip_code']} | **Portionen:** {ss['portionen']}")
+        start_datum, end_datum = get_week_dates(ss["wochenplan_choice"])
+        wochen_label = "diese Woche" if ss["wochenplan_choice"] == "diese_woche" else "nächste Woche"
+        st.markdown(f"**Markt:** {ss['markt'].upper()} | **PLZ:** {ss['zip_code']} | **Portionen:** {ss['portionen']} | **Zeitraum:** {start_datum:%d.%m.}–{end_datum:%d.%m.%Y} ({wochen_label})")
         
         # Speicher aktuelle Plan-Rezept-Namen
-        if "plan_rezepte_names" not in ss:
-            ss["plan_rezepte_names"] = [r["name"] for r, _ in ss["wochenplan"]]
+        ss["plan_rezepte_names"] = [r.get("name", "") for r, _ in ss["wochenplan"]]
         
         for idx, (rezept, angebote_count) in enumerate(ss["wochenplan"]):
             col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
             with col1:
-                st.markdown(f"### {rezept['icon']} {rezept['name']}")
+                st.markdown(f"### {html_sicher(rezept.get('icon', '🍽️'))} {html_sicher(rezept.get('name', 'Rezept'))}")
                 st.caption(f"⏱ {rezept['time_min']} Min • {rezept['category']} • {angebote_count} Angebote gefunden")
             with col2:
                 if st.button("📖", key=f"detail_{idx}", help="Details anschauen"):
-                    ss["selected_recipe"] = rezept["name"]
+                    ss["selected_recipe"] = rezept.get("name", "Rezept")
                     st.rerun()
             with col3:
                 herz = "❤️" if rezept.get("favorite") else "🤍"
                 if st.button(herz, key=f"fav_plan_{idx}", help="Zu Favoriten"):
                     for r in rezepte:
-                        if r["name"] == rezept["name"]:
+                        if r.get("name") == rezept.get("name"):
                             r["favorite"] = not r.get("favorite", False)
                     speichere_rezepte(rezepte)
                     st.rerun()
             with col4:
                 if st.button("🔄", key=f"swap_{idx}", help="Austauschen"):
                     # Nächstes Rezept aus gleicher Kategorie finden
-                    kategorie = rezept["category"]
+                    kategorie = rezept.get("category", "Mittagessen")
                     andere = [r for r in rezepte 
                              if r["category"] == kategorie 
-                             and r["name"] != rezept["name"]
+                             and r.get("name") != rezept.get("name")
                              and r["name"] not in ss["plan_rezepte_names"]]
                     
                     if andere:
@@ -385,20 +472,48 @@ elif ss["nav"] == "Wochenplan":
             with col5:
                 if st.button("✕", key=f"remove_{idx}", help="Aus Plan entfernen"):
                     ss["wochenplan"].pop(idx)
-                    ss["plan_rezepte_namen"].pop(idx)
+                    ss["plan_rezepte_names"].pop(idx)
                     st.rerun()
+
+elif ss["nav"] == "Einkaufsliste":
+    st.markdown('<div class="section-title">Einkaufsliste</div><div class="section-subtitle">Zutaten aus deinem Wochenplan gesammelt an einem Ort.</div>', unsafe_allow_html=True)
+    alle = {}
+    for rezept, _treffer in ss.get("wochenplan", []):
+        for z in rezept.get("ingredients", []):
+            menge, einheit, name = zutat_menge_einheit(z)
+            name = str(name).strip()
+            if not name: continue
+            key = (name.casefold(), str(einheit).casefold())
+            try: amount_num = float(str(menge).replace(",", "."))
+            except (TypeError, ValueError): amount_num = None
+            if key not in alle: alle[key] = {"name":name,"unit":str(einheit),"amount":amount_num,"raw":str(menge)}
+            elif amount_num is not None and alle[key]["amount"] is not None: alle[key]["amount"] += amount_num
+            else: alle[key]["amount"] = None; alle[key]["raw"] = ""
+    if not alle:
+        st.info("Deine Einkaufsliste ist noch leer. Erstelle zuerst einen Wochenplan.")
+        if st.button("Zum Wochenplan", type="primary"): ss["nav"] = "Wochenplan"; st.rerun()
+    else:
+        st.metric("Zutaten auf der Liste", len(alle))
+        st.caption("Gleiche Zutaten mit derselben Einheit werden zusammengefasst.")
+        for i, item in enumerate(sorted(alle.values(), key=lambda x:x["name"].casefold())):
+            menge = item["raw"] if item["amount"] is None else str(round(item["amount"],2)).replace(".",",")
+            label = f'{item["name"]} — {menge} {item["unit"]}'.strip()
+            value = st.checkbox(label, value=label in ss["einkauf_abgehakt"], key=f"shop_{i}")
+            if value and label not in ss["einkauf_abgehakt"]: ss["einkauf_abgehakt"].append(label)
+            elif not value and label in ss["einkauf_abgehakt"]: ss["einkauf_abgehakt"].remove(label)
+        st.caption(f'{len(ss["einkauf_abgehakt"])} Zutaten abgehakt.')
 
 elif ss["nav"] == "Favoriten":
     st.markdown('<div class="banner-hero"><div class="banner-hero-title">❤️ Deine Favoriten</div></div>', unsafe_allow_html=True)
     favoriten = [r for r in rezepte if r.get("favorite")]
     
     if favoriten:
-        cols = st.columns(3, gap="large")
+        cols = st.columns(3, gap="medium")
         for idx, rezept in enumerate(favoriten):
             with cols[idx % 3]:
-                st.markdown(f'<div class="recipe-card"><div class="recipe-card-img">{rezept["icon"]}</div><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700;">{rezept["name"]}</div></div></div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="recipe-card"><div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700;">{html_sicher(rezept.get("name", "Rezept"))}</div></div></div>', unsafe_allow_html=True)
                 if st.button("Ansehen", key=f"fav_view_{rezept['name']}", use_container_width=True):
-                    ss["selected_recipe"] = rezept["name"]
+                    ss["selected_recipe"] = rezept.get("name", "Rezept")
                     st.rerun()
     else:
         st.info("Noch keine Favoriten. Markiere Rezepte mit ❤️!")
@@ -414,19 +529,26 @@ elif ss["nav"] == "Kategorien":
 elif ss["nav"] == "Über":
     st.markdown('<div class="banner-hero"><div class="banner-hero-title">Über EinfachmitTimo</div></div>', unsafe_allow_html=True)
     st.write("Dein Essensplaner mit aktuellen Aldi- & Lidl-Angeboten.")
-    st.caption("Angebote via Marktguru-API (privat)")
+    st.caption("Angebote werden über Marktguru gesucht. Ob ein Angebot in der gewählten Kalenderwoche gültig ist, wird nur angezeigt, wenn die API dazu ein Gültigkeitsdatum liefert.")
     st.metric("Rezepte gesamt", len(rezepte))
 
 # Detailansicht
 if ss.get("selected_recipe"):
-    aktuelles = next((r for r in rezepte if r["name"] == ss["selected_recipe"]), None)
+    aktuelles = next((r for r in rezepte if r.get("name") == ss["selected_recipe"]), None)
     if aktuelles:
         if st.button("← Zurück"):
             ss["selected_recipe"] = None
             st.rerun()
         
-        st.markdown(f"## {aktuelles['icon']} {aktuelles['name']}")
-        st.caption(f"⏱ {aktuelles['time_min']} Min | {aktuelles['category']} | {aktuelles['difficulty']} | {aktuelles['diet']}")
+        st.markdown(f"## {html_sicher(aktuelles.get('icon', '🍽️'))} {html_sicher(aktuelles.get('name', 'Rezept'))}")
+        st.caption(f"⏱ {aktuelles.get('time_min', 20)} Min | {aktuelles.get('category', 'Mittagessen')} | {aktuelles.get('difficulty', 'Einfach')} | {aktuelles.get('diet', 'vegetarisch')}")
+        portions_basis = aktuelles.get("portionen", aktuelles.get("portions", 4))
+        try:
+            portions_basis = max(1, int(portions_basis))
+        except (TypeError, ValueError):
+            portions_basis = 4
+        faktor = ss["portionen"] / portions_basis
+        st.caption(f"Zutatenmengen angepasst auf {ss['portionen']} Portion(en).")
         
         c1, c2 = st.columns(2, gap="large")
         with c1:
@@ -434,12 +556,28 @@ if ss.get("selected_recipe"):
             for z in aktuelles.get("ingredients", []):
                 name = zutat_name(z)
                 if isinstance(z, dict):
-                    menge = z["amount"]
-                    unit = z["unit"]
-                    st.write(f"- {menge} {unit} {name}")
+                    menge, unit, name = zutat_menge_einheit(z)
+                    try:
+                        menge_anzeige = float(str(menge).replace(",", ".")) * faktor
+                        menge_anzeige = int(menge_anzeige) if menge_anzeige.is_integer() else round(menge_anzeige, 2)
+                        menge = str(menge_anzeige).replace(".", ",")
+                    except (TypeError, ValueError):
+                        pass
+                    st.write(f"- {menge} {unit} {name}".strip())
                 else:
                     st.write(f"- {name}")
         
+        nutrition = aktuelles.get("nutrition", {})
+        if nutrition:
+            st.markdown("### Nährwerte pro Portion")
+            if isinstance(nutrition, dict):
+                ncols = st.columns(min(4, max(1, len(nutrition))))
+                for col, (label, value) in zip(ncols, nutrition.items()):
+                    with col:
+                        st.metric(str(label).replace("_", " ").capitalize(), str(value))
+            else:
+                st.write(nutrition)
+
         with c2:
             st.markdown("### Zubereitung")
             for i, step in enumerate(aktuelles.get("steps", []), 1):
