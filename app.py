@@ -120,12 +120,87 @@ def lade_rezepte():
 
 
 def rezeptbild_pfad(rezept):
-    """Liefert ein lokales Rezeptfoto, falls für die Rezept-ID vorhanden."""
+    """Findet ein lokales Rezeptbild anhand von ID oder Bildangabe.
+
+    Unterstützt Bilder im Projekt-Hauptordner sowie in üblichen Bildordnern.
+    Dateiendungen und Groß-/Kleinschreibung werden berücksichtigt.
+    """
+    basis = Path(__file__).resolve().parent
+    endungen = {".jpg", ".jpeg", ".png", ".webp", ".jfif"}
+
+    bildangaben = []
+    for feld in ("image", "bild", "image_path", "bild_pfad", "photo", "foto", "filename"):
+        wert = rezept.get(feld)
+        if isinstance(wert, str) and wert.strip():
+            bildangaben.append(wert.strip())
+
     rezept_id = str(rezept.get("id", "")).strip()
-    if rezept_id:
-        bild = Path(__file__).parent / "assets" / "recipes" / f"{rezept_id}.jpg"
-        if bild.is_file():
-            return bild
+    suchnamen = []
+    for wert in bildangaben + ([rezept_id] if rezept_id else []):
+        if "://" in wert:
+            continue
+        pfad = Path(wert)
+        suchnamen.append(pfad.name)
+        if pfad.suffix:
+            suchnamen.append(pfad.stem)
+
+    ordner = [
+        basis,
+        basis / "assets" / "recipes",
+        basis / "assets",
+        basis / "images" / "recipes",
+        basis / "images",
+        basis / "static" / "images",
+        basis / "static",
+        basis / "recipe_images",
+        basis / "recipe-images",
+        basis / "media",
+    ]
+
+    for suchname in suchnamen:
+        kandidat = Path(suchname)
+        if kandidat.is_absolute():
+            kandidaten = [kandidat]
+        else:
+            kandidaten = []
+            for ordner_pfad in ordner:
+                if kandidat.suffix.lower() in endungen:
+                    kandidaten.append(ordner_pfad / kandidat.name)
+                else:
+                    kandidaten.extend(
+                        ordner_pfad / f"{kandidat.name}{endung}"
+                        for endung in (".jpg", ".jpeg", ".png", ".webp", ".jfif")
+                    )
+        for bild in kandidaten:
+            try:
+                if bild.is_file() and bild.suffix.lower() in endungen:
+                    return bild
+            except OSError:
+                continue
+
+    # Fallback für verschachtelte Ordner und Endungen wie "102.JPG".
+    ordner_zum_scannen = [
+        basis, basis / "assets", basis / "images", basis / "static",
+        basis / "recipe_images", basis / "recipe-images", basis / "media",
+    ]
+    gesuchte_stems = {Path(n).stem.casefold() for n in suchnamen if n}
+    for wurzel in ordner_zum_scannen:
+        if not wurzel.is_dir():
+            continue
+        try:
+            for bild in wurzel.rglob("*"):
+                if not bild.is_file() or bild.suffix.lower() not in endungen:
+                    continue
+                if any(
+                    teil in {".git", ".venv", "venv", "__pycache__", "node_modules"}
+                    for teil in bild.parts
+                ):
+                    continue
+                if bild.stem.casefold() in gesuchte_stems:
+                    return bild
+        except OSError:
+            continue
+
     return None
 
 
