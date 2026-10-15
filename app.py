@@ -38,7 +38,7 @@ section[data-testid="stSidebar"] *{color:#f7f3ec}
 section[data-testid="stSidebar"] [data-testid="stRadio"] label{padding:.55rem .7rem;border-radius:12px}
 section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover{background:#403627}
 .banner-hero{background:linear-gradient(110deg,#191b19,#292821 62%,#5b472d);padding:24px 28px;border-radius:22px;color:#fffaf0;margin:0 0 22px;border:1px solid #403a2e;box-shadow:0 8px 24px #231d141a}
-.banner-hero-title{font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-.8px;margin:0}
+.banner-hero-title{font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-.8px;margin:0}.home-hero{padding:20px 24px;margin-bottom:16px}.home-hero .banner-hero-sub{font-size:10px}.home-recipe-title{font-weight:750;font-size:15px;line-height:1.3;padding:10px 2px 0;color:#24231f}
 .banner-hero-sub{color:#d9b77b;font-size:11px;letter-spacing:3px;margin-top:5px}
 .recipe-card{background:var(--paper);border-radius:18px;border:1px solid var(--line);box-shadow:0 3px 12px #2c24170e;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
 .recipe-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #2c24171a}
@@ -46,14 +46,14 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover{background:
 .recipe-card-meta{display:flex;gap:6px;flex-wrap:wrap;color:#61594f;font-size:11px;margin-top:8px}
 .section-title{font-size:24px;font-weight:850;letter-spacing:-.5px;margin:0 0 4px}
 .section-subtitle{color:var(--muted);font-size:13px;margin-bottom:18px}
-div[data-testid="stMetric"]{background:var(--paper);border:1px solid var(--line);padding:14px 16px;border-radius:16px}
+div[data-testid="stMetric"]{background:var(--paper);border:1px solid var(--line);padding:10px 12px;border-radius:14px;box-shadow:0 2px 8px #2c24170a}div[data-testid="stMetricLabel"]{font-size:12px}div[data-testid="stMetricValue"]{font-size:22px}
 .stButton>button{border-radius:12px;border:1px solid #e5d6bd;background:#fffdf9;color:#3b3020;font-weight:650;min-height:42px}
 .stButton>button:hover{border-color:#b88a4a;color:#80591e;background:#fbf3e6}
 .stButton>button[kind="primary"]{background:linear-gradient(135deg,#b78948,#8f632a);color:white;border:0}
 input,textarea,[data-baseweb="select"]>div{border-radius:12px!important}
 [data-testid="stTabs"] button{border-radius:18px;padding:.45rem .9rem}
 [data-testid="stTabs"] [aria-selected="true"]{color:#8d6025!important}
-@media(max-width:760px){.block-container{padding:.7rem .7rem 5rem}.banner-hero{padding:18px;border-radius:17px;margin-bottom:16px}.banner-hero-title{font-size:25px}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:40px;font-size:13px}[data-testid="stHorizontalBlock"]{gap:.55rem}}
+@media(max-width:760px){.block-container{padding:.65rem .65rem 4rem}.banner-hero{padding:16px;border-radius:16px;margin-bottom:13px}.banner-hero-title{font-size:24px}.home-hero{padding:17px 16px}.home-hero .banner-hero-sub{font-size:9px;letter-spacing:1.5px;line-height:1.6}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:38px;font-size:12px;padding:.35rem .45rem}[data-testid="stHorizontalBlock"]{gap:.45rem}div[data-testid="stMetric"]{padding:8px 8px}div[data-testid="stMetricValue"]{font-size:18px}div[data-testid="stMetricLabel"]{font-size:10px}.home-recipe-title{font-size:14px}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -117,6 +117,16 @@ def lade_rezepte():
         st.error("recipes.json muss eine JSON-Liste mit Rezepten enthalten.")
         st.stop()
     return [_normalisiere_rezept(r) for r in daten if isinstance(r, dict)]
+
+
+def rezeptbild_pfad(rezept):
+    """Liefert ein lokales Rezeptfoto, falls für die Rezept-ID vorhanden."""
+    rezept_id = str(rezept.get("id", "")).strip()
+    if rezept_id:
+        bild = Path(__file__).parent / "assets" / "recipes" / f"{rezept_id}.jpg"
+        if bild.is_file():
+            return bild
+    return None
 
 
 def speichere_rezepte(rezepte):
@@ -279,24 +289,46 @@ with st.sidebar:
 st.markdown('<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;"><div style="font-weight:850;font-size:16px;">♨️ Einfachmit<span style="color:#a97732;">Timo</span><div style="font-size:9px;letter-spacing:2px;color:#81796e;font-weight:600;">EINFACH GUTES ESSEN</div></div><div style="font-size:12px;color:#77736d;background:#fffdf9;border:1px solid #e8e0d4;padding:8px 12px;border-radius:20px;">Dein Rezept- & Wochenplaner</div></div>', unsafe_allow_html=True)
 
 if ss["nav"] == "Startseite":
-    st.markdown('<div class="banner-hero"><div class="banner-hero-title">🍽️ EinfachmitTimo</div><div class="banner-hero-sub">EINFACH GUTES ESSEN</div></div>', unsafe_allow_html=True)
-    
-    c1, c2, c3 = st.columns(3, gap="medium")
-    
-    with c1:
-        st.markdown('<div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 20px; text-align: center; color: #2c2417; margin-bottom: 10px;"><div style="font-size: 36px; margin-bottom: 10px;">📖</div><div style="font-size: 16px; font-weight: 700;">Rezepte</div></div>', unsafe_allow_html=True)
-        if st.button("Durchstöbern", key="btn_rezepte", use_container_width=True):
+    # Kompakte Startseite nach der vereinbarten Referenz: keine riesigen Kacheln,
+    # sondern kleine Aktionen und direkt sichtbare Rezeptbilder.
+    st.markdown('<div class="banner-hero home-hero"><div class="banner-hero-title">🍽️ EinfachmitTimo</div><div class="banner-hero-sub">EINFACH GUTES ESSEN · DEIN REZEPT- & WOCHENPLANER</div></div>', unsafe_allow_html=True)
+    m1, m2, m3 = st.columns(3, gap="small")
+    with m1: st.metric("Rezepte", len(rezepte))
+    with m2: st.metric("Favoriten", sum(bool(r.get("favorite")) for r in rezepte))
+    with m3: st.metric("Wochenplan", f"{len(ss.get('wochenplan', []))}/7")
+
+    st.markdown('<div class="section-title">Was möchtest du machen?</div>', unsafe_allow_html=True)
+    q1, q2, q3 = st.columns(3, gap="small")
+    with q1:
+        if st.button("🍴  Rezepte entdecken", key="btn_rezepte", use_container_width=True):
             ss["nav"] = "Rezepte"; st.rerun()
-    
-    with c2:
-        st.markdown('<div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 20px; text-align: center; color: #2c2417; margin-bottom: 10px;"><div style="font-size: 36px; margin-bottom: 10px;">📋</div><div style="font-size: 16px; font-weight: 700;">Wochenplan</div></div>', unsafe_allow_html=True)
-        if st.button("Erstellen", key="btn_plan", use_container_width=True):
+    with q2:
+        if st.button("📅  Wochenplan", key="btn_plan", use_container_width=True):
             ss["nav"] = "Wochenplan"; st.rerun()
-    
-    with c3:
-        st.markdown('<div style="background: linear-gradient(135deg, #d4a574 0%, #c98f4c 100%); border-radius: 12px; padding: 20px; text-align: center; color: #2c2417; margin-bottom: 10px;"><div style="font-size: 36px; margin-bottom: 10px;">❤️</div><div style="font-size: 16px; font-weight: 700;">Favoriten</div></div>', unsafe_allow_html=True)
-        if st.button("Ansehen", key="btn_fav", use_container_width=True):
+    with q3:
+        if st.button("♡  Favoriten", key="btn_fav", use_container_width=True):
             ss["nav"] = "Favoriten"; st.rerun()
+
+    st.markdown('<div class="section-title" style="margin-top:1.4rem">Inspiration für heute</div><div class="section-subtitle">Ein paar Ideen aus deiner Rezeptsammlung.</div>', unsafe_allow_html=True)
+    bevorzugt = ["102", "12", "221", "25", "10", "113"]
+    featured = []
+    for rid in bevorzugt:
+        match = next((r for r in rezepte if str(r.get("id", "")) == rid), None)
+        if match and match not in featured: featured.append(match)
+    if not featured: featured = rezepte[:6]
+    cols = st.columns(2, gap="medium")
+    for idx, rezept in enumerate(featured[:6]):
+        with cols[idx % 2]:
+            bild_pfad = rezeptbild_pfad(rezept)
+            if bild_pfad:
+                st.image(str(bild_pfad), use_container_width=True)
+            else:
+                st.markdown(f'<div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="home-recipe-title">{html_sicher(rezept.get("name", "Rezept"))}</div>', unsafe_allow_html=True)
+            st.caption(f"⏱ {rezept.get('time_min', 20)} Min · {rezept.get('category', 'Rezept')} · {rezept.get('nutrition', {}).get('kcal', '–')} kcal")
+            if st.button("Rezept ansehen", key=f"home_view_{rezept.get('id', idx)}", use_container_width=True):
+                ss["selected_recipe"] = rezept.get("name", "Rezept")
+                st.rerun()
 
 elif ss["nav"] == "Rezepte":
     st.markdown('<div class="section-title">Rezepte</div><div class="section-subtitle">Durchsuche deine Sammlung und speichere deine Lieblingsgerichte.</div>', unsafe_allow_html=True)
@@ -325,7 +357,12 @@ elif ss["nav"] == "Rezepte":
                 cols = st.columns(3, gap="medium")
                 for idx, rezept in enumerate(kat_rezepte):
                     with cols[idx % 3]:
-                        st.markdown(f'<div class="recipe-card"><div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">{html_sicher(rezept.get("name", "Rezept"))}</div><span style="display: inline-block; background: #f5e6d3; color: #7a5f35; font-size: 10px; padding: 3px 8px; border-radius: 16px; margin-right: 4px;">⏱ {rezept.get("time_min", 20)}m</span><span style="display: inline-block; background: #f0e6d2; color: #6d5c47; font-size: 10px; padding: 3px 8px; border-radius: 16px;">{rezept["diet"]}</span></div></div>', unsafe_allow_html=True)
+                        bild_pfad = rezeptbild_pfad(rezept)
+                        if bild_pfad:
+                            st.image(str(bild_pfad), use_container_width=True)
+                        else:
+                            st.markdown(f'<div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div>', unsafe_allow_html=True)
+                        st.markdown(f'<div class="recipe-card"><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">{html_sicher(rezept.get("name", "Rezept"))}</div><span style="display: inline-block; background: #f5e6d3; color: #7a5f35; font-size: 10px; padding: 3px 8px; border-radius: 16px; margin-right: 4px;">⏱ {rezept.get("time_min", 20)}m</span><span style="display: inline-block; background: #f0e6d2; color: #6d5c47; font-size: 10px; padding: 3px 8px; border-radius: 16px;">{html_sicher(rezept["diet"])}</span></div></div>', unsafe_allow_html=True)
                         
                         c1, c2 = st.columns([3, 1])
                         with c1:
@@ -511,7 +548,12 @@ elif ss["nav"] == "Favoriten":
         cols = st.columns(3, gap="medium")
         for idx, rezept in enumerate(favoriten):
             with cols[idx % 3]:
-                st.markdown(f'<div class="recipe-card"><div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700;">{html_sicher(rezept.get("name", "Rezept"))}</div></div></div>', unsafe_allow_html=True)
+                bild_pfad = rezeptbild_pfad(rezept)
+                if bild_pfad:
+                    st.image(str(bild_pfad), use_container_width=True)
+                else:
+                    st.markdown(f'<div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="recipe-card"><div style="padding: 14px;"><div style="font-size: 15px; font-weight: 700;">{html_sicher(rezept.get("name", "Rezept"))}</div></div></div>', unsafe_allow_html=True)
                 if st.button("Ansehen", key=f"fav_view_{rezept['name']}", use_container_width=True):
                     ss["selected_recipe"] = rezept.get("name", "Rezept")
                     st.rerun()
@@ -542,6 +584,9 @@ if ss.get("selected_recipe"):
         
         st.markdown(f"## {html_sicher(aktuelles.get('icon', '🍽️'))} {html_sicher(aktuelles.get('name', 'Rezept'))}")
         st.caption(f"⏱ {aktuelles.get('time_min', 20)} Min | {aktuelles.get('category', 'Mittagessen')} | {aktuelles.get('difficulty', 'Einfach')} | {aktuelles.get('diet', 'vegetarisch')}")
+        detail_bild = rezeptbild_pfad(aktuelles)
+        if detail_bild:
+            st.image(str(detail_bild), use_container_width=True)
         portions_basis = aktuelles.get("portionen", aktuelles.get("portions", 4))
         try:
             portions_basis = max(1, int(portions_basis))
