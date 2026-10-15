@@ -128,6 +128,10 @@ def suche_angebot(zutat: str, plz: str, markt: str):
         "lidl": "lidl",
         "aldi-sued": "aldi-sued",
         "aldi-nord": "aldi-nord",
+        "edeka": "edeka",
+        "rewe": "rewe",
+        "netto": "netto",
+        "norma": "norma",
     }
     target = markt_map.get(markt, markt)
     
@@ -189,7 +193,8 @@ with st.sidebar:
     st.divider()
     with st.expander("⚙️ Einstellungen"):
         ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"])
-        ss["markt"] = st.selectbox("Markt", ["lidl", "aldi-sued", "aldi-nord"], index=["lidl", "aldi-sued", "aldi-nord"].index(ss["markt"]))
+        markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "netto", "norma"]
+        ss["markt"] = st.selectbox("Markt", markt_optionen, index=markt_optionen.index(ss["markt"]) if ss["markt"] in markt_optionen else 0)
         ss["portionen"] = st.number_input("Portionen", min_value=1, max_value=12, value=ss["portionen"])
         ss["ernaehrungsweise"] = st.selectbox("Ernährungsweise", list(DIET_OPTIONEN.keys()), index=list(DIET_OPTIONEN.keys()).index(ss["ernaehrungsweise"]))
 
@@ -265,13 +270,14 @@ elif ss["nav"] == "Rezepte":
                 st.info("Keine Rezepte gefunden.")
 
 elif ss["nav"] == "Wochenplan":
-    st.markdown('<div class="banner-hero"><div class="banner-hero-title">📋 Wochenplan mit Angeboten</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="banner-hero"><div class="banner-hero-title">🛒 Supermarkt Angebote</div></div>', unsafe_allow_html=True)
     
     c1, c2, c3, c4 = st.columns([1, 1, 1.5, 1.5])
     with c1:
         ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"], label_visibility="collapsed")
     with c2:
-        ss["markt"] = st.selectbox("Markt", ["lidl", "aldi-sued", "aldi-nord"], index=["lidl", "aldi-sued", "aldi-nord"].index(ss["markt"]), label_visibility="collapsed")
+        markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "netto", "norma"]
+        ss["markt"] = st.selectbox("Markt", markt_optionen, index=markt_optionen.index(ss["markt"]) if ss["markt"] in markt_optionen else 0, label_visibility="collapsed")
     with c3:
         ss["wochenplan_choice"] = st.radio(
             "Angebote:",
