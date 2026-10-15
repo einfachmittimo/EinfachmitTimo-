@@ -354,35 +354,38 @@ with st.sidebar:
     components.html("""
     <script>
     (() => {
-      const isMobile = () => window.parent.matchMedia('(max-width: 768px)').matches;
-      const closeSidebar = () => {
-        if (!isMobile()) return;
+      // Streamlit rendert diese Komponente nach einer Navigation neu.
+      // sessionStorage überlebt den Rerun und erkennt dadurch den Wechsel.
+      const run = () => {
         try {
-          const doc = window.parent.document;
-          const sidebar = doc.querySelector('section[data-testid="stSidebar"]');
-          if (!sidebar || sidebar.getAttribute('aria-expanded') === 'false') return;
-          const buttons = Array.from(doc.querySelectorAll('button'));
-          const closeButton = buttons.find((button) => {
-            const label = (button.getAttribute('aria-label') || '').toLowerCase();
-            const title = (button.getAttribute('title') || '').toLowerCase();
-            return label.includes('collapse') || label.includes('close sidebar') ||
-                   title.includes('collapse') || title.includes('close sidebar');
-          });
-          if (closeButton) closeButton.click();
-        } catch (e) { /* Browser-Sandbox/Streamlit-Version unterstützt den Hook ggf. nicht. */ }
+          const host = window.parent;
+          const doc = host.document;
+          if (!host.matchMedia('(max-width: 768px)').matches) return;
+
+          const sidebar = doc.querySelector('[data-testid="stSidebar"]');
+          const nav = sidebar && sidebar.querySelector('[data-testid="stRadio"]');
+          const selected = nav && nav.querySelector('[role="radio"][aria-checked="true"]');
+          const current = selected ? selected.innerText.trim() : '';
+          if (!current) return;
+
+          const key = 'einfachmitTimo:lastNav';
+          let previous = host.sessionStorage.getItem(key);
+          host.sessionStorage.setItem(key, current);
+          if (!previous || previous === current) return;
+
+          // Prefer Streamlit's dedicated collapse button; labels differ by version/language.
+          host.setTimeout(() => {
+            const button = doc.querySelector('[data-testid="stSidebarCollapseButton"]')
+              || doc.querySelector('button[kind="header"][aria-label*="sidebar" i]')
+              || doc.querySelector('button[aria-label*="close sidebar" i]')
+              || doc.querySelector('button[title*="close sidebar" i]');
+            if (button && sidebar && sidebar.getBoundingClientRect().width > 0) button.click();
+          }, 350);
+        } catch (error) {
+          // Einige gehostete Browser blockieren den Zugriff vom Komponenten-iframe auf den Host.
+        }
       };
-      // Nur schließen, wenn sich die ausgewählte Navigation tatsächlich geändert hat.
-      // Der erste Seitenaufruf bleibt unverändert.
-      try {
-        const doc = window.parent.document;
-        const nav = doc.querySelector('section[data-testid="stSidebar"] [data-testid="stRadio"]');
-        const selected = nav && nav.querySelector('[aria-checked="true"]');
-        const current = selected ? selected.innerText.trim() : '';
-        const key = 'einfachmitTimo:lastNav';
-        const previous = window.parent.sessionStorage.getItem(key);
-        if (current) window.parent.sessionStorage.setItem(key, current);
-        if (previous && current && previous !== current) window.setTimeout(closeSidebar, 180);
-      } catch (e) { /* Browser-Sandbox/Streamlit-Version unterstützt den Hook ggf. nicht. */ }
+      run();
     })();
     </script>
     """, height=0, width=0)
