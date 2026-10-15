@@ -348,44 +348,41 @@ with st.sidebar:
     nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Einkaufsliste", "Favoriten", "Kategorien", "Über"]
     ss["nav"] = st.radio("Navigation", nav_optionen, index=nav_optionen.index(ss["nav"]), label_visibility="collapsed")
 
-    # Mobile UX: nach einer Navigationsauswahl die geöffnete Streamlit-Sidebar
-    # einklappen. Streamlit bietet dafür keine offizielle Python-API; der kleine
-    # Browser-Hook nutzt den Sidebar-Collapse-Button und läuft nur auf schmalen Displays.
+    # Mobile UX: Sidebar nach Auswahl eines Navigationspunkts schließen.
+    # Der Listener hängt direkt an den Navigationsoptionen im Streamlit-Hauptdokument.
     components.html("""
     <script>
     (() => {
-      // Streamlit rendert diese Komponente nach einer Navigation neu.
-      // sessionStorage überlebt den Rerun und erkennt dadurch den Wechsel.
-      const run = () => {
-        try {
-          const host = window.parent;
-          const doc = host.document;
-          if (!host.matchMedia('(max-width: 768px)').matches) return;
-
+      try {
+        const host = window.parent;
+        const doc = host.document;
+        const install = () => {
           const sidebar = doc.querySelector('[data-testid="stSidebar"]');
-          const nav = sidebar && sidebar.querySelector('[data-testid="stRadio"]');
-          const selected = nav && nav.querySelector('[role="radio"][aria-checked="true"]');
-          const current = selected ? selected.innerText.trim() : '';
-          if (!current) return;
-
-          const key = 'einfachmitTimo:lastNav';
-          let previous = host.sessionStorage.getItem(key);
-          host.sessionStorage.setItem(key, current);
-          if (!previous || previous === current) return;
-
-          // Prefer Streamlit's dedicated collapse button; labels differ by version/language.
-          host.setTimeout(() => {
-            const button = doc.querySelector('[data-testid="stSidebarCollapseButton"]')
-              || doc.querySelector('button[kind="header"][aria-label*="sidebar" i]')
-              || doc.querySelector('button[aria-label*="close sidebar" i]')
-              || doc.querySelector('button[title*="close sidebar" i]');
-            if (button && sidebar && sidebar.getBoundingClientRect().width > 0) button.click();
-          }, 350);
-        } catch (error) {
-          // Einige gehostete Browser blockieren den Zugriff vom Komponenten-iframe auf den Host.
-        }
-      };
-      run();
+          const radio = sidebar && sidebar.querySelector('[data-testid="stRadio"]');
+          if (!radio || radio.dataset.einfachTimoAutoClose === '1') return;
+          radio.dataset.einfachTimoAutoClose = '1';
+          radio.addEventListener('click', (event) => {
+            const option = event.target.closest('label,[role="radio"]');
+            if (!option) return;
+            // Nach dem Streamlit-Rerun schließen, sofern die Ansicht mobil ist.
+            host.setTimeout(() => {
+              try {
+                if (!host.matchMedia('(max-width: 768px)').matches) return;
+                const currentSidebar = doc.querySelector('[data-testid="stSidebar"]');
+                if (!currentSidebar || currentSidebar.getBoundingClientRect().width < 2) return;
+                const closeButton = doc.querySelector('[data-testid="stSidebarCollapseButton"]')
+                  || doc.querySelector('button[aria-label*="close sidebar" i]')
+                  || doc.querySelector('button[aria-label*="collapse sidebar" i]')
+                  || doc.querySelector('button[title*="close sidebar" i]');
+                if (closeButton) closeButton.click();
+              } catch (_) {}
+            }, 500);
+          }, true);
+        };
+        install();
+        const observer = new MutationObserver(() => install());
+        observer.observe(host.document.body, {childList: true, subtree: true});
+      } catch (_) {}
     })();
     </script>
     """, height=0, width=0)
@@ -705,44 +702,39 @@ elif ss["nav"] == "Über":
     st.caption("Angebote werden über Marktguru gesucht. Ob ein Angebot in der gewählten Kalenderwoche gültig ist, wird nur angezeigt, wenn die API dazu ein Gültigkeitsdatum liefert.")
     st.metric("Rezepte gesamt", len(rezepte))
 
-# Detailansicht
-if ss.get("selected_recipe"):
-    aktuelles = next((r for r in rezepte if r.get("name") == ss["selected_recipe"]), None)
-    if aktuelles:
-        if st.button("← Zurück"):
-            ss["selected_recipe"] = None
-            st.rerun()
-        
-        st.markdown(f"## {html_sicher(aktuelles.get('icon', '🍽️'))} {html_sicher(aktuelles.get('name', 'Rezept'))}")
-        st.caption(f"⏱ {aktuelles.get('time_min', 20)} Min | {aktuelles.get('category', 'Mittagessen')} | {aktuelles.get('difficulty', 'Einfach')} | {aktuelles.get('diet', 'vegetarisch')}")
-        detail_bild = rezeptbild_pfad(aktuelles)
-        if detail_bild:
-            st.image(str(detail_bild), use_container_width=True)
-        portions_basis = aktuelles.get("portionen", aktuelles.get("portions", 4))
-        try:
-            portions_basis = max(1, int(portions_basis))
-        except (TypeError, ValueError):
-            portions_basis = 4
-        faktor = ss["portionen"] / portions_basis
-        st.caption(f"Zutatenmengen angepasst auf {ss['portionen']} Portion(en).")
-        
-        c1, c2 = st.columns(2, gap="large")
-        with c1:
-            st.markdown("### Zutaten")
-            for z in aktuelles.get("ingredients", []):
-                name = zutat_name(z)
-                if isinstance(z, dict):
-                    menge, unit, name = zutat_menge_einheit(z)
-                    try:
-                        menge_anzeige = float(str(menge).replace(",", ".")) * faktor
-                        menge_anzeige = int(menge_anzeige) if menge_anzeige.is_integer() else round(menge_anzeige, 2)
-                        menge = str(menge_anzeige).replace(".", ",")
-                    except (TypeError, ValueError):
-                        pass
-                    st.write(f"- {menge} {unit} {name}".strip())
-                else:
-                    st.write(f"- {name}")
-        
+# Rezeptdetail als Dialogfenster statt am Seitenende anzeigen.
+@st.dialog("Rezeptdetails", width="large")
+def rezept_dialog(aktuelles):
+    st.markdown(f"## {html_sicher(aktuelles.get('icon', '🍽️'))} {html_sicher(aktuelles.get('name', 'Rezept'))}")
+    st.caption(f"⏱ {aktuelles.get('time_min', 20)} Min | {aktuelles.get('category', 'Mittagessen')} | {aktuelles.get('difficulty', 'Einfach')} | {aktuelles.get('diet', 'vegetarisch')}")
+    detail_bild = rezeptbild_pfad(aktuelles)
+    if detail_bild:
+        st.image(str(detail_bild), use_container_width=True)
+
+    portions_basis = aktuelles.get("portionen", aktuelles.get("portions", 4))
+    try:
+        portions_basis = max(1, int(portions_basis))
+    except (TypeError, ValueError):
+        portions_basis = 4
+    faktor = ss["portionen"] / portions_basis
+    st.caption(f"Zutatenmengen angepasst auf {ss['portionen']} Portion(en).")
+
+    c1, c2 = st.columns(2, gap="large")
+    with c1:
+        st.markdown("### Zutaten")
+        for z in aktuelles.get("ingredients", []):
+            if isinstance(z, dict):
+                menge, unit, name = zutat_menge_einheit(z)
+                try:
+                    menge_anzeige = float(str(menge).replace(",", ".")) * faktor
+                    menge_anzeige = int(menge_anzeige) if menge_anzeige.is_integer() else round(menge_anzeige, 2)
+                    menge = str(menge_anzeige).replace(".", ",")
+                except (TypeError, ValueError):
+                    pass
+                st.write(f"- {menge} {unit} {name}".strip())
+            else:
+                st.write(f"- {zutat_name(z)}")
+
         nutrition = aktuelles.get("nutrition", {})
         if nutrition:
             st.markdown("### Nährwerte pro Portion")
@@ -754,7 +746,18 @@ if ss.get("selected_recipe"):
             else:
                 st.write(nutrition)
 
-        with c2:
-            st.markdown("### Zubereitung")
-            for i, step in enumerate(aktuelles.get("steps", []), 1):
-                st.write(f"{i}. {step}")
+    with c2:
+        st.markdown("### Zubereitung")
+        for i, step in enumerate(aktuelles.get("steps", []), 1):
+            st.write(f"{i}. {step}")
+
+    if st.button("Schließen", key="close_recipe_dialog", use_container_width=True):
+        ss["selected_recipe"] = None
+        st.rerun()
+
+if ss.get("selected_recipe"):
+    aktuelles = next((r for r in rezepte if r.get("name") == ss["selected_recipe"]), None)
+    if aktuelles:
+        rezept_dialog(aktuelles)
+    else:
+        ss["selected_recipe"] = None
