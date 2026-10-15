@@ -348,41 +348,66 @@ with st.sidebar:
     nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Einkaufsliste", "Favoriten", "Kategorien", "Über"]
     ss["nav"] = st.radio("Navigation", nav_optionen, index=nav_optionen.index(ss["nav"]), label_visibility="collapsed")
 
-    # Mobile UX: Sidebar nach Auswahl eines Navigationspunkts schließen.
-    # Der Listener hängt direkt an den Navigationsoptionen im Streamlit-Hauptdokument.
+    # Mobile UX: Sidebar nach Navigation automatisch schließen.
+    # Delegierter Listener überlebt Streamlit-Reruns besser als ein Listener direkt am Radio.
     components.html("""
     <script>
     (() => {
       try {
         const host = window.parent;
         const doc = host.document;
-        const install = () => {
+        if (host.__einfachTimoSidebarCloseInstalled) return;
+        host.__einfachTimoSidebarCloseInstalled = true;
+
+        const isMobile = () => host.matchMedia('(max-width: 768px)').matches;
+        const isNavChoice = (target) => {
           const sidebar = doc.querySelector('[data-testid="stSidebar"]');
-          const radio = sidebar && sidebar.querySelector('[data-testid="stRadio"]');
-          if (!radio || radio.dataset.einfachTimoAutoClose === '1') return;
-          radio.dataset.einfachTimoAutoClose = '1';
-          radio.addEventListener('click', (event) => {
-            const option = event.target.closest('label,[role="radio"]');
-            if (!option) return;
-            // Nach dem Streamlit-Rerun schließen, sofern die Ansicht mobil ist.
-            host.setTimeout(() => {
-              try {
-                if (!host.matchMedia('(max-width: 768px)').matches) return;
-                const currentSidebar = doc.querySelector('[data-testid="stSidebar"]');
-                if (!currentSidebar || currentSidebar.getBoundingClientRect().width < 2) return;
-                const closeButton = doc.querySelector('[data-testid="stSidebarCollapseButton"]')
-                  || doc.querySelector('button[aria-label*="close sidebar" i]')
-                  || doc.querySelector('button[aria-label*="collapse sidebar" i]')
-                  || doc.querySelector('button[title*="close sidebar" i]');
-                if (closeButton) closeButton.click();
-              } catch (_) {}
-            }, 500);
-          }, true);
+          if (!sidebar || !target || !target.closest) return false;
+          const choice = target.closest('[data-testid="stRadio"] label, [data-testid="stRadio"] [role="radio"]');
+          return !!(choice && sidebar.contains(choice));
         };
-        install();
-        const observer = new MutationObserver(() => install());
-        observer.observe(host.document.body, {childList: true, subtree: true});
-      } catch (_) {}
+        const closeSidebar = () => {
+          if (!isMobile()) return;
+          const sidebar = doc.querySelector('[data-testid="stSidebar"]');
+          if (!sidebar || sidebar.getBoundingClientRect().width < 2) return;
+          const selectors = [
+            '[data-testid="stSidebarCollapseButton"]',
+            'button[aria-label*="close sidebar" i]',
+            'button[aria-label*="collapse sidebar" i]',
+            'button[aria-label*="sidebar schließen" i]',
+            'button[title*="close sidebar" i]',
+            'button[title*="sidebar schließen" i]'
+          ];
+          for (const selector of selectors) {
+            const button = doc.querySelector(selector);
+            if (button && button.getClientRects().length) {
+              button.click();
+              return;
+            }
+          }
+          // Fallback: Streamlit-Versionen, die den Collapse-Button ohne Test-ID rendern.
+          const buttons = Array.from(doc.querySelectorAll('button'));
+          const candidate = buttons.find((button) => {
+            const label = ((button.getAttribute('aria-label') || '') + ' ' +
+                           (button.getAttribute('title') || '') + ' ' +
+                           (button.innerText || '')).toLowerCase();
+            const rect = button.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 &&
+                   (label.includes('sidebar') || label.includes('seitenleiste')) &&
+                   (label.includes('close') || label.includes('collapse') || label.includes('schließ') || label.includes('einklapp'));
+          });
+          if (candidate) candidate.click();
+        };
+        doc.addEventListener('click', (event) => {
+          if (!isNavChoice(event.target)) return;
+          // Die Navigation aktualisiert den Streamlit-Status zuerst; danach Sidebar schließen.
+          host.setTimeout(closeSidebar, 250);
+          host.setTimeout(closeSidebar, 700);
+        }, true);
+      } catch (error) {
+        // Nicht blockierend: Die App bleibt auch dann voll nutzbar, wenn der Browser
+        // den Zugriff auf das übergeordnete Dokument einschränkt.
+      }
     })();
     </script>
     """, height=0, width=0)
