@@ -38,7 +38,7 @@ section[data-testid="stSidebar"] *{color:#f7f3ec}
 section[data-testid="stSidebar"] [data-testid="stRadio"] label{padding:.55rem .7rem;border-radius:12px}
 section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover{background:#403627}
 .banner-hero{background:linear-gradient(110deg,#191b19,#292821 62%,#5b472d);padding:24px 28px;border-radius:22px;color:#fffaf0;margin:0 0 22px;border:1px solid #403a2e;box-shadow:0 8px 24px #231d141a}
-.banner-hero-title{font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-.8px;margin:0}.home-hero{padding:20px 24px;margin-bottom:16px}.home-hero .banner-hero-sub{font-size:10px}.home-recipe-title{font-weight:750;font-size:15px;line-height:1.3;padding:10px 2px 0;color:#24231f}
+.banner-hero-title{font-size:clamp(25px,3vw,38px);font-weight:850;letter-spacing:-.8px;margin:0}.home-hero{padding:20px 24px;margin-bottom:16px}.home-hero .banner-hero-sub{font-size:10px}.home-recipe-title{font-weight:750;font-size:15px;line-height:1.3;padding:10px 2px 0;color:#24231f}.home-stats{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}.home-stat{flex:1 1 85px;background:#f0e5d5;border:1px solid #e3d2b8;border-radius:12px;padding:8px 10px;color:#5a452b;font-size:12px}.home-stat strong{display:block;font-size:18px;color:#29251f}.home-actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}.home-actions-note{font-size:12px;color:var(--muted)}.home-food-card{background:#fffdf9;border:1px solid #e8e0d4;border-radius:15px;padding:8px 8px 12px;margin-bottom:12px;overflow:hidden}.home-food-card img{border-radius:10px}
 .banner-hero-sub{color:#d9b77b;font-size:11px;letter-spacing:3px;margin-top:5px}
 .recipe-card{background:var(--paper);border-radius:18px;border:1px solid var(--line);box-shadow:0 3px 12px #2c24170e;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
 .recipe-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #2c24171a}
@@ -53,7 +53,7 @@ div[data-testid="stMetric"]{background:var(--paper);border:1px solid var(--line)
 input,textarea,[data-baseweb="select"]>div{border-radius:12px!important}
 [data-testid="stTabs"] button{border-radius:18px;padding:.45rem .9rem}
 [data-testid="stTabs"] [aria-selected="true"]{color:#8d6025!important}
-@media(max-width:760px){.block-container{padding:.65rem .65rem 4rem}.banner-hero{padding:16px;border-radius:16px;margin-bottom:13px}.banner-hero-title{font-size:24px}.home-hero{padding:17px 16px}.home-hero .banner-hero-sub{font-size:9px;letter-spacing:1.5px;line-height:1.6}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:38px;font-size:12px;padding:.35rem .45rem}[data-testid="stHorizontalBlock"]{gap:.45rem}div[data-testid="stMetric"]{padding:8px 8px}div[data-testid="stMetricValue"]{font-size:18px}div[data-testid="stMetricLabel"]{font-size:10px}.home-recipe-title{font-size:14px}}
+@media(max-width:760px){.block-container{padding:.55rem .55rem 3rem}.banner-hero{padding:16px;border-radius:16px;margin-bottom:13px}.banner-hero-title{font-size:24px}.home-hero{padding:15px 14px;margin-bottom:10px}.home-hero .banner-hero-sub{font-size:9px;letter-spacing:1.3px;line-height:1.5}.home-stats{gap:6px;margin-bottom:12px}.home-stat{flex:1 1 70px;padding:7px 8px;font-size:10px}.home-stat strong{font-size:16px}.home-actions{gap:6px;margin:5px 0 14px}.home-recipe-title{font-size:13px}.section-title{font-size:21px}.section-subtitle{margin-bottom:10px}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:38px;font-size:12px;padding:.35rem .45rem}[data-testid="stHorizontalBlock"]{gap:.45rem}div[data-testid="stMetric"]{padding:8px 8px}div[data-testid="stMetricValue"]{font-size:18px}div[data-testid="stMetricLabel"]{font-size:10px}.home-recipe-title{font-size:14px}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -289,46 +289,59 @@ with st.sidebar:
 st.markdown('<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;"><div style="font-weight:850;font-size:16px;">♨️ Einfachmit<span style="color:#a97732;">Timo</span><div style="font-size:9px;letter-spacing:2px;color:#81796e;font-weight:600;">EINFACH GUTES ESSEN</div></div><div style="font-size:12px;color:#77736d;background:#fffdf9;border:1px solid #e8e0d4;padding:8px 12px;border-radius:20px;">Dein Rezept- & Wochenplaner</div></div>', unsafe_allow_html=True)
 
 if ss["nav"] == "Startseite":
-    # Kompakte Startseite nach der vereinbarten Referenz: keine riesigen Kacheln,
-    # sondern kleine Aktionen und direkt sichtbare Rezeptbilder.
     st.markdown('<div class="banner-hero home-hero"><div class="banner-hero-title">🍽️ EinfachmitTimo</div><div class="banner-hero-sub">EINFACH GUTES ESSEN · DEIN REZEPT- & WOCHENPLANER</div></div>', unsafe_allow_html=True)
-    m1, m2, m3 = st.columns(3, gap="small")
-    with m1: st.metric("Rezepte", len(rezepte))
-    with m2: st.metric("Favoriten", sum(bool(r.get("favorite")) for r in rezepte))
-    with m3: st.metric("Wochenplan", f"{len(ss.get('wochenplan', []))}/7")
 
-    st.markdown('<div class="section-title">Was möchtest du machen?</div>', unsafe_allow_html=True)
-    q1, q2, q3 = st.columns(3, gap="small")
-    with q1:
-        if st.button("🍴  Rezepte entdecken", key="btn_rezepte", use_container_width=True):
-            ss["nav"] = "Rezepte"; st.rerun()
-    with q2:
-        if st.button("📅  Wochenplan", key="btn_plan", use_container_width=True):
-            ss["nav"] = "Wochenplan"; st.rerun()
-    with q3:
-        if st.button("♡  Favoriten", key="btn_fav", use_container_width=True):
-            ss["nav"] = "Favoriten"; st.rerun()
+    # Kompakte Kennzahlen statt großer Metric-Karten.
+    fav_count = sum(bool(r.get("favorite")) for r in rezepte)
+    plan_count = len(ss.get("wochenplan", []))
+    st.markdown(
+        f'<div class="home-stats">'
+        f'<div class="home-stat"><strong>{len(rezepte)}</strong>Rezepte</div>'
+        f'<div class="home-stat"><strong>{fav_count}</strong>Favoriten</div>'
+        f'<div class="home-stat"><strong>{plan_count}/7</strong>Wochenplan</div>'
+        f'</div>', unsafe_allow_html=True
+    )
 
-    st.markdown('<div class="section-title" style="margin-top:1.4rem">Inspiration für heute</div><div class="section-subtitle">Ein paar Ideen aus deiner Rezeptsammlung.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Inspiration für heute</div><div class="section-subtitle">Entdecke leckere Ideen aus deiner Sammlung.</div>', unsafe_allow_html=True)
     bevorzugt = ["102", "12", "221", "25", "10", "113"]
     featured = []
     for rid in bevorzugt:
         match = next((r for r in rezepte if str(r.get("id", "")) == rid), None)
-        if match and match not in featured: featured.append(match)
-    if not featured: featured = rezepte[:6]
-    cols = st.columns(2, gap="medium")
+        if match and match not in featured:
+            featured.append(match)
+    if not featured:
+        featured = rezepte[:6]
+
+    cols = st.columns(2, gap="small")
     for idx, rezept in enumerate(featured[:6]):
         with cols[idx % 2]:
+            st.markdown('<div class="home-food-card">', unsafe_allow_html=True)
             bild_pfad = rezeptbild_pfad(rezept)
             if bild_pfad:
                 st.image(str(bild_pfad), use_container_width=True)
             else:
                 st.markdown(f'<div class="recipe-card-img">{html_sicher(rezept.get("icon", "🍽️"))}</div>', unsafe_allow_html=True)
             st.markdown(f'<div class="home-recipe-title">{html_sicher(rezept.get("name", "Rezept"))}</div>', unsafe_allow_html=True)
-            st.caption(f"⏱ {rezept.get('time_min', 20)} Min · {rezept.get('category', 'Rezept')} · {rezept.get('nutrition', {}).get('kcal', '–')} kcal")
+            nutrition = rezept.get("nutrition", {}) or {}
+            kcal = nutrition.get("kcal", nutrition.get("calories", "–")) if isinstance(nutrition, dict) else "–"
+            st.caption(f'⏱ {rezept.get("time_min", 20)} Min  ·  {kcal} kcal')
             if st.button("Rezept ansehen", key=f"home_view_{rezept.get('id', idx)}", use_container_width=True):
                 ss["selected_recipe"] = rezept.get("name", "Rezept")
+                ss["nav"] = "Rezepte"
                 st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="section-title" style="margin-top:.4rem">Schnellzugriff</div>', unsafe_allow_html=True)
+    q1, q2, q3 = st.columns(3, gap="small")
+    with q1:
+        if st.button("🍴 Rezepte", key="btn_rezepte", use_container_width=True):
+            ss["nav"] = "Rezepte"; st.rerun()
+    with q2:
+        if st.button("📅 Wochenplan", key="btn_plan", use_container_width=True):
+            ss["nav"] = "Wochenplan"; st.rerun()
+    with q3:
+        if st.button("♡ Favoriten", key="btn_fav", use_container_width=True):
+            ss["nav"] = "Favoriten"; st.rerun()
 
 elif ss["nav"] == "Rezepte":
     st.markdown('<div class="section-title">Rezepte</div><div class="section-subtitle">Durchsuche deine Sammlung und speichere deine Lieblingsgerichte.</div>', unsafe_allow_html=True)
