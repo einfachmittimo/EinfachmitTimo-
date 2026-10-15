@@ -342,22 +342,47 @@ elif ss["nav"] == "Wochenplan":
         st.markdown("### 🍽️ Dein Wochenplan")
         st.markdown(f"**Markt:** {ss['markt'].upper()} | **PLZ:** {ss['zip_code']} | **Portionen:** {ss['portionen']}")
         
-        cols = st.columns(1)
+        # Speicher aktuelle Plan-Rezept-Namen
+        if "plan_rezepte_names" not in ss:
+            ss["plan_rezepte_names"] = [r["name"] for r, _ in ss["wochenplan"]]
+        
         for idx, (rezept, angebote_count) in enumerate(ss["wochenplan"]):
-            c1, c2, c3 = st.columns([2, 1, 1])
-            with c1:
+            col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
+            with col1:
                 st.markdown(f"### {rezept['icon']} {rezept['name']}")
                 st.caption(f"⏱ {rezept['time_min']} Min • {rezept['category']} • {angebote_count} Angebote gefunden")
-            with c2:
-                if st.button("📖 Details", key=f"detail_{idx}"):
+            with col2:
+                if st.button("📖", key=f"detail_{idx}", help="Details anschauen"):
                     ss["selected_recipe"] = rezept["name"]
                     st.rerun()
-            with c3:
-                if st.button("❤️", key=f"fav_plan_{idx}"):
+            with col3:
+                herz = "❤️" if rezept.get("favorite") else "🤍"
+                if st.button(herz, key=f"fav_plan_{idx}", help="Zu Favoriten"):
                     for r in rezepte:
                         if r["name"] == rezept["name"]:
                             r["favorite"] = not r.get("favorite", False)
                     speichere_rezepte(rezepte)
+                    st.rerun()
+            with col4:
+                if st.button("🔄", key=f"swap_{idx}", help="Austauschen"):
+                    # Nächstes Rezept aus gleicher Kategorie finden
+                    kategorie = rezept["category"]
+                    andere = [r for r in rezepte 
+                             if r["category"] == kategorie 
+                             and r["name"] != rezept["name"]
+                             and r["name"] not in ss["plan_rezepte_names"]]
+                    
+                    if andere:
+                        neues = andere[0]
+                        ss["wochenplan"][idx] = (neues, 0)
+                        ss["plan_rezepte_names"][idx] = neues["name"]
+                        st.rerun()
+                    else:
+                        st.warning(f"Keine anderen {kategorie}-Rezepte verfügbar")
+            with col5:
+                if st.button("✕", key=f"remove_{idx}", help="Aus Plan entfernen"):
+                    ss["wochenplan"].pop(idx)
+                    ss["plan_rezepte_namen"].pop(idx)
                     st.rerun()
 
 elif ss["nav"] == "Favoriten":
