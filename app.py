@@ -8,6 +8,7 @@ Max 40 Zutaten, schnelles Caching, ChatGPT-Optimierungen
 import json
 import requests
 import streamlit as st
+import streamlit.components.v1 as components
 from pathlib import Path
 from PIL import Image
 from datetime import timedelta, date
@@ -346,6 +347,45 @@ with st.sidebar:
     
     nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Einkaufsliste", "Favoriten", "Kategorien", "Über"]
     ss["nav"] = st.radio("Navigation", nav_optionen, index=nav_optionen.index(ss["nav"]), label_visibility="collapsed")
+
+    # Mobile UX: nach einer Navigationsauswahl die geöffnete Streamlit-Sidebar
+    # einklappen. Streamlit bietet dafür keine offizielle Python-API; der kleine
+    # Browser-Hook nutzt den Sidebar-Collapse-Button und läuft nur auf schmalen Displays.
+    components.html("""
+    <script>
+    (() => {
+      const isMobile = () => window.parent.matchMedia('(max-width: 768px)').matches;
+      const closeSidebar = () => {
+        if (!isMobile()) return;
+        try {
+          const doc = window.parent.document;
+          const sidebar = doc.querySelector('section[data-testid="stSidebar"]');
+          if (!sidebar || sidebar.getAttribute('aria-expanded') === 'false') return;
+          const buttons = Array.from(doc.querySelectorAll('button'));
+          const closeButton = buttons.find((button) => {
+            const label = (button.getAttribute('aria-label') || '').toLowerCase();
+            const title = (button.getAttribute('title') || '').toLowerCase();
+            return label.includes('collapse') || label.includes('close sidebar') ||
+                   title.includes('collapse') || title.includes('close sidebar');
+          });
+          if (closeButton) closeButton.click();
+        } catch (e) { /* Browser-Sandbox/Streamlit-Version unterstützt den Hook ggf. nicht. */ }
+      };
+      // Nur schließen, wenn sich die ausgewählte Navigation tatsächlich geändert hat.
+      // Der erste Seitenaufruf bleibt unverändert.
+      try {
+        const doc = window.parent.document;
+        const nav = doc.querySelector('section[data-testid="stSidebar"] [data-testid="stRadio"]');
+        const selected = nav && nav.querySelector('[aria-checked="true"]');
+        const current = selected ? selected.innerText.trim() : '';
+        const key = 'einfachmitTimo:lastNav';
+        const previous = window.parent.sessionStorage.getItem(key);
+        if (current) window.parent.sessionStorage.setItem(key, current);
+        if (previous && current && previous !== current) window.setTimeout(closeSidebar, 180);
+      } catch (e) { /* Browser-Sandbox/Streamlit-Version unterstützt den Hook ggf. nicht. */ }
+    })();
+    </script>
+    """, height=0, width=0)
 
     st.divider()
     with st.expander("⚙️ Einstellungen"):
