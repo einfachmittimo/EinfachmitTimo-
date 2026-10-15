@@ -350,7 +350,7 @@ with st.sidebar:
     st.divider()
     with st.expander("⚙️ Einstellungen"):
         ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"], max_chars=5)
-        markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "netto", "norma"]
+        markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "penny", "netto", "norma"]
         ss["markt"] = st.selectbox("Markt", markt_optionen, index=markt_optionen.index(ss["markt"]) if ss["markt"] in markt_optionen else 0)
         ss["portionen"] = st.number_input("Portionen", min_value=1, max_value=12, value=ss["portionen"])
         ss["ernaehrungsweise"] = st.selectbox("Ernährungsweise", list(DIET_OPTIONEN.keys()), index=list(DIET_OPTIONEN.keys()).index(ss["ernaehrungsweise"]))
@@ -475,7 +475,7 @@ elif ss["nav"] == "Wochenplan":
     with c1:
         ss["zip_code"] = st.text_input("PLZ", value=ss["zip_code"], label_visibility="collapsed")
     with c2:
-        markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "netto", "norma"]
+        markt_optionen = ["lidl", "aldi-sued", "aldi-nord", "edeka", "rewe", "penny", "netto", "norma"]
         ss["markt"] = st.selectbox("Markt", markt_optionen, index=markt_optionen.index(ss["markt"]) if ss["markt"] in markt_optionen else 0, label_visibility="collapsed")
     with c3:
         ss["wochenplan_choice"] = st.radio(
