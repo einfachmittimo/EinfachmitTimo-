@@ -160,6 +160,7 @@ ss.setdefault("markt", "lidl")
 ss.setdefault("portionen", 4)
 ss.setdefault("ernaehrungsweise", "Alles")
 ss.setdefault("wochenplan_choice", "diese_woche")
+ss.setdefault("meal_types", "Alles")
 ss.setdefault("angebote", {})  # Gefundene Angebote
 ss.setdefault("wochenplan", {})  # Generierter Plan
 
@@ -197,6 +198,8 @@ with st.sidebar:
         ss["markt"] = st.selectbox("Markt", markt_optionen, index=markt_optionen.index(ss["markt"]) if ss["markt"] in markt_optionen else 0)
         ss["portionen"] = st.number_input("Portionen", min_value=1, max_value=12, value=ss["portionen"])
         ss["ernaehrungsweise"] = st.selectbox("Ernährungsweise", list(DIET_OPTIONEN.keys()), index=list(DIET_OPTIONEN.keys()).index(ss["ernaehrungsweise"]))
+        meal_types_optionen = ["Alles", "Frühstück", "Mittagessen", "Abendessen"]
+        ss["meal_types"] = st.selectbox("Mahlzeiten", meal_types_optionen, index=meal_types_optionen.index(ss["meal_types"]))
 
 
 # ============================================================
@@ -205,7 +208,6 @@ with st.sidebar:
 
 if ss["nav"] == "Startseite":
     st.markdown('<div class="banner-hero"><div class="banner-hero-title">🍽️ EinfachmitTimo</div><div class="banner-hero-sub">EINFACH GUTES ESSEN</div></div>', unsafe_allow_html=True)
-    st.write("Dein Essensplaner mit Aldi- & Lidl-Angeboten. Wähle eine Option:")
     
     c1, c2, c3 = st.columns(3, gap="medium")
     
@@ -293,6 +295,10 @@ elif ss["nav"] == "Wochenplan":
         # WORKFLOW: Zuerst Angebote suchen, dann Plan generieren
         erlaubte_diets = DIET_OPTIONEN[ss["ernaehrungsweise"]]
         plan_rezepte = [r for r in rezepte if r.get("diet", "vegetarisch") in erlaubte_diets]
+        
+        # Filter nach Mahlzeiten
+        if ss["meal_types"] != "Alles":
+            plan_rezepte = [r for r in plan_rezepte if r.get("category") == ss["meal_types"]]
         
         # Alle Zutaten sammeln (max 40!)
         alle_zutaten = set()
