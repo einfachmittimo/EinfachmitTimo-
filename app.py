@@ -7,6 +7,7 @@ Max 40 Zutaten, schnelles Caching, ChatGPT-Optimierungen
 
 import json
 import math
+import random
 import requests
 import streamlit as st
 from pathlib import Path
@@ -331,9 +332,11 @@ elif ss["nav"] == "Wochenplan":
             treffer = sum(1 for z in zutaten if z in angebote)
             bewertung.append((rezept, treffer))
         
-        bewertung.sort(key=lambda x: x[1], reverse=True)
+        # Sortieren nach Angeboten, aber mit Randomisierung
+        # Rezepte mit gleich vielen Angeboten werden gemischt
+        bewertung_sorted = sorted(bewertung, key=lambda x: (x[1], random.random()), reverse=True)
         
-        ss["wochenplan"] = [(r, t) for r, t in bewertung[:7]]
+        ss["wochenplan"] = [(r, t) for r, t in bewertung_sorted[:7]]
         ss["angebote"] = angebote
         
         st.success(f"✅ Wochenplan mit 7 Top-Rezepten erstellt!")
