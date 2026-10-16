@@ -54,7 +54,7 @@ div[data-testid="stMetric"]{background:var(--paper);border:1px solid var(--line)
 input,textarea,[data-baseweb="select"]>div{border-radius:12px!important}
 [data-testid="stTabs"] button{border-radius:18px;padding:.45rem .9rem}
 [data-testid="stTabs"] [aria-selected="true"]{color:#8d6025!important}
-@media(max-width:760px){.block-container{padding:.55rem .55rem 3rem}.banner-hero{padding:16px;border-radius:16px;margin-bottom:13px}.banner-hero-title{font-size:24px}.home-hero{padding:15px 14px;margin-bottom:10px}.home-hero .banner-hero-sub{font-size:9px;letter-spacing:1.3px;line-height:1.5}.home-stats{gap:6px;margin-bottom:12px}.home-stat{flex:1 1 70px;padding:7px 8px;font-size:10px}.home-stat strong{font-size:16px}.home-actions{gap:6px;margin:5px 0 14px}.home-recipe-title{font-size:13px}.section-title{font-size:21px}.section-subtitle{margin-bottom:10px}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:38px;font-size:12px;padding:.35rem .45rem}[data-testid="stHorizontalBlock"]{gap:.45rem}div[data-testid="stMetric"]{padding:8px 8px}div[data-testid="stMetricValue"]{font-size:18px}div[data-testid="stMetricLabel"]{font-size:10px}.home-recipe-title{font-size:14px}}
+.st-key-mobile_nav_container{display:none} @media(max-width:760px){.st-key-mobile_nav_container{display:block} section[data-testid="stSidebar"]{display:none!important} [data-testid="stMainBlockContainer"]{padding-top:.4rem!important}.block-container{padding:.55rem .55rem 3rem}.banner-hero{padding:16px;border-radius:16px;margin-bottom:13px}.banner-hero-title{font-size:24px}.home-hero{padding:15px 14px;margin-bottom:10px}.home-hero .banner-hero-sub{font-size:9px;letter-spacing:1.3px;line-height:1.5}.home-stats{gap:6px;margin-bottom:12px}.home-stat{flex:1 1 70px;padding:7px 8px;font-size:10px}.home-stat strong{font-size:16px}.home-actions{gap:6px;margin:5px 0 14px}.home-recipe-title{font-size:13px}.section-title{font-size:21px}.section-subtitle{margin-bottom:10px}.recipe-card-img{min-height:70px;padding:14px 0;font-size:36px}.recipe-card{border-radius:14px}.stButton>button{min-height:38px;font-size:12px;padding:.35rem .45rem}[data-testid="stHorizontalBlock"]{gap:.45rem}div[data-testid="stMetric"]{padding:8px 8px}div[data-testid="stMetricValue"]{font-size:18px}div[data-testid="stMetricLabel"]{font-size:10px}.home-recipe-title{font-size:14px}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -348,69 +348,6 @@ with st.sidebar:
     nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Einkaufsliste", "Favoriten", "Kategorien", "Über"]
     ss["nav"] = st.radio("Navigation", nav_optionen, index=nav_optionen.index(ss["nav"]), label_visibility="collapsed")
 
-    # Mobile UX: Sidebar nach Navigation automatisch schließen.
-    # Delegierter Listener überlebt Streamlit-Reruns besser als ein Listener direkt am Radio.
-    components.html("""
-    <script>
-    (() => {
-      try {
-        const host = window.parent;
-        const doc = host.document;
-        if (host.__einfachTimoSidebarCloseInstalled) return;
-        host.__einfachTimoSidebarCloseInstalled = true;
-
-        const isMobile = () => host.matchMedia('(max-width: 768px)').matches;
-        const isNavChoice = (target) => {
-          const sidebar = doc.querySelector('[data-testid="stSidebar"]');
-          if (!sidebar || !target || !target.closest) return false;
-          const choice = target.closest('[data-testid="stRadio"] label, [data-testid="stRadio"] [role="radio"]');
-          return !!(choice && sidebar.contains(choice));
-        };
-        const closeSidebar = () => {
-          if (!isMobile()) return;
-          const sidebar = doc.querySelector('[data-testid="stSidebar"]');
-          if (!sidebar || sidebar.getBoundingClientRect().width < 2) return;
-          const selectors = [
-            '[data-testid="stSidebarCollapseButton"]',
-            'button[aria-label*="close sidebar" i]',
-            'button[aria-label*="collapse sidebar" i]',
-            'button[aria-label*="sidebar schließen" i]',
-            'button[title*="close sidebar" i]',
-            'button[title*="sidebar schließen" i]'
-          ];
-          for (const selector of selectors) {
-            const button = doc.querySelector(selector);
-            if (button && button.getClientRects().length) {
-              button.click();
-              return;
-            }
-          }
-          // Fallback: Streamlit-Versionen, die den Collapse-Button ohne Test-ID rendern.
-          const buttons = Array.from(doc.querySelectorAll('button'));
-          const candidate = buttons.find((button) => {
-            const label = ((button.getAttribute('aria-label') || '') + ' ' +
-                           (button.getAttribute('title') || '') + ' ' +
-                           (button.innerText || '')).toLowerCase();
-            const rect = button.getBoundingClientRect();
-            return rect.width > 0 && rect.height > 0 &&
-                   (label.includes('sidebar') || label.includes('seitenleiste')) &&
-                   (label.includes('close') || label.includes('collapse') || label.includes('schließ') || label.includes('einklapp'));
-          });
-          if (candidate) candidate.click();
-        };
-        doc.addEventListener('click', (event) => {
-          if (!isNavChoice(event.target)) return;
-          // Die Navigation aktualisiert den Streamlit-Status zuerst; danach Sidebar schließen.
-          host.setTimeout(closeSidebar, 250);
-          host.setTimeout(closeSidebar, 700);
-        }, true);
-      } catch (error) {
-        // Nicht blockierend: Die App bleibt auch dann voll nutzbar, wenn der Browser
-        // den Zugriff auf das übergeordnete Dokument einschränkt.
-      }
-    })();
-    </script>
-    """, height=0, width=0)
 
     st.divider()
     with st.expander("⚙️ Einstellungen"):
@@ -422,6 +359,22 @@ with st.sidebar:
         meal_types_optionen = ["Alles", "Frühstück", "Mittagessen", "Abendessen"]
         ss["meal_types"] = st.selectbox("Mahlzeiten", meal_types_optionen, index=meal_types_optionen.index(ss["meal_types"]))
 
+
+# Mobile Navigation: Streamlit kann die native Sidebar nach einer Auswahl nicht
+# zuverlässig per Python schließen. Auf schmalen Displays wird deshalb ein
+# Menü im Hauptbereich angezeigt und die Sidebar selbst ausgeblendet.
+nav_optionen = ["Startseite", "Rezepte", "Wochenplan", "Einkaufsliste", "Favoriten", "Kategorien", "Über"]
+def _mobile_nav_changed():
+    ss["nav"] = ss["mobile_nav_select"]
+
+with st.container(key="mobile_nav_container"):
+    st.selectbox(
+        "Menü",
+        nav_optionen,
+        index=nav_optionen.index(ss["nav"]) if ss["nav"] in nav_optionen else 0,
+        key="mobile_nav_select",
+        on_change=_mobile_nav_changed,
+    )
 
 # ============================================================
 #  SEITEN
