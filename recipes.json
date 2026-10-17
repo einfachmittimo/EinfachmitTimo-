@@ -20901,5 +20901,76 @@
     "nutrition_servings": 1,
     "nutrition_source": "Nutzerbild – Proteinangabe pro Portion",
     "nutrition_source_status": "ungefähre Angabe aus Nutzerbild"
+  },
+  {
+    "name": "Heidelbeer-Zitronen-Ofenporridge",
+    "base_servings": 3,
+    "ingredients": [
+      {
+        "name": "Haferflocken",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Milch (1,5 % oder 3,5 %)",
+        "amount": 250,
+        "unit": "ml"
+      },
+      {
+        "name": "Banane",
+        "amount": 1,
+        "unit": "Stück (ca. 120 g)"
+      },
+      {
+        "name": "Heidelbeeren, frisch oder TK",
+        "amount": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Ei (Größe M)",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Bio-Zitrone (Abrieb und etwas Saft)",
+        "amount": "0.5",
+        "unit": "Stück"
+      },
+      {
+        "name": "Honig (optional)",
+        "amount": "1–2",
+        "unit": "TL"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Frühstück",
+    "category": "Frühstück",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Banane in einer Schüssel mit einer Gabel fein zerdrücken.",
+      "Haferflocken, Milch, Ei, Zitronenabrieb und nach Belieben Honig zur Banane geben und gut verrühren.",
+      "Heidelbeeren vorsichtig unter den Teig heben.",
+      "Die Mischung in eine Auflaufform geben und bei 180 °C Ober-/Unterhitze ca. 25–30 Minuten backen, bis das Porridge goldbraun ist.",
+      "Kurz abkühlen lassen und nach Wunsch mit Skyr, Joghurt oder etwas Honig und frischen Beeren toppen."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 267,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Frühstück",
+      "Meal Prep"
+    ],
+    "nutrition": {
+      "kcal": "ca. 340",
+      "protein": "12 g",
+      "carbs": "52 g",
+      "fat": "7 g",
+      "source": "geschätzt pro Portion bei 3 Portionen, ohne Topping"
+    },
+    "nutrition_servings": 3,
+    "nutrition_source": "Nutzerbild – Nährwerte pro Portion (bei 3 Portionen, ohne Topping)",
+    "nutrition_source_status": "ungefähre Angabe aus Nutzerbild"
   }
 ]
