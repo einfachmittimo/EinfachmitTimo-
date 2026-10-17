@@ -20351,5 +20351,555 @@
     "geeignet_fuer": [
       "Meal Prep"
     ]
+  },
+  {
+    "name": "Kürbis-Mozzarella-Bällchen",
+    "base_servings": 18,
+    "ingredients": [
+      {
+        "name": "Hokkaido-Kürbis, geraspelt",
+        "amount": 350,
+        "unit": "g"
+      },
+      {
+        "name": "Mozzarella, fertig geraspelt",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Entöltes Mandelmehl",
+        "amount": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Eier",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Salz, Pfeffer und Chili",
+        "amount": "",
+        "unit": "nach Geschmack"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Snack",
+    "category": "Snack",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Backofen auf 200 °C Ober-/Unterhitze vorheizen und ein Backblech mit Backpapier belegen.",
+      "Kürbis waschen, entkernen, mit Schale raspeln und 350 g abwiegen.",
+      "Kürbisraspel mit Mozzarella und Eiern verrühren. Mandelmehl und Gewürze zugeben und gründlich vermengen.",
+      "18 gleich große Bällchen formen, auf das Blech setzen und etwa 35 Minuten goldbraun backen."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 259,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Snack",
+      "Abendessen"
+    ],
+    "nutrition": {
+      "kcal": 56,
+      "protein": 5.7,
+      "carbs": 1.7,
+      "fat": 2.9,
+      "source": "Angabe aus Nutzerbild pro Bällchen"
+    },
+    "nutrition_servings": 18,
+    "nutrition_source": "Nutzerbild – Nährwerte pro Bällchen",
+    "nutrition_source_status": "aus Nutzerbild übernommen"
+  },
+  {
+    "name": "Schoko-Himbeer-Traum",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Löffelbiskuits oder Butterkekse",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Mascarpone",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Quark",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Sahne",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Zucker",
+        "amount": 3,
+        "unit": "EL"
+      },
+      {
+        "name": "Vanilleextrakt",
+        "amount": 3,
+        "unit": "TL"
+      },
+      {
+        "name": "Himbeeren, frisch oder TK",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Schokolade, Zartbitter oder Vollmilch",
+        "amount": 100,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Dessert",
+    "category": "Dessert",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Löffelbiskuits oder Butterkekse grob zerbröseln.",
+      "Sahne steif schlagen. Mascarpone, Quark, Zucker und Vanilleextrakt verrühren. Die geschlagene Sahne vorsichtig unterheben.",
+      "Kekse, Creme und Himbeeren abwechselnd in vier Gläser schichten.",
+      "Mit geraspelter Schokolade und frischen Himbeeren dekorieren. Kurz kühl stellen und servieren."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 260,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Dessert",
+      "Nachspeise"
+    ],
+    "nutrition": {
+      "kcal": 869,
+      "protein": 19.5,
+      "carbs": 75.6,
+      "fat": 53.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "Berechnet (geschätzt) pro Portion; Annahmen siehe nutrition_assumptions",
+    "nutrition_source_status": "aus vom Nutzer bereitgestellter JSON-Datei übernommen",
+    "nutrition_assumptions": "Berechnet pro Glas mit Löffelbiskuits, Magerquark, Schlagsahne (ca. 30 % Fett), Zucker ca. 37,5 g und Zartbitterschokolade.",
+    "zubereitungszeit_min": 15,
+    "schwierigkeitsgrad": "Einfach",
+    "portionen_text": "4 Gläser",
+    "tipp": "Statt Himbeeren können Erdbeeren, Blaubeeren oder eine gemischte Beerenmischung verwendet werden."
+  },
+  {
+    "name": "Blätterteig-Weihnachtsbäume mit Nutella",
+    "base_servings": 8,
+    "ingredients": [
+      {
+        "name": "Blätterteig, gekühlt",
+        "amount": 2,
+        "unit": "Rollen"
+      },
+      {
+        "name": "Nutella oder Nuss-Nougat-Creme",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Ei zum Bestreichen",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Puderzucker",
+        "amount": "",
+        "unit": "zum Bestäuben"
+      },
+      {
+        "name": "Streusel",
+        "amount": "",
+        "unit": "optional"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Dessert",
+    "category": "Dessert",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Blätterteig ausrollen und eine Rolle mit Nutella bestreichen.",
+      "Die zweite Blätterteigrolle darauflegen und leicht andrücken.",
+      "Mit einem Messer Dreiecke ausschneiden und seitlich in Streifen einschneiden, dabei die Mitte nicht ganz durchschneiden.",
+      "Die Streifen vorsichtig verdrehen, sodass ein Tannenbaum entsteht. Oben optional einen kleinen Stern ausschneiden und aufsetzen.",
+      "Mit verquirltem Ei bestreichen und bei 180 °C Ober-/Unterhitze etwa 12–15 Minuten goldbraun backen.",
+      "Mit Puderzucker bestäuben und nach Belieben mit Streuseln dekorieren."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 261,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Dessert",
+      "Backen",
+      "Weihnachten"
+    ],
+    "nutrition": {
+      "kcal": 529,
+      "protein": 7.0,
+      "carbs": 40.6,
+      "fat": 36.6,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 8,
+    "nutrition_source": "Berechnet (geschätzt) pro Portion; Annahmen siehe nutrition_assumptions",
+    "nutrition_source_status": "aus vom Nutzer bereitgestellter JSON-Datei übernommen",
+    "nutrition_assumptions": "Geschätzt pro Stück bei 2 gekühlten Blätterteigrollen mit zusammen ca. 550 g, 200 g Nutella und 1 Ei. Puderzucker und Streusel sind nicht eingerechnet.",
+    "zubereitungszeit_min": 20,
+    "portionen_text": "ca. 8 Stück",
+    "tipp": "Die Füllung kann auch mit Zimt-Zucker, Spekulatiuscreme, Marmelade oder weißer Schokolade variiert werden."
+  },
+  {
+    "name": "Lava-Kuchen mit flüssigem Schokokern",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "name": "Zartbitterschokolade",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Butter",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Zucker",
+        "amount": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Eier",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Eigelb",
+        "amount": 2,
+        "unit": "Stück"
+      },
+      {
+        "name": "Mehl",
+        "amount": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Salz",
+        "amount": 1,
+        "unit": "Prise"
+      },
+      {
+        "name": "Kakaopulver",
+        "amount": "",
+        "unit": "zum Bestäuben"
+      },
+      {
+        "name": "Beeren und Vanilleeis",
+        "amount": "",
+        "unit": "optional zum Servieren"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Dessert",
+    "category": "Dessert",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Schokolade und Butter bei niedriger Hitze schmelzen und etwas abkühlen lassen.",
+      "Zucker, Eier und Eigelb cremig aufschlagen. Die Schokoladenmischung dazugeben.",
+      "Mehl und eine Prise Salz unterrühren. Förmchen einfetten und mit Kakaopulver bestäuben, anschließend den Teig einfüllen.",
+      "Bei 200 °C Ober-/Unterhitze etwa 10–12 Minuten backen. Die Ränder sollten fest sein, die Mitte bleibt flüssig."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 262,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Dessert",
+      "Backen"
+    ],
+    "nutrition": {
+      "kcal": 505,
+      "protein": 7.6,
+      "carbs": 39.8,
+      "fat": 34.9,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 4,
+    "nutrition_source": "Berechnet (geschätzt) pro Portion; Annahmen siehe nutrition_assumptions",
+    "nutrition_source_status": "aus vom Nutzer bereitgestellter JSON-Datei übernommen",
+    "nutrition_assumptions": "Berechnet pro Stück; Eier ca. 100 g ohne Schale, 2 Eigelb ca. 34 g, Mehl 40 g und ca. 3 g Kakaopulver. Beeren und Vanilleeis sind nicht eingerechnet.",
+    "portionen_text": "4 Stück",
+    "tipp": "Mit Vanilleeis und frischen Beeren servieren."
+  },
+  {
+    "name": "Schoko-Cookies",
+    "base_servings": 12,
+    "ingredients": [
+      {
+        "name": "Butter, weich",
+        "amount": 125,
+        "unit": "g"
+      },
+      {
+        "name": "Brauner Zucker",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Zucker",
+        "amount": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Ei",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Vanilleextrakt",
+        "amount": 1,
+        "unit": "TL"
+      },
+      {
+        "name": "Mehl",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Backpulver",
+        "amount": 0.5,
+        "unit": "TL"
+      },
+      {
+        "name": "Salz",
+        "amount": 1,
+        "unit": "Prise"
+      },
+      {
+        "name": "Schokotropfen oder gehackte Schokolade",
+        "amount": 150,
+        "unit": "g"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Dessert",
+    "category": "Dessert",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Butter, Zucker und braunen Zucker cremig rühren. Ei und Vanilleextrakt dazugeben.",
+      "Mehl, Backpulver und Salz mischen und kurz unterrühren. Schokotropfen dazugeben.",
+      "Teig zu etwa 12 Kugeln formen und mit etwas Abstand auf ein Backblech legen.",
+      "Bei 180 °C Ober-/Unterhitze etwa 10–12 Minuten backen. Kurz abkühlen lassen und genießen."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 263,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Dessert",
+      "Backen",
+      "Snack"
+    ],
+    "nutrition": {
+      "kcal": 207,
+      "protein": 2.6,
+      "carbs": 25.9,
+      "fat": 10.0,
+      "source": "berechnet (geschätzt)"
+    },
+    "nutrition_servings": 16,
+    "nutrition_source": "Berechnet (geschätzt) pro Portion; Annahmen siehe nutrition_assumptions",
+    "nutrition_source_status": "aus vom Nutzer bereitgestellter JSON-Datei übernommen",
+    "nutrition_assumptions": "Geschätzt pro Cookie bei ungefähr 16 Cookies aus der Gesamtmenge (ca. 50 g Teig pro Cookie). Verwendet wurden durchschnittliche Nährwerte für Schokotropfen.",
+    "portionen_text": "ca. 16 Cookies",
+    "tipp": "Mit etwas Meersalz bestreuen."
+  },
+  {
+    "name": "Cremiges Protein-Curry",
+    "base_servings": 1,
+    "ingredients": [
+      {
+        "name": "Kichererbsen, gekocht",
+        "amount": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Edamame",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Reis, gekocht",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Gemüse nach Wahl",
+        "amount": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Skyr als Topping",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Curry, Knoblauch und Gewürze",
+        "amount": "",
+        "unit": "nach Geschmack"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Mittagessen",
+    "category": "Mittagessen",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Gemüse vorbereiten und klein schneiden. Kichererbsen abspülen und abtropfen lassen.",
+      "Gemüse mit Kichererbsen und Edamame in einer Pfanne garen. Curry, Knoblauch und weitere Gewürze zugeben.",
+      "Den gekochten Reis unterheben und alles erhitzen, bis das Gemüse gar ist.",
+      "Mit Skyr als cremigem Topping servieren."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 264,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Mittagessen",
+      "Abendessen"
+    ],
+    "nutrition": {
+      "protein": "ca. 30–35 g",
+      "source": "Schätzung aus Nutzerbild; abhängig von Produkten"
+    },
+    "nutrition_servings": 1,
+    "nutrition_source": "Nutzerbild – Proteinangabe pro Portion",
+    "nutrition_source_status": "ungefähre Angabe aus Nutzerbild"
+  },
+  {
+    "name": "Cremiger Protein-Wrap mit Thunfisch",
+    "base_servings": 1,
+    "ingredients": [
+      {
+        "name": "Vollkorn-Wrap, groß",
+        "amount": 1,
+        "unit": "Stück"
+      },
+      {
+        "name": "Thunfisch im eigenen Saft",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Körniger Frischkäse",
+        "amount": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Salat, Gurke und Tomate",
+        "amount": "",
+        "unit": "nach Geschmack"
+      },
+      {
+        "name": "Gewürze und Zitronensaft",
+        "amount": "",
+        "unit": "nach Geschmack"
+      }
+    ],
+    "diet": "fisch",
+    "kategorie": "Mittagessen",
+    "category": "Mittagessen",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Thunfisch abtropfen lassen und mit körnigem Frischkäse vermengen.",
+      "Salat, Gurke und Tomate waschen und klein schneiden.",
+      "Thunfisch-Frischkäse-Mischung würzen und mit etwas Zitronensaft abschmecken.",
+      "Wrap mit Salat und Gemüse belegen, die Mischung darauf verteilen, einrollen und servieren."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 265,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Mittagessen",
+      "Abendessen"
+    ],
+    "nutrition": {
+      "protein": "ca. 35–40 g",
+      "source": "Schätzung aus Nutzerbild; abhängig von Produkten"
+    },
+    "nutrition_servings": 1,
+    "nutrition_source": "Nutzerbild – Proteinangabe pro Portion",
+    "nutrition_source_status": "ungefähre Angabe aus Nutzerbild"
+  },
+  {
+    "name": "Mediterraner Kichererbsen-Feta-Salat",
+    "base_servings": 1,
+    "ingredients": [
+      {
+        "name": "Kichererbsen, gekocht",
+        "amount": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Feta light",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Tomaten, Gurke und Rucola",
+        "amount": "",
+        "unit": "nach Geschmack"
+      },
+      {
+        "name": "Zitronensaft und Kräuter",
+        "amount": "",
+        "unit": "nach Geschmack"
+      },
+      {
+        "name": "Olivenöl",
+        "amount": "",
+        "unit": "optional"
+      }
+    ],
+    "diet": "vegetarisch",
+    "kategorie": "Mittagessen",
+    "category": "Mittagessen",
+    "kategorie_status": "aus Nutzerbild übernommen",
+    "datenbank_status": "aus Nutzerbild ergänzt",
+    "zubereitung": [
+      "Kichererbsen abspülen und abtropfen lassen.",
+      "Tomaten und Gurke klein schneiden, Rucola waschen.",
+      "Gemüse mit Kichererbsen und zerbröseltem Feta in eine Schüssel geben.",
+      "Mit Zitronensaft und Kräutern abschmecken. Nach Wunsch etwas Olivenöl hinzufügen und servieren."
+    ],
+    "zubereitung_status": "aus Nutzerbild übernommen",
+    "id": 266,
+    "kinderfreundlich": true,
+    "kinderfreundlich_status": "automatisch vorgeprüft – finale manuelle Prüfung vorgesehen",
+    "geeignet_fuer": [
+      "Mittagessen",
+      "Abendessen"
+    ],
+    "nutrition": {
+      "protein": "ca. 30 g",
+      "source": "Schätzung aus Nutzerbild; abhängig von Produkten"
+    },
+    "nutrition_servings": 1,
+    "nutrition_source": "Nutzerbild – Proteinangabe pro Portion",
+    "nutrition_source_status": "ungefähre Angabe aus Nutzerbild"
   }
 ]
