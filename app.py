@@ -318,6 +318,8 @@ ss.setdefault("wochenplan_choice", "diese_woche")
 ss.setdefault("meal_types", "Alles")
 ss.setdefault("angebote", {})  # Gefundene Angebote
 ss.setdefault("wochenplan", [])  # Generierter Plan
+ss.setdefault("wochenplan_typen", [])
+ss.setdefault("wochenplan_snacks", [])
 ss.setdefault("plan_rezepte_names", [])
 ss.setdefault("einkauf_abgehakt", [])
 
@@ -511,13 +513,17 @@ elif ss["nav"] == "Wochenplan":
         erlaubte_diets = DIET_OPTIONEN[ss["ernaehrungsweise"]]
         plan_rezepte = [r for r in rezepte if ernaehrung_kompatibel(r.get("diet", "vegetarisch"), erlaubte_diets)]
         
-        # Filter nach Mahlzeiten
-        if ss["meal_types"] != "Alles":
-            plan_rezepte = [r for r in plan_rezepte if r.get("category") == ss["meal_types"]]
-        
-        # Alle Zutaten sammeln (max 40!)
+        # Wochenplan-Grundlage: Frühstück plus genau eine Hauptmahlzeit pro Tag.
+        # Die allgemeine Mahlzeiten-Auswahl in den Einstellungen darf den Wochenplan
+        # nicht versehentlich auf nur eine Kategorie reduzieren.
+        fruehstueck_rezepte = [r for r in plan_rezepte if str(r.get("category", "")).strip().casefold() == "frühstück"]
+        hauptkategorien = {"mittagessen", "abendessen", "hauptgericht", "hauptmahlzeit"}
+        hauptgerichte = [r for r in plan_rezepte if str(r.get("category", "")).strip().casefold() in hauptkategorien]
+        snack_rezepte = [r for r in plan_rezepte if str(r.get("category", "")).strip().casefold() in {"snack", "zwischenmahlzeit"}]
+
+        # Alle Zutaten sammeln (max 40!) – nur Rezepte der beiden Pflicht-Kategorien.
         alle_zutaten = set()
-        for r in plan_rezepte:
+        for r in fruehstueck_rezepte + hauptgerichte:
             for z in r.get("ingredients", []):
                 alle_zutaten.add(zutat_name(z))
         
@@ -554,27 +560,50 @@ elif ss["nav"] == "Wochenplan":
         # SCHRITT 2: Plan generieren basierend auf Angeboten
         st.info("📌 Schritt 2: Wochenplan generieren...")
         
-        bewertung = []
-        for rezept in plan_rezepte:
-            zutaten = [zutat_name(z) for z in rezept.get("ingredients", [])]
-            treffer = sum(1 for z in zutaten if z in angebote)
-            bewertung.append((rezept, treffer))
-        
-        # Stabil sortieren; keine zufälligen Änderungen bei jedem Neuladen.
-        bewertung_sorted = sorted(bewertung, key=lambda x: (-x[1], str(x[0].get("name", "")).casefold()))
-        ss["wochenplan"] = [(r, t) for r, t in bewertung_sorted[:7]]
+        def bewerte_und_sortiere(rezeptliste):
+            bewertung = []
+            for rezept in rezeptliste:
+                zutaten = [zutat_name(z) for z in rezept.get("ingredients", [])]
+                treffer = sum(1 for z in zutaten if z in angebote)
+                bewertung.append((rezept, treffer))
+            return sorted(bewertung, key=lambda x: (-x[1], str(x[0].get("name", "")).casefold()))
+
+        # Je 7 Frühstücke und 7 Hauptmahlzeiten auswählen; innerhalb einer Kategorie
+        # keine Wiederholungen. Snacks werden nur angeboten, wenn die Datenbank sie
+        # ausdrücklich als Snack/Zwischenmahlzeit kennzeichnet.
+        fruehstueck_sorted = bewerte_und_sortiere(fruehstueck_rezepte)
+        hauptgerichte_sorted = bewerte_und_sortiere(hauptgerichte)
+        auswahl = [(r, t, "Frühstück") for r, t in fruehstueck_sorted[:7]]
+        auswahl += [(r, t, "Hauptmahlzeit") for r, t in hauptgerichte_sorted[:7]]
+        ss["wochenplan"] = [(r, t) for r, t, _typ in auswahl]
+        ss["wochenplan_typen"] = [typ for _r, _t, typ in auswahl]
+        ss["wochenplan_snacks"] = bewerte_und_sortiere(snack_rezepte)[:7]
         ss["plan_rezepte_names"] = [r.get("name", "") for r, _ in ss["wochenplan"]]
         ss["angebote"] = angebote
+        fehlend = []
+        if len(fruehstueck_sorted) < 7:
+            fehlend.append(f"nur {len(fruehstueck_sorted)} Frühstücksrezepte verfügbar")
+        if len(hauptgerichte_sorted) < 7:
+            fehlend.append(f"nur {len(hauptgerichte_sorted)} Hauptgerichte verfügbar")
+        if fehlend:
+            st.warning("Der Plan ist unvollständig: " + "; ".join(fehlend) + ". Bitte prüfe die Kategorien deiner Rezepte.")
         if not ss["wochenplan"]:
             st.warning("Mit diesen Filtern wurden keine passenden Rezepte gefunden.")
         else:
-            st.success(f"Wochenplan mit {len(ss['wochenplan'])} Rezepten erstellt.")
+            st.success(f"Wochenplan mit {len(ss['wochenplan'])} festen Mahlzeiten erstellt: {sum(1 for typ in ss['wochenplan_typen'] if typ == 'Frühstück')} Frühstücke und {sum(1 for typ in ss['wochenplan_typen'] if typ == 'Hauptmahlzeit')} Hauptmahlzeiten.")
     
     if ss["wochenplan"]:
         st.markdown("### 🍽️ Dein Wochenplan")
         start_datum, end_datum = get_week_dates(ss["wochenplan_choice"])
         wochen_label = "diese Woche" if ss["wochenplan_choice"] == "diese_woche" else "nächste Woche"
         st.markdown(f"**Markt:** {ss['markt'].upper()} | **PLZ:** {ss['zip_code']} | **Portionen:** {ss['portionen']} | **Zeitraum:** {start_datum:%d.%m.}–{end_datum:%d.%m.%Y} ({wochen_label})")
+        st.caption("Dein Plan enthält täglich ein Frühstück und eine Hauptmahlzeit. Snacks werden separat und optional angezeigt, wenn sie in deiner Rezeptdatenbank als Snack/Zwischenmahlzeit kategorisiert sind.")
+        snacks = ss.get("wochenplan_snacks", [])
+        if snacks:
+            with st.expander("🍎 Optionale Snacks anzeigen"):
+                st.caption("Bitte nur ergänzen, wenn sie in dein persönliches Kalorienziel passen.")
+                for snack, snack_treffer in snacks:
+                    st.write(f"• {snack.get('name', 'Snack')} — {snack_treffer} passende Angebotstreffer")
         
         # Speicher aktuelle Plan-Rezept-Namen
         ss["plan_rezepte_names"] = [r.get("name", "") for r, _ in ss["wochenplan"]]
@@ -582,8 +611,10 @@ elif ss["nav"] == "Wochenplan":
         for idx, (rezept, angebote_count) in enumerate(ss["wochenplan"]):
             col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
             with col1:
+                typ_liste = ss.get("wochenplan_typen", [])
+                mahlzeit_typ = typ_liste[idx] if idx < len(typ_liste) else ("Frühstück" if rezept.get("category") == "Frühstück" else "Hauptmahlzeit")
                 st.markdown(f"### {html_sicher(rezept.get('icon', '🍽️'))} {html_sicher(rezept.get('name', 'Rezept'))}")
-                st.caption(f"⏱ {rezept['time_min']} Min • {rezept['category']} • {angebote_count} Angebote gefunden")
+                st.caption(f"{mahlzeit_typ} • ⏱ {rezept['time_min']} Min • {rezept['category']} • {angebote_count} Angebote gefunden")
             with col2:
                 if st.button("📖", key=f"detail_{idx}", help="Details anschauen"):
                     ss["selected_recipe"] = rezept.get("name", "Rezept")
@@ -616,6 +647,8 @@ elif ss["nav"] == "Wochenplan":
                 if st.button("✕", key=f"remove_{idx}", help="Aus Plan entfernen"):
                     ss["wochenplan"].pop(idx)
                     ss["plan_rezepte_names"].pop(idx)
+                    if idx < len(ss.get("wochenplan_typen", [])):
+                        ss["wochenplan_typen"].pop(idx)
                     st.rerun()
 
 elif ss["nav"] == "Einkaufsliste":
